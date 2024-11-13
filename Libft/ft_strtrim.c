@@ -6,23 +6,12 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:54:16 by engiusep          #+#    #+#             */
-/*   Updated: 2024/11/06 16:58:23 by engiusep         ###   ########.fr       */
+/*   Updated: 2024/11/12 15:54:29 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+#include "libft.h"
 
-int ft_strlen(char *str)
-{
-    int i;
-    
-    i = 0;
-    while(str[i])
-        i++;
-    return i;
-}
 int charisset(char c,char *set)
 {
     while(c == *set)
@@ -73,7 +62,7 @@ char *ft_strtrim(char const *s1, char const *set)
         str[i] = '\0';
         return (str);        
     }
-    str = malloc(end - start + 1);
+    str = malloc(end - start + 2);
     if(!str)
         return NULL;
     
@@ -88,9 +77,9 @@ char *ft_strtrim(char const *s1, char const *set)
     
 }
 
-int     main(void)
-{
-    char *str = "    salut      ";
-    char *set = "            ";
-    printf("%s",ft_strtrim(str,set));
-}
+// int     main(void)
+// {
+//     char *str = "    salut      ";
+//     char *set = "            ";
+//     printf("%s",ft_strtrim(str,set));
+// }

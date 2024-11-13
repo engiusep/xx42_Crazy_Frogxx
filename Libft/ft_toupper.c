@@ -1,15 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   toupper.c                                          :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:58:42 by engiusep          #+#    #+#             */
-/*   Updated: 2024/11/05 16:38:57 by engiusep         ###   ########.fr       */
+/*   Updated: 2024/11/12 11:42:48 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 int ft_toupper(int c)
 {
     if(c >= 'a' && c <= 'z')
@@ -19,10 +20,10 @@ int ft_toupper(int c)
     return (c);
 }
 
-int main(void)
-{
-    char a;
+// int main(void)
+// {
+//     char a;
 
-    a = 'a';
-    printf("%c\n",ft_toupper(a));
-}
+//     a = 'a';
+//     printf("%c\n",ft_toupper(a));
+// }

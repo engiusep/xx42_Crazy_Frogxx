@@ -6,10 +6,11 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:29:18 by engiusep          #+#    #+#             */
-/*   Updated: 2024/11/04 16:29:19 by engiusep         ###   ########.fr       */
+/*   Updated: 2024/11/12 11:40:52 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 int ft_isprint(int  c)
 {
     if(c >= 32 && c <= 126)

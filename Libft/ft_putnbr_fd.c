@@ -6,17 +6,12 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 16:22:34 by engiusep          #+#    #+#             */
-/*   Updated: 2024/11/07 16:33:15 by engiusep         ###   ########.fr       */
+/*   Updated: 2024/11/12 15:19:12 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include <unistd.h>
+#include "libft.h"
 
-void ft_putchar_fd(char c, int fd)
-{
-    write(fd, &c,1);
-}
 void ft_putnbr_fd(int n, int fd)
 {
 
@@ -39,10 +34,10 @@ void ft_putnbr_fd(int n, int fd)
 	}
 }
 
-int main(void)
-{
-    int fd;
-    fd = open("test.txt",O_WRONLY);
+// int main(void)
+// {
+//     int fd;
+//     fd = open("test.txt",O_WRONLY);
     
-    ft_putnbr_fd(1244,fd);
-}
+//     ft_putnbr_fd(1244,fd);
+// }

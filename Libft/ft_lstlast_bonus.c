@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 16:29:09 by engiusep          #+#    #+#             */
-/*   Updated: 2024/11/12 13:52:38 by engiusep         ###   ########.fr       */
+/*   Created: 2024/11/08 15:49:52 by engiusep          #+#    #+#             */
+/*   Updated: 2024/11/12 13:48:00 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "libft.h"
-int ft_isalpha(int c)
+
+
+t_list *ft_lstlast(t_list *lst)
 {
-    if(c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z')
-        return (1);
-    return (0);
+    t_list *move;
+    move = lst;
+    while(move->next != NULL)
+        move = move->next;
+    return(move);
 }

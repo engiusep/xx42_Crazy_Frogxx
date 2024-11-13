@@ -1,19 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split.c                                            :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 16:58:48 by engiusep          #+#    #+#             */
-/*   Updated: 2024/11/07 11:28:46 by engiusep         ###   ########.fr       */
+/*   Updated: 2024/11/12 15:45:38 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
+#include "libft.h"
 int charisep(char str,char c)
 {
  
@@ -51,6 +49,8 @@ char *allo_cpy(char *str,char c)
         len++;
     
     new = malloc(len + 1);
+    if(!new)
+        return (NULL);
     while(i < len)
     {
         new[i] = str[i];
@@ -69,6 +69,8 @@ char **ft_split(char const *s, char c)
     j = 0;
     nb = countword((char *)s,c);
     str = malloc((nb + 1) * sizeof(char *));
+    if(!str)
+        return (NULL);
 
     while(j < nb)
     {
@@ -84,14 +86,14 @@ char **ft_split(char const *s, char c)
     
 }
 
-int		main(int argc, char **argv)
-{
-	int i;
-    char **str;
+// int		main(int argc, char **argv)
+// {
+// 	int i;
+//     char **str;
 
-    str = ft_split(argv[1], argv[2][0]);
-    i = 0;
-    while (str[i])
-        printf("%s\n", str[i++]);
-    return (0);
-}
+//     str = ft_split(argv[1], argv[2][0]);
+//     i = 0;
+//     while (str[i])
+//         printf("%s\n", str[i++]);
+//     return (0);
+// }

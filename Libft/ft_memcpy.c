@@ -6,14 +6,11 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:47:00 by engiusep          #+#    #+#             */
-/*   Updated: 2024/11/04 16:57:31 by engiusep         ###   ########.fr       */
+/*   Updated: 2024/11/12 17:01:37 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-
+#include "libft.h"
 void *ft_memcpy(void *dest, const void *src, size_t n)
 {
     unsigned char *ptr;
@@ -21,6 +18,8 @@ void *ft_memcpy(void *dest, const void *src, size_t n)
     
     ptr_src = src;
     ptr = dest;
+    if((unsigned char *)dest == (void *)0 && (const char *)src == (void *)0)
+        return (NULL);
 
     while(n--)
     {
@@ -29,23 +28,23 @@ void *ft_memcpy(void *dest, const void *src, size_t n)
     return (dest);
 }
 
-int main() {
+// int main() {
 
-    int array [] = { 54, 85, 20, 63, 21 };
-    int * copy = NULL;
-    int length = sizeof( int ) * 5;
+//     int array [] = { 54, 85, 20, 63, 21 };
+//     int * copy = NULL;
+//     int length = sizeof( int ) * 5;
        
-    /* Memory allocation and copy */
-    copy = (int *) malloc( length );
-    ft_memcpy( copy, array, length );
+//     /* Memory allocation and copy */
+//     copy = (int *) malloc( length );
+//     ft_memcpy( copy, array, length );
         
-    /* Display the copied values */
-    for( length=0; length<5; length++ ) {
-        printf( "%d ", copy[ length ] );
-    }
-    printf( "\n" );
+//     /* Display the copied values */
+//     for( length=0; length<5; length++ ) {
+//         printf( "%d ", copy[ length ] );
+//     }
+//     printf( "\n" );
         
-    free( copy );
+//     free( copy );
     
-    return EXIT_SUCCESS;
-}
+//     return EXIT_SUCCESS;
+// }

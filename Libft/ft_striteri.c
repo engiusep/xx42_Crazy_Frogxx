@@ -6,13 +6,12 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 14:33:17 by engiusep          #+#    #+#             */
-/*   Updated: 2024/11/07 14:39:22 by engiusep         ###   ########.fr       */
+/*   Updated: 2024/11/12 13:42:35 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
 
+#include "libft.h"
 void ft_striteri(char *s, void (*f)(unsigned int,char*))
 {
     unsigned int i;
@@ -27,23 +26,23 @@ void ft_striteri(char *s, void (*f)(unsigned int,char*))
     }
 }
 
-#include <stdio.h>
-#include <ctype.h>  // Pour la fonction toupper
+// #include <stdio.h>
+// #include <ctype.h>  // Pour la fonction toupper
 
-void to_upper_if_even(unsigned int i, char *c)
-{
-    if (i % 2 == 0)  // Si l'index est pair
-        *c = toupper(*c);  // Convertir le caractère en majuscule
-}
+// void to_upper_if_even(unsigned int i, char *c)
+// {
+//     if (i % 2 == 0)  // Si l'index est pair
+//         *c = toupper(*c);  // Convertir le caractère en majuscule
+// }
 
-int main()
-{
-    char str[] = "bonjour";
+// int main()
+// {
+//     char str[] = "bonjour";
 
-    // Appliquer la fonction to_upper_if_even à chaque caractère de la chaîne
-    ft_striteri(str, to_upper_if_even);
+//     // Appliquer la fonction to_upper_if_even à chaque caractère de la chaîne
+//     ft_striteri(str, to_upper_if_even);
 
-    printf("Résultat : %s\n", str);  // Affiche "BONjOuR"
+//     printf("Résultat : %s\n", str);  // Affiche "BONjOuR"
     
-    return 0;
-}
+//     return 0;
+// }

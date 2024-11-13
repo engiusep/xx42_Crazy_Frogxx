@@ -6,12 +6,12 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:01:32 by engiusep          #+#    #+#             */
-/*   Updated: 2024/11/07 15:16:20 by engiusep         ###   ########.fr       */
+/*   Updated: 2024/11/12 13:42:22 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include <unistd.h>
+
+#include "libft.h"
 void ft_putstr_fd(char *s, int fd)
 {
     int i;
@@ -23,10 +23,10 @@ void ft_putstr_fd(char *s, int fd)
     }
 }
 
-int main(void)
-{
-    int fd;
+// int main(void)
+// {
+//     int fd;
 
-    fd = open("test.txt",O_WRONLY);
-    ft_putstr_fd("salut",fd);
-}
+//     fd = open("test.txt",O_WRONLY);
+//     ft_putstr_fd("salut",fd);
+// }

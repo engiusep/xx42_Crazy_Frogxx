@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tolower.c                                          :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/05 16:32:45 by engiusep          #+#    #+#             */
-/*   Updated: 2024/11/05 16:36:26 by engiusep         ###   ########.fr       */
+/*   Created: 2024/11/08 15:53:38 by engiusep          #+#    #+#             */
+/*   Updated: 2024/11/12 13:48:05 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
-int ft_tolower(int c)
+
+void ft_lstadd_back(t_list **lst, t_list *new)
 {
-    if(c >= 'A' && c <= 'Z')
+    t_list *move;
+    move = *lst;
+    while(move->next != NULL)
     {
-        c += 32;
+        move = move->next;
     }
-    return (c);
-}
-
-int main(void)
-{
-    char a;
-
-    a = 'A';
-    printf("%c\n",ft_tolower(a));
+    move->next = new;
 }

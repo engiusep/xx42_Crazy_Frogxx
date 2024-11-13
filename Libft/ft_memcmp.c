@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memcmp.c                                           :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 11:17:43 by engiusep          #+#    #+#             */
-/*   Updated: 2024/11/06 11:33:34 by engiusep         ###   ########.fr       */
+/*   Updated: 2024/11/12 13:41:10 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
 
+#include "libft.h"
 int ft_memcmp(const void *s1, const void *s2, size_t n)
 {
     const unsigned char *str;
@@ -29,22 +28,22 @@ int ft_memcmp(const void *s1, const void *s2, size_t n)
     }
     return (0);
 }
-#include <assert.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+// #include <assert.h>
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include <string.h>
 
-int main() {
+// int main() {
 
-    int array1 [] = { 54, 85, 20, 63, 21 };
-    int array2 [] = { 54, 85, 19, 63, 21 };
-    size_t size = sizeof( int ) * 5;
+//     int array1 [] = { 54, 85, 20, 63, 21 };
+//     int array2 [] = { 54, 85, 19, 63, 21 };
+//     size_t size = sizeof( int ) * 5;
 
-    assert( memcmp( array1, array2, size) == ft_memcmp( array1, array2, size) );       
-    assert( memcmp( array1, array1, size) == ft_memcmp (array1, array1, size) );       
-    assert( memcmp( array2, array1, size) == ft_memcmp( array2, array1, size) );       
+//     assert( memcmp( array1, array2, size) == ft_memcmp( array1, array2, size) );       
+//     assert( memcmp( array1, array1, size) == ft_memcmp (array1, array1, size) );       
+//     assert( memcmp( array2, array1, size) == ft_memcmp( array2, array1, size) );       
     
-    printf( "Test is ok\n" );
+//     printf( "Test is ok\n" );
     
-    return 0;
-}
+//     return 0;
+// }

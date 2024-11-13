@@ -6,12 +6,12 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:29:01 by engiusep          #+#    #+#             */
-/*   Updated: 2024/11/04 16:29:02 by engiusep         ###   ########.fr       */
+/*   Updated: 2024/11/12 11:54:37 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-int ft_atoi(char *str)
+#include "libft.h"
+int ft_atoi(const char *str)
 {
     int number;
     int count;
@@ -42,7 +42,7 @@ int ft_atoi(char *str)
     return (number);
 }
 
-int main(void)
+/*int main(void)
 {
     printf("%d\n",ft_atoi("-1234"));
-}
+}*/
