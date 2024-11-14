@@ -6,22 +6,19 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:28:53 by engiusep          #+#    #+#             */
-/*   Updated: 2024/11/12 13:39:19 by engiusep         ###   ########.fr       */
+/*   Updated: 2024/11/14 10:05:46 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_bzero(void *s, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
-    unsigned char *ptr;
-    
-    ptr = s;
+	unsigned char	*ptr;
 
-    while(n--)
-    {
-        *ptr++ = '\0';
-    }
+	ptr = s;
+	while (n--)
+		*ptr++ = '\0';
 }
 // /*int main() {
 
@@ -30,8 +27,7 @@ void ft_bzero(void *s, size_t n)
 //     int     i;
 //     i = 0;
 //     n = sizeof(int) * 6;
-//     ft_bzero(test,n);
-    
+//     ft_bzero(test,n);	
 //     while(i < 6)
 //     {
 //         printf("%d ",test[i]);

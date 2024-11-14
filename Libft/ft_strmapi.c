@@ -6,25 +6,26 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:28:20 by engiusep          #+#    #+#             */
-/*   Updated: 2024/11/12 15:37:45 by engiusep         ###   ########.fr       */
+/*   Updated: 2024/11/14 14:56:15 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	unsigned int i;
-	char	*str;
+	unsigned int	i;
+	char			*str;
+
 	i = 0;
-	if(!s || !f)
-		return NULL;
-	str = malloc(ft_strlen((char *)s) + 1);
-	if(!str)
+	if (!s || !f)
 		return (NULL);
-	while(s[i])
+	str = malloc(ft_strlen((char *)s) + 1);
+	if (!str)
+		return (NULL);
+	while (s[i])
 	{
-		str[i] = f(i,s[i]);
+		str[i] = f(i, s[i]);
 		i++;
 	}
 	str[i] = '\0';
@@ -38,18 +39,15 @@ char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
 //         return c - 32; // Conversion en majuscule
 //     return c;
 // }
-
 // int main()
 // {
 //     char *str = "bonjour";
 //     char *result = ft_strmapi(str, to_upper);
-    
 //     if (result) {
 //         printf("Résultat : %s\n", result); // Affiche "BONJOUR"
 //         free(result); // N'oublie pas de libérer la mémoire !
 //     } else {
 //         printf("Erreur d'allocation ou de paramètres\n");
 //     }
-
 //     return 0;
 // }

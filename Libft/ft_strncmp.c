@@ -6,12 +6,12 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 09:48:43 by engiusep          #+#    #+#             */
-/*   Updated: 2024/11/12 17:17:50 by engiusep         ###   ########.fr       */
+/*   Updated: 2024/11/14 14:19:09 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "libft.h"
+
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	while ((*s1 || *s2) && n--)
@@ -27,6 +27,5 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 // {
 //     char *str = "salt";
 //     char *str2 = "salut";
-    
 //     printf("%d",ft_strncmp(str,str2,5));
 // }

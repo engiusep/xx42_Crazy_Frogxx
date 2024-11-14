@@ -6,19 +6,19 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:32:45 by engiusep          #+#    #+#             */
-/*   Updated: 2024/11/12 13:43:17 by engiusep         ###   ########.fr       */
+/*   Updated: 2024/11/14 14:49:49 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "libft.h"
-int ft_tolower(int c)
+
+int	ft_tolower(int c)
 {
-    if(c >= 'A' && c <= 'Z')
-    {
-        c += 32;
-    }
-    return (c);
+	if (c >= 'A' && c <= 'Z')
+	{
+		c += 32;
+	}
+	return (c);
 }
 
 // int main(void)

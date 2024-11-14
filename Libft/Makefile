@@ -6,13 +6,13 @@
 #    By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/12 12:07:31 by engiusep          #+#    #+#              #
-#    Updated: 2024/11/12 13:49:48 by engiusep         ###   ########.fr        #
+#    Updated: 2024/11/14 15:18:45 by engiusep         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-CC = cc
+CC = cc -Wall -Werror -Wextra
 AR = ar rcs
 RM = rm -f
 
@@ -50,6 +50,7 @@ FILES = ft_memset \
 		ft_putstr_fd \
 		ft_putendl_fd \
 		ft_putnbr_fd \
+		ft_striteri \
 
 FILES_B = 	ft_lstnew_bonus \
 		ft_lstadd_front_bonus \
