@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:54:16 by engiusep          #+#    #+#             */
-/*   Updated: 2024/11/14 14:59:20 by engiusep         ###   ########.fr       */
+/*   Updated: 2024/11/14 15:54:31 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	index_end(char *s1, char *set)
 	return (i);
 }
 
-char	*ft_clean(char *str, char *s1, char *set)
+char	*ft_cpy(char *str, char *s1, char *set)
 {
 	int	start;
 	int	end;
@@ -86,7 +86,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	str = malloc(end - start + 2);
 	if (!str)
 		return (NULL);
-	return (ft_clean(str, (char *)s1, (char *)set));
+	return (ft_cpy(str, (char *)s1, (char *)set));
 }
 
 //  int     main(void)

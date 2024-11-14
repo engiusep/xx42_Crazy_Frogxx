@@ -6,13 +6,13 @@
 #    By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/12 12:07:31 by engiusep          #+#    #+#              #
-#    Updated: 2024/11/14 15:18:45 by engiusep         ###   ########.fr        #
+#    Updated: 2024/11/14 17:15:46 by engiusep         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-CC = cc -Wall -Werror -Wextra
+CC = cc 
 AR = ar rcs
 RM = rm -f
 
@@ -51,12 +51,13 @@ FILES = ft_memset \
 		ft_putendl_fd \
 		ft_putnbr_fd \
 		ft_striteri \
-
-FILES_B = 	ft_lstnew_bonus \
-		ft_lstadd_front_bonus \
-		ft_lstsize_bonus \
-		ft_lstlast_bonus \
-		ft_lstadd_back_bonus \
+		
+FILES_B = ft_lstdelone_bonus \
+			ft_lstadd_back_bonus \
+			ft_lstadd_front_bonus \
+			ft_lstlast_bonus \
+			ft_lstnew_bonus \
+			ft_lstsize_bonus \
 
 SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))
@@ -68,7 +69,7 @@ OBJS_B = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES_B)))
 
 
 .c.o: $(SRCS)
-	$(CC) -c -o $@ $<
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(NAME): $(OBJS)
 	$(AR) $@ $^

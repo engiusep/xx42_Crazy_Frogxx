@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 12:07:51 by engiusep          #+#    #+#             */
-/*   Updated: 2024/11/14 15:32:11 by engiusep         ###   ########.fr       */
+/*   Updated: 2024/11/14 17:02:35 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,5 @@ int		ft_tolower(int c);
 int		ft_toupper(int c);
 size_t	ft_strlen(const char *s);
 void	ft_freeall(char **split, int j);
+void	ft_lstdelone(t_list *lst, void (*del)(void *));
 #endif
