@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 15:43:55 by engiusep          #+#    #+#             */
-/*   Updated: 2024/11/14 17:31:09 by engiusep         ###   ########.fr       */
+/*   Updated: 2024/11/15 13:57:32 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	ft_lstsize(t_list *lst)
 {
 	int		i;
+
 	i = 0;
 	while (lst != NULL)
 	{

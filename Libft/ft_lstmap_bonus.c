@@ -1,32 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/08 15:53:38 by engiusep          #+#    #+#             */
-/*   Updated: 2024/11/15 13:55:52 by engiusep         ###   ########.fr       */
+/*   Created: 2024/11/15 13:25:06 by engiusep          #+#    #+#             */
+/*   Updated: 2024/11/15 13:58:40 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*move;
+	t_list	*new;
+	t_list	*node;
+	void	*temp;
 
-	move = *lst;
-	if (!new || !lst)
-		return ;
-	if (*lst == NULL)
+	new = NULL;
+	if (!lst || !f || !del)
+		return (NULL);
+	while (lst != NULL)
 	{
-		*lst = new;
-		return ;
+		temp = f(lst->content);
+		node = ft_lstnew(temp);
+		if (!node)
+		{
+			ft_lstclear(&new, del);
+			del(temp);
+			return (NULL);
+		}
+		ft_lstadd_back(&new, node);
+		lst = lst->next;
 	}
-	while (move->next != NULL)
-	{
-		move = move->next;
-	}
-	move->next = new;
+	return (new);
 }

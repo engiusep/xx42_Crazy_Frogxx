@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 16:51:25 by engiusep          #+#    #+#             */
-/*   Updated: 2024/11/14 17:09:18 by engiusep         ###   ########.fr       */
+/*   Updated: 2024/11/15 13:57:23 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	if(!lst || !del)
+	if (!lst || !del)
 		return ;
-	if(del)
+	if (del)
 		del((void *)lst->content);
 	free(lst);
 }
