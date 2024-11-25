@@ -6,7 +6,7 @@
 #    By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/15 16:13:47 by engiusep          #+#    #+#              #
-#    Updated: 2024/11/18 17:12:34 by engiusep         ###   ########.fr        #
+#    Updated: 2024/11/25 15:53:02 by engiusep         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ CC = cc
 AR = ar rcs
 
 FILES = ft_printf.c \
+		ft_printf_utils.c \
 
 OBJS = $(FILES:.c=.o)
 
