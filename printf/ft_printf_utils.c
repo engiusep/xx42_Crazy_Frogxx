@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:52:22 by engiusep          #+#    #+#             */
-/*   Updated: 2024/11/25 16:00:12 by engiusep         ###   ########.fr       */
+/*   Updated: 2024/11/25 16:51:30 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_putchar(int c)
 
 int	ft_putnbr(unsigned int nb)
 {
-	int	count;
+	unsigned int	count;
 
 	count = 0;
 	if (nb >= 0 && nb < 10)
@@ -64,8 +64,8 @@ int	ft_putnbr_base(int nbr, const char *base)
 
 int	ft_putnbr_base_unsigned(unsigned int nbr, const char *base)
 {
-	int	base_len;
-	int	count;
+	unsigned int	base_len;
+	int				count;
 
 	base_len = 0;
 	count = 0;

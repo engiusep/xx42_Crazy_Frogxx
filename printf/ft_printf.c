@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 14:04:38 by engiusep          #+#    #+#             */
-/*   Updated: 2024/11/25 16:01:07 by engiusep         ###   ########.fr       */
+/*   Updated: 2024/11/25 16:33:18 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_putstr(char const *str)
 	return (count);
 }
 
-int	ft_convert_base16(unsigned long long int nb)
+int	convert_base_16(unsigned long long int nb)
 {
 	char	*base;
 	int		size;
@@ -38,14 +38,14 @@ int	ft_convert_base16(unsigned long long int nb)
 	size = 0;
 	if (nb >= 16)
 	{
-		size += ft_convert_base16(nb / 16);
+		size += convert_base_16(nb / 16);
 	}
 	write(1, &base[nb % 16], 1);
 	size++;
 	return (size);
 }
 
-int	ft_putptr(void *ptr)
+int	putptr(void *ptr)
 {
 	int						size;
 	unsigned long long int	ptr_nbr;
@@ -58,7 +58,7 @@ int	ft_putptr(void *ptr)
 	}
 	ptr_nbr = (unsigned long long int)(ptr);
 	size += write(1, "0x", 2);
-	size += ft_convert_base16(ptr_nbr);
+	size += convert_base_16(ptr_nbr);
 	return (size);
 }
 
@@ -84,7 +84,7 @@ int	check_arg(const char *str, va_list args)
 	else if (*str == '%')
 		i += ft_putchar('%');
 	else if (*str == 'p')
-		i += ft_putptr(va_arg(args, void *));
+		i += putptr(va_arg(args, void *));
 	else
 		return (-1);
 	return (i);
@@ -108,5 +108,6 @@ int	ft_printf(const char *str, ...)
 			i += ft_putchar(*str);
 		str++;
 	}
+	va_end(args);
 	return (i);
 }

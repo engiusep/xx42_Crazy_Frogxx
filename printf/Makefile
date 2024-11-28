@@ -6,13 +6,14 @@
 #    By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/15 16:13:47 by engiusep          #+#    #+#              #
-#    Updated: 2024/11/25 15:53:02 by engiusep         ###   ########.fr        #
+#    Updated: 2024/11/25 16:52:13 by engiusep         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-CC = cc
+CC = cc 
+CFLAGS = -Wall -Werror -Wextra
 AR = ar rcs
 
 FILES = ft_printf.c \
@@ -21,7 +22,7 @@ FILES = ft_printf.c \
 OBJS = $(FILES:.c=.o)
 
 %.o: %.c ft_printf.h
-	$(CC) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
 	$(AR) $(NAME) $(OBJS)
