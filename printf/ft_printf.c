@@ -6,13 +6,13 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 14:04:38 by engiusep          #+#    #+#             */
-/*   Updated: 2024/11/25 16:33:18 by engiusep         ###   ########.fr       */
+/*   Updated: 2024/11/29 16:16:23 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putstr(char const *str)
+static int	ft_putstr(char const *str)
 {
 	int	i;
 	int	count;
@@ -29,7 +29,7 @@ int	ft_putstr(char const *str)
 	return (count);
 }
 
-int	convert_base_16(unsigned long long int nb)
+static int	convert_base_16(unsigned long long int nb)
 {
 	char	*base;
 	int		size;
@@ -45,7 +45,7 @@ int	convert_base_16(unsigned long long int nb)
 	return (size);
 }
 
-int	putptr(void *ptr)
+static int	putptr(void *ptr)
 {
 	int						size;
 	unsigned long long int	ptr_nbr;
@@ -62,7 +62,7 @@ int	putptr(void *ptr)
 	return (size);
 }
 
-int	check_arg(const char *str, va_list args)
+static int	check_arg(const char *str, va_list args)
 {
 	int	i;
 

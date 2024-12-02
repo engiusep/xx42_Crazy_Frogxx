@@ -6,11 +6,12 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 13:06:35 by engiusep          #+#    #+#             */
-/*   Updated: 2024/11/28 15:50:45 by engiusep         ###   ########.fr       */
+/*   Updated: 2024/12/02 12:03:34 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
 int	ft_strlen2(char *str)
 {
 	int	i;
@@ -62,16 +63,6 @@ int	ft_check_line(char *str)
 	}
 	return (0);
 }
-char *ft_check_over(char *str)
-{
-	int	i;
-	i = 0;
-	while(str[i] && str[i] != '\n')
-		i++;
-	if(str[i] == '\n')
-		i++;
-	return(str + i);
-}
 
 char	*get_next_line(int fd)
 {
@@ -81,8 +72,13 @@ char	*get_next_line(int fd)
 	char		*str;
 	static  char		*new;
 	static char *temp_new;
+	
 	nb_bytes = 0;
 	i = 0;
+	
+	if(fd < 0 || BUFFER_SIZE <= 0)
+		return NULL;
+		
 	while (ft_check_line(new) == 0)
 	{
 		nb_bytes = read(fd, buffer, BUFFER_SIZE);
@@ -90,38 +86,37 @@ char	*get_next_line(int fd)
 			break;
 		buffer[nb_bytes] = '\0';
 		new = ft_strjoin(new, buffer);
+		if(new[0] == '\0')
+			return (NULL);
 		free(temp_new);
 		temp_new = new;
 	}
-	
-	str = malloc(ft_strlen2(new) + 2);
+	str = malloc(ft_strlen2(new) + 2);	
 	if(!str)
 	{
 		free(temp_new);
+		temp_new = NULL;
 		return NULL;
 	}
-
 	while(*new && *new != '\n')
-	{
 		str[i++] = *new++;
-	}
-	if(*new == '\n')
+	if(*new && *new == '\n')
+	{
 		str[i++] = '\n';
+		new++;
+	}
 	str[i] = '\0';
-	new = ft_check_over(new);
 	if(str[0] == 0)
 	{
+		
 		free(str);
-		if(nb_bytes == 0)
-		{
-			free(temp_new);
-			temp_new = NULL;
-		}
+		free(temp_new);
+		temp_new = NULL;
 		return NULL;
 	}
-	
 	return (str);
 }
+
 int	main(){
 	
 	int fd = 0;
@@ -129,31 +124,17 @@ int	main(){
 
 	fd = open("hello.txt", O_RDONLY);
 	str = get_next_line(fd);
-	printf("%s",str);
-	free(str);
-	str = get_next_line(fd);
-	printf("%s", str);
-	free(str);
-	str = get_next_line(fd);
-	printf("%s", str);
-	free(str);
-	str = get_next_line(fd);
-	printf("%s", str);
-	free(str);
-	str = get_next_line(fd);
-	printf("%s", str);
-	free(str);
-	str = get_next_line(fd);
-	printf("%s", str);
-	free(str);
-	str = get_next_line(fd);
-	printf("%s", str);
-	free(str);
-	str = get_next_line(fd);
-	printf("%s", str);
-	free(str);
-	str = get_next_line(fd);
-	printf("%s", str);
-	free(str);
+	while(str != NULL)
+	{	
+		printf("%s",str);
+		free(str);
+		str = get_next_line(fd);
+	}
+	// // str = get_next_line(fd);
+	// printf("%s", str);
+	// free(str);
+	// str = get_next_line(fd);
+	// printf("%s", str);
+	// free(str);
 	close(fd);
  }

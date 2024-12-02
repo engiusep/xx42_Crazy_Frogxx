@@ -5,24 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/15 16:26:16 by engiusep          #+#    #+#             */
-/*   Updated: 2024/11/25 16:45:27 by engiusep         ###   ########.fr       */
+/*   Created: 2024/11/29 15:45:42 by engiusep          #+#    #+#             */
+/*   Updated: 2024/11/29 16:06:03 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "ft_printf.h"
 # include <stdarg.h>
 # include <unistd.h>
 
-int	ft_printf(const char *str, ...);
-int	convert_base_16(unsigned long long int nb);
-int	ft_putstr(char const *str);
-int	ft_putnbr_base(int nbr, const char *base);
 int	ft_putchar(int c);
 int	ft_putnbr(unsigned int nb);
+int	ft_putnbr_base(int nbr, const char *base);
 int	ft_putnbr_base_unsigned(unsigned int nbr, const char *base);
+int	ft_printf(const char *str, ...);
 
 #endif
