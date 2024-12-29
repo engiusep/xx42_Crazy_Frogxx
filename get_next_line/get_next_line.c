@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 12:27:45 by engiusep          #+#    #+#             */
-/*   Updated: 2024/12/18 11:38:08 by engiusep         ###   ########.fr       */
+/*   Updated: 2024/12/29 15:01:21 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,27 +59,27 @@ char	*get_next_line(int fd)
 	take_exedent(str, buffer);
 	return (free(str), line);
 }
-#include <stdio.h>
+// #include <stdio.h>
 
-int main()
-{
-	int fd;
-	int fd2;
-	char *str;
-	char *str2;
+// int main()
+// {
+// 	int fd;
+// 	int fd2;
+// 	char *str;
+// 	char *str2;
 
-	fd = open("hello.txt",O_RDONLY);
-	fd2 = open("hello.txt",O_RDONLY);
-	while(str != NULL)
-	{
-		str = get_next_line(fd);
-		printf("%s",str);
-		free(str);
-	}
-	while(str2 != NULL)
-	{
-		str = get_next_line(fd2);
-		printf("%s",str2);
-		free(str2);
-	}
-}
+// 	fd = open("hello.txt",O_RDONLY);
+// 	fd2 = open("hello.txt",O_RDONLY);
+// 	while(str != NULL)
+// 	{
+// 		str = get_next_line(fd);
+// 		printf("%s",str);
+// 		free(str);
+// 	}
+// 	while(str2 != NULL)
+// 	{
+// 		str = get_next_line(fd2);
+// 		printf("%s",str2);
+// 		free(str2);
+// 	}
+// }
