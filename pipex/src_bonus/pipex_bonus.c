@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   pipex_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/19 15:45:23 by engiusep          #+#    #+#             */
-/*   Updated: 2024/12/30 16:32:41 by engiusep         ###   ########.fr       */
+/*   Created: 2024/12/30 16:33:23 by engiusep          #+#    #+#             */
+/*   Updated: 2024/12/30 17:20:13 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
 #include "pipex.h"
+#include "../../libft/libft.h"
 
 char	*ft_strdup(const char *s)
 {
@@ -30,37 +30,45 @@ char	*ft_strdup(const char *s)
 	ptr[i] = '\0';
 	return (ptr);
 }
-t_test	creat_struct(char **argv)
+t_test	creat_struct(char **argv,int argc)
 {
 	t_test	str;
-
+	int i;
+	
 	str.error = NULL;
-	str.file = ft_strdup(argv[1]);
-	if (!str.file)
+	str.file = ft_strchr(argv[1]);
+	if(!str.file)
 		exit(EXIT_FAILURE);
-	str.cmd = ft_strdup(argv[2]);
-	if (!str.cmd)
+	str.cmds = malloc((argc - 3) * sizeof(char *));
+	if(!str.cmds)
 	{
-		free(str.file);	
+		free(str.file);
 		exit(EXIT_FAILURE);
 	}
-	str.cmd2 = ft_strdup(argv[3]);
-	if (!str.cmd2)
+	i = 2;
+	while(i < argc - 1)
 	{
-		free(str.file);	
-		free(str.cmd);	
+		str.cmds[i - 2] = ft_strdup(argv[i]);
+		if(!str.cmds[i - 2])
+			{
+				free_split(str.cmds,0);
+				free(str.file);
+				exit(EXIT_FAILURE);
+			}
+		i++;
+	}
+	str.cmds[argc - 3] = NULL;
+	
+	str.file2 = ft_strdup(argv[argc - 1]);
+	if(!str.file2)
+	{
+		free_split(str.cmds,0);
+		free(str.file);
 		exit(EXIT_FAILURE);
 		
 	}
-	str.file2 = ft_strdup(argv[4]);
-	if (!str.file2)
-	{
-		free(str.file);	
-		free(str.cmd);	
-		free(str.cmd2);		
-		exit(EXIT_FAILURE);
-	}
 	return (str);
+	
 }
 
 void	child(int *pipefd, t_test *str, char **env)
@@ -153,7 +161,7 @@ int	main(int argc, char **argv, char **env)
 	 	write(2, "ERROR\n", 6);
 	 	exit(EXIT_FAILURE);
 	 }
-	str = creat_struct(argv);
+	str = creat_struct(argv,argc);
 	if (pipe(pipefd) == -1)
 	{
 		perror("ERROR");

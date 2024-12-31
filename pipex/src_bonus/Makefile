@@ -6,7 +6,7 @@
 #    By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/29 19:12:38 by engiusep          #+#    #+#              #
-#    Updated: 2024/12/29 19:42:27 by engiusep         ###   ########.fr        #
+#    Updated: 2024/12/30 16:39:39 by engiusep         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,15 +16,15 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra
 RM = rm -f
 
-SRCS =  pipex.c \
-			utils.c
+SRCS =  pipex_bonus.c \
+			utils_bonus.c
 
 HEADER = pipex.h
 
 OBJS = $(SRCS:.c=.o)
 
-LIBFT = ../libft
-LIBFT_HEADER = ../libft/libft.h
+LIBFT = ../../libft
+LIBFT_HEADER = ../../libft/libft.h
 
 
 all: $(NAME)

@@ -6,14 +6,14 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 15:57:11 by engiusep          #+#    #+#             */
-/*   Updated: 2024/12/30 11:39:21 by engiusep         ###   ########.fr       */
+/*   Updated: 2024/12/30 16:43:26 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include "../libft/libft.h"
+# include "../../libft/libft.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -24,8 +24,7 @@ typedef struct s_test
 {
 	char	*file;
 	char	*file2;
-	char	*cmd;
-	char	*cmd2;
+	char 	**cmds;
 	char	*error;
 }			t_test;
 

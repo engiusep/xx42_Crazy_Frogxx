@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/29 15:56:44 by engiusep          #+#    #+#             */
-/*   Updated: 2024/12/30 11:11:08 by engiusep         ###   ########.fr       */
+/*   Created: 2024/12/30 16:33:36 by engiusep          #+#    #+#             */
+/*   Updated: 2024/12/30 16:38:25 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
+#include "pipex.h"
+
+#include "../../libft/libft.h"
 #include "pipex.h"
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
