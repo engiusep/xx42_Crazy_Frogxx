@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 14:02:36 by engiusep          #+#    #+#             */
-/*   Updated: 2025/01/15 15:05:24 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:48:03 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	free_map(t_map *map,int i)
 {
+	write(1,"c",1);
 	while(map->grid[i])
 	{
 		free(map->grid[i]);

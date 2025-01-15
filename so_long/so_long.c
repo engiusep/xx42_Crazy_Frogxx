@@ -9,9 +9,13 @@
 
 int destroy_all(t_data *data)
 {
+    mlx_destroy_image(data->mlx_ptr,data->image_ptr_mur);
+    mlx_destroy_image(data->mlx_ptr,data->image_ptr_exit);
+    mlx_destroy_image(data->mlx_ptr,data->image_ptr_collectible);
+    mlx_destroy_image(data->mlx_ptr,data->image_ptr_end);
+    mlx_destroy_display(data->mlx_ptr);
     mlx_destroy_window(data->mlx_ptr,data->window_ptr);
     free(data->mlx_ptr);
-    exit (0);
     return (0);
 }
 void    find_player_position(t_map *map, int *player_x,int *player_y)
@@ -90,13 +94,14 @@ int on_keypress(int keysym, t_data *data)
         new_y += 1;
     else if(keysym == 65307)
     {
+        // free_map(map->grid,0);
         exit(0);
     }
     if(new_x >= 0 && new_x < data->map->width && new_y >= 0 && new_y < data->map->width)
     {
         end_or_not = move_player(data->map, new_x, new_y, player_x, player_y);
     }
-   // mlx_clear_window(data->mlx_ptr,data->window_ptr);
+    //mlx_clear_window(data->mlx_ptr,data->window_ptr);
     if(end_or_not == 0)
         draw_map(data->map,data);
     else
@@ -165,7 +170,6 @@ int main(void)
     data.image_ptr_exit = mlx_xpm_file_to_image(data.mlx_ptr,"image/zaap.xpm", &map.width, &map.height);
     data.image_ptr_collectible = mlx_xpm_file_to_image(data.mlx_ptr,"image/collecte.xpm",&map.width,&map.height);
     data.image_ptr_end = mlx_xpm_file_to_image(data.mlx_ptr,"image/end.xpm",&map.width,&map.height);
-
     malloc_grid(&map,"map/map.ber");
     read_map("map/map.ber",&map);
     draw_map(&map, &data);
@@ -174,7 +178,10 @@ int main(void)
     free_map(&map,0);
     free(data.mlx_ptr);
     free(data.window_ptr);
-   //destroy_all(&data);
+   mlx_destroy_image(data.mlx_ptr,data.image_ptr_perso);
+  
+   
+   destroy_all(&data);
     return (0);
 }
 
