@@ -8,7 +8,9 @@ SRCS =  so_long.c \
 			draw_map.c \
 			get_next_line/get_next_line.c \
 			get_next_line/get_next_line_utils.c \
-			libft/ft_split.c
+			libft/ft_split.c \
+			libft/ft_strdup.c \
+			libft/ft_strlen.c
 
 HEADER = so_long.h
 

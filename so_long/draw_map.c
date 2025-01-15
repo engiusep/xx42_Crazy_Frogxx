@@ -46,40 +46,12 @@ int check_all_1(t_map *map)
             while (map->grid[i][++j])
             {
                 if (j == 0 && map->grid[i][j] != '1')
-                {
-                    printf("i = %d, j = %d\n", i, j);
                     return (-1);
-                }
                 else if (map->grid[i][j + 1] == 0 && map->grid[i][j] != '1')
                     return (-1);
             }
         }
-    }
-    // while(map->grid[0][j])
-    // {
-    //     if(map->grid[0][j] != '1')
-    //         return(-1);
-    //     j++;
-    // }
-    // while(map->grid[i][0])
-    // {
-    //     if(map->grid[i][0] != '1')
-    //         return(-1);
-    //     i++;
-    // }
-    // j = 0;
-    // while(map->grid[map->height - 1][j])
-    // {
-    //     if(map->grid[map->height - 1][j] != '1')
-    //         return(-1);
-    //     j++;
-    // }
-    // while(map->grid[i - 1][map->width])
-    // {
-    //     if(map->grid[i - 1][map->width] != '1')
-    //         return(-1);
-    //     i--;
-    // }
+    } 
     return (0);
 }
 int check_map(t_map *map)
@@ -127,11 +99,11 @@ void read_map(const char *filename, t_map *map)
     }
     while((line = get_next_line(fd)) != NULL)
     {
-        map->grid[i] = malloc(sizeof(char) * (map->width + 1));
+        //map->grid[i] = malloc(sizeof(char) * (map->width + 1));
         j = 0;
         while(line[j] != '\0' && line[j] != '\n')
         {
-            map->grid[i][j] = line[j];
+            map->grid[i] = ft_strdup(line);
             j++;
         }
         map->grid[i][j] = '\0';

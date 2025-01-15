@@ -122,9 +122,7 @@ void    malloc_grid(t_map *map, char *filename)
     while((line = get_next_line(fd)) != NULL)
     {
         if(i == 0)
-        {
             map->width = strlen(line);
-        }
         i++;
         free(line);
     }
