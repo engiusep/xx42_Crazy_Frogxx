@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 16:33:23 by engiusep          #+#    #+#             */
-/*   Updated: 2024/12/30 17:20:13 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/01/08 15:15:30 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,14 @@ char	*ft_strdup(const char *s)
 	ptr[i] = '\0';
 	return (ptr);
 }
+
 t_test	creat_struct(char **argv,int argc)
 {
 	t_test	str;
 	int i;
 	
 	str.error = NULL;
-	str.file = ft_strchr(argv[1]);
+	str.file = ft_strdup(argv[1]);
 	if(!str.file)
 		exit(EXIT_FAILURE);
 	str.cmds = malloc((argc - 3) * sizeof(char *));
@@ -57,18 +58,15 @@ t_test	creat_struct(char **argv,int argc)
 			}
 		i++;
 	}
-	str.cmds[argc - 3] = NULL;
-	
+	str.cmds[argc - 3] = NULL;	
 	str.file2 = ft_strdup(argv[argc - 1]);
 	if(!str.file2)
 	{
 		free_split(str.cmds,0);
 		free(str.file);
 		exit(EXIT_FAILURE);
-		
 	}
 	return (str);
-	
 }
 
 void	child(int *pipefd, t_test *str, char **env)
@@ -76,7 +74,7 @@ void	child(int *pipefd, t_test *str, char **env)
 	int		fd;
 	char	*path;
 	char	**s_cmd;
-	s_cmd = ft_split(str->cmd, ' ');
+	s_cmd = ft_split(str->cmds, ' ');
 	if(!s_cmd)
 	{
 		perror("");
@@ -108,7 +106,7 @@ void	parent(int *pipefd, t_test *str, char **env)
 	int		fd;
 	char	*path;
 	char	**s_cmd;
-	s_cmd = ft_split(str->cmd2, ' ');
+	s_cmd = ft_split(str->cmds, ' ');
 	if(!s_cmd)
 	{
 		perror("Error malloc");
@@ -144,8 +142,8 @@ void	parent(int *pipefd, t_test *str, char **env)
 void	free_struct(t_test str)
 {
 	free(str.file);
-	free(str.cmd);
-	free(str.cmd2);
+	//free(str.cmd);
+	//free(str.cmd2);
 	free(str.file2);
 }
 
@@ -184,6 +182,7 @@ int	main(int argc, char **argv, char **env)
 	pid = fork();
 	if(pid == 0)
 		parent(pipefd, &str, env);
-	free_struct(str);	
+	free_struct(str);
+	free_split(str.cmds,0);	
 	exit(EXIT_SUCCESS);
 }

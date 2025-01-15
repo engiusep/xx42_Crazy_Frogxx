@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:50:16 by engiusep          #+#    #+#             */
-/*   Updated: 2024/12/19 14:55:37 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/01/09 16:12:32 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,14 @@ void	rrb_or_rb(t_stack *b, int element, int index_final)
 void	rra_or_ra_final(t_stack *a)
 {
 	int	min;
-
+	int value;
+	
 	min = 0;
 	min = find_min(a);
+	value = a->arr[min];
 	if (min < a->top / 2)
 	{
-		while (min >= 0)
+		while (value != a->arr[a->top])
 		{
 			rra(a);
 			min--;
@@ -68,7 +70,7 @@ void	rra_or_ra_final(t_stack *a)
 	}
 	else
 	{
-		while (a->top - min >= 0)
+		while (value != a->arr[a->top])
 		{
 			ra(a);
 			min++;

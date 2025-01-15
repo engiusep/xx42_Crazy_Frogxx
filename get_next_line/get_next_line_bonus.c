@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:03:23 by engiusep          #+#    #+#             */
-/*   Updated: 2024/12/10 17:07:31 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/01/08 11:24:15 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*build(int fd, char *str, char *buffer)
 			return (free(str), NULL);
 		}
 		buffer[nb_nytes] = '\0';
-		str = ft_strjoin(str, buffer);
+		str = ft_strjoin1(str, buffer);
 		if (!str)
 			return (NULL);
 	}
@@ -45,7 +45,7 @@ char	*get_next_line(int fd)
 	if (!str)
 		return (NULL);
 	str[0] = 0;
-	str = ft_strjoin(str, buffer[fd]);
+	str = ft_strjoin1(str, buffer[fd]);
 	if (!str)
 		return (free(str), NULL);
 	str = build(fd, str, buffer[fd]);

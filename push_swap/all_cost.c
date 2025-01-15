@@ -6,11 +6,12 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:30:56 by engiusep          #+#    #+#             */
-/*   Updated: 2024/12/19 14:31:18 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/01/10 14:59:32 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+# include "../../42_Cursus_Crazy_Frog/libft/libft.h"
 
 void	cost_logic(t_stack *a, t_stack *b, t_variable *var, int i)
 {

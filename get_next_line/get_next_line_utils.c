@@ -6,13 +6,13 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 17:56:08 by engiusep          #+#    #+#             */
-/*   Updated: 2024/12/10 09:51:55 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/01/08 11:24:41 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strlen(char *str)
+int	ft_strlen1(char *str)
 {
 	int	i;
 
@@ -22,7 +22,7 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin1(char *s1, char *s2)
 {
 	int		i;
 	char	*ptr;
@@ -30,7 +30,7 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	new = s1;
 	i = 0;
-	ptr = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	ptr = malloc(ft_strlen1(s1) + ft_strlen1(s2) + 1);
 	if (!ptr)
 		return (free(s1), NULL);
 	while (*s1)

@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 16:05:46 by engiusep          #+#    #+#             */
-/*   Updated: 2024/12/19 14:53:58 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:25:57 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include "../../42_Cursus_Crazy_Frog/libft/libft.h"
 
 typedef struct s_stack
 {
-	int	arr[1000];
+	int	*arr;
 	int	top;
 }		t_stack;
 
@@ -58,5 +59,6 @@ void	rra(t_stack *a);
 void	rr(t_stack *a, t_stack *b);
 void	rrr(t_stack *a, t_stack *b);
 void	rrb(t_stack *b);
+
 
 #endif

@@ -6,11 +6,12 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 15:45:23 by engiusep          #+#    #+#             */
-/*   Updated: 2024/12/30 16:32:41 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/01/09 11:17:40 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
+#include "../get_next_line/get_next_line.h"
 #include "pipex.h"
 
 char	*ft_strdup(const char *s)
@@ -30,37 +31,105 @@ char	*ft_strdup(const char *s)
 	ptr[i] = '\0';
 	return (ptr);
 }
-t_test	creat_struct(char **argv)
-{
-	t_test	str;
+ t_test creat_struct_here_doc(char **argv,int argc)
+ {
+	t_test str;
+    int i;
+	int j;
 
-	str.error = NULL;
-	str.file = ft_strdup(argv[1]);
-	if (!str.file)
-		exit(EXIT_FAILURE);
-	str.cmd = ft_strdup(argv[2]);
-	if (!str.cmd)
+    str.cmds = malloc((argc - 3 + 1) * sizeof(char *));
+    if (!str.cmds)
+        exit(EXIT_FAILURE);
+    i = 3;
+    j = 0;
+    while (i < argc - 1) 
 	{
-		free(str.file);	
+        str.cmds[j] = ft_strdup(argv[i]);
+        if (!str.cmds[j]) 
+		{
+            while (--j >= 0)
+                free(str.cmds[j]);
+            free(str.cmds);
+            exit(EXIT_FAILURE);
+        }
+        i++;
+        j++;
+    }
+    str.cmds[j] = NULL;
+    str.file = ft_strdup(argv[1]);
+    str.file2 = ft_strdup(argv[argc - 1]);
+    if (!str.file || !str.file2) {
+        j = 0;
+        while (str.cmds[j])
+            free(str.cmds[j++]);
+        free(str.cmds);
+        free(str.file);
+        free(str.file2);
+        exit(EXIT_FAILURE);
+    }
+	str.i = 0;
+    return str;
+ }
+t_test creat_struct(char **argv, int argc) 
+{
+    t_test str;
+    int i;
+	int j;
+
+    str.cmds = malloc((argc - 3 + 1) * sizeof(char *));
+    if (!str.cmds)
+        exit(EXIT_FAILURE);
+    i = 2;
+    j = 0;
+    while (i < argc - 1) 
+	{
+        str.cmds[j] = ft_strdup(argv[i]);
+        if (!str.cmds[j]) 
+		{
+            while (--j >= 0)
+                free(str.cmds[j]);
+            free(str.cmds);
+            exit(EXIT_FAILURE);
+        }
+        i++;
+        j++;
+    }
+    str.cmds[j] = NULL;
+    str.file = ft_strdup(argv[1]);
+    str.file2 = ft_strdup(argv[argc - 1]);
+    if (!str.file || !str.file2) {
+        j = 0;
+        while (str.cmds[j])
+            free(str.cmds[j++]);
+        free(str.cmds);
+        free(str.file);
+        free(str.file2);
+        exit(EXIT_FAILURE);
+    }
+	str.i = 0;
+    return str;
+}
+
+void	child_pipe(int *pipefd, int *newfd, t_test *str, char **env)
+{
+	char	*path;
+	char	**s_cmd;
+	s_cmd = ft_split(str->cmds[str->i], ' ');
+	if(!s_cmd)
+	{
+		perror("");
 		exit(EXIT_FAILURE);
 	}
-	str.cmd2 = ft_strdup(argv[3]);
-	if (!str.cmd2)
+	dup2(pipefd[0], STDIN_FILENO);  // lecture
+	dup2(newfd[1], STDOUT_FILENO); // ecriture
+	close(pipefd[0]);
+	path = ft_get_path(s_cmd[0], env);
+	if(execve(path, s_cmd, env) == -1)
 	{
-		free(str.file);	
-		free(str.cmd);	
-		exit(EXIT_FAILURE);
-		
-	}
-	str.file2 = ft_strdup(argv[4]);
-	if (!str.file2)
-	{
-		free(str.file);	
-		free(str.cmd);	
-		free(str.cmd2);		
+		free_split(s_cmd,0);
+		perror("error");
 		exit(EXIT_FAILURE);
 	}
-	return (str);
 }
 
 void	child(int *pipefd, t_test *str, char **env)
@@ -68,7 +137,7 @@ void	child(int *pipefd, t_test *str, char **env)
 	int		fd;
 	char	*path;
 	char	**s_cmd;
-	s_cmd = ft_split(str->cmd, ' ');
+	s_cmd = ft_split(str->cmds[str->i], ' ');
 	if(!s_cmd)
 	{
 		perror("");
@@ -91,22 +160,23 @@ void	child(int *pipefd, t_test *str, char **env)
 		perror("error");
 		exit(EXIT_FAILURE);
 	}
-	
-	
 }
 
-void	parent(int *pipefd, t_test *str, char **env)
+void	last_child(int *pipefd, t_test *str, char **env)
 {
 	int		fd;
 	char	*path;
 	char	**s_cmd;
-	s_cmd = ft_split(str->cmd2, ' ');
+	s_cmd = ft_split(str->cmds[str->i], ' ');
 	if(!s_cmd)
 	{
 		perror("Error malloc");
 		exit(EXIT_FAILURE);
 	}
-	fd = open(str->file2, O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	if(ft_strncmp(str->file2,"here_doc",8) == 0)
+		fd = open(str->file2, O_WRONLY | O_CREAT | O_APPEND, 0777);
+	else
+		fd = open(str->file2, O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (fd == -1)
 	{
 		close(pipefd[1]);
@@ -133,12 +203,56 @@ void	parent(int *pipefd, t_test *str, char **env)
 	}
 	free_split(s_cmd,0);
 }
+
 void	free_struct(t_test str)
 {
 	free(str.file);
-	free(str.cmd);
-	free(str.cmd2);
+	free_split(str.cmds,0);
 	free(str.file2);
+}
+
+void child_line(t_test *str, char **env)
+{
+	char	*path;
+	char	**s_cmd;
+	
+	s_cmd = ft_split(str->cmds[str->i], ' ');
+	if(!s_cmd)
+	{
+		perror("");
+		exit(EXIT_FAILURE);
+	}
+	path = ft_get_path(s_cmd[0], env);
+	if(execve(path, s_cmd, env) == -1)
+	{
+		free_split(s_cmd,0);
+		perror("error");
+		exit(EXIT_FAILURE);
+	}
+}
+
+void pipeline(int *m_pipefd, t_test *str, char **env)
+{
+	int new_pipefd[2];
+	pid_t pid;
+	
+	while (str->cmds[str->i + 1])
+	{
+		pipe(new_pipefd);
+		pid = fork();
+		if (pid == 0)
+		{
+			dup2(m_pipefd[0], STDIN_FILENO);
+			dup2(new_pipefd[1], STDOUT_FILENO);
+			close(m_pipefd[0]);
+			close(new_pipefd[1]);
+			child_pipe(m_pipefd, new_pipefd, str, env);
+		}
+		//close(m_pipefd[0]);
+		//close(new_pipefd[1]);
+		m_pipefd[0] = new_pipefd[0];
+		str->i++;
+	}
 }
 
 int	main(int argc, char **argv, char **env)
@@ -148,12 +262,24 @@ int	main(int argc, char **argv, char **env)
 	t_test str;
 	int status;
 	int exit_status;
-	if (argc != 5)
+	char *line;
+
+	//str.saved = dup(STDOUT_FILENO);
+	if(ft_strncmp(argv[1],"here_doc",8) == 0)
 	{
-	 	write(2, "ERROR\n", 6);
-	 	exit(EXIT_FAILURE);
-	 }
-	str = creat_struct(argv);
+		int fd_temp;
+		fd_temp = open("here_doc", O_RDWR | O_CREAT, 0777);
+		while(1)
+		{		
+			line = get_next_line(STDIN_FILENO);
+			if(ft_strncmp(line,argv[2],ft_strlen(argv[2])) == 0)
+				break;
+			write(fd_temp,line,ft_strlen(line));		
+		}
+		str = creat_struct_here_doc(argv,argc);
+	}
+	else
+		str = creat_struct(argv,argc);
 	if (pipe(pipefd) == -1)
 	{
 		perror("ERROR");
@@ -162,6 +288,7 @@ int	main(int argc, char **argv, char **env)
 	pid = fork();
 	if (pid == 0)
 		child(pipefd, &str, env);
+	str.i++;
 	waitpid(pid,&status,0);
 	if(WIFEXITED(status))
 	{
@@ -173,9 +300,17 @@ int	main(int argc, char **argv, char **env)
 			close(pipefd[0]);
 		}
 	}
+	pipeline(pipefd, &str, env);
 	pid = fork();
+	if(pid == -1)
+	{
+		free_struct(str);
+		exit(EXIT_FAILURE);
+	}
 	if(pid == 0)
-		parent(pipefd, &str, env);
-	free_struct(str);	
+		last_child(pipefd, &str, env);
+	if (ft_strncmp(argv[1], "here_doc", 8) == 0)
+		unlink("here_doc");
+	free_struct(str);
 	exit(EXIT_SUCCESS);
 }

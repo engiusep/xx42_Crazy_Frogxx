@@ -97,9 +97,11 @@ void read_map(const char *filename, t_map *map)
         perror("Error open fd\n");
         exit(1);
     }
-    while((line = get_next_line(fd)) != NULL)
+    while(1)
     {
-        //map->grid[i] = malloc(sizeof(char) * (map->width + 1));
+        line = get_next_line(fd);
+        if(!line)
+            break;
         j = 0;
         while(line[j] != '\0' && line[j] != '\n')
         {
@@ -107,6 +109,12 @@ void read_map(const char *filename, t_map *map)
             j++;
         }
         map->grid[i][j] = '\0';
+        if(ft_strlen_nl(line) != map->width)
+            {
+                free_map(map,i);
+                write(1,"ERROR 1MAP\n",11);
+                exit(0);
+            }
         free(line);
         i++; 
     }

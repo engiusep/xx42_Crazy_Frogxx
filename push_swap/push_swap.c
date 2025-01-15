@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 17:04:07 by engiusep          #+#    #+#             */
-/*   Updated: 2024/12/19 14:55:55 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/01/15 15:41:37 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,20 +73,66 @@ void	push_in_b(t_stack *a, t_stack *b)
 	}
 }
 
+int ft_strlen_split(char **split)
+{
+	int i;
+	i = 0;
+	while(split[i])
+		i++;
+	return (i);
+	
+}
+void    free_all2(char **split, int j)
+{
+        int     i;
+
+        i = 0;
+        while (i < j)
+        {
+                free(split[i]);
+                i++;
+        }
+        free(split);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	a;
 	t_stack	b;
-
+	char **str_split;
 	a.top = -1;
 	b.top = -1;
 	argc = argc - 1;
-	while (argc >= 1)
-	{
-		a.arr[++a.top] = atoi(argv[argc]);
-		argc--;
-	}
+	int j = 0;
+	
+	// if(argc == 1)
+	// {
+	// 	str_split = ft_split(argv[1], ' ');
+	// 	j = ft_strlen_split(str_split);
+	// 	a.arr = malloc(j * sizeof(int));
+	// 	b.arr = malloc(j * sizeof(int));
+	// 	j = j - 1;	
+	// 	while(j >= 0)
+	// 	{
+	// 		a.arr[++a.top] = atoi(str_split[j]);
+	// 		j--;
+	// 	}
+	// 	free_all2(str_split,ft_strlen_split(str_split));
+	// }
+	// else
+	//{
+		a.arr = malloc(argc * sizeof(int));
+		b.arr = malloc(argc * sizeof(int));
+		while (argc >= 1)
+		{
+			a.arr[++a.top] = atoi(argv[argc]);
+			argc--;
+		}
+	//}
 	push_in_b(&a, &b);
 	three_sort(&a);
 	turksort(&a, &b);
+	free(a.arr);
+	free(b.arr);
+	
 }
