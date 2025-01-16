@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 16:05:46 by engiusep          #+#    #+#             */
-/*   Updated: 2025/01/10 16:25:57 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/01/16 16:09:56 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,10 @@ void	rra(t_stack *a);
 void	rr(t_stack *a, t_stack *b);
 void	rrr(t_stack *a, t_stack *b);
 void	rrb(t_stack *b);
+int	check_stack(char **str);
+long int ft_atol(char *str);
+int sorted(t_stack stack);
+int check_double(char **str,int splt );
 
 
 #endif

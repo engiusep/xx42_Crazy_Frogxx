@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 17:04:07 by engiusep          #+#    #+#             */
-/*   Updated: 2025/01/15 15:41:37 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/01/16 17:42:40 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ void	three_sort(t_stack *a)
 {
 	int	big;
 	int	ind_big;
-	int	i;
-
-	i = a->top;
+	
 	ind_big = find_big(a);
 	big = a->arr[ind_big];
 	if (a->arr[a->top] == big)
@@ -87,7 +85,7 @@ void    free_all2(char **split, int j)
         int     i;
 
         i = 0;
-        while (i < j)
+        while (i <= j)
         {
                 free(split[i]);
                 i++;
@@ -100,39 +98,104 @@ int	main(int argc, char **argv)
 	t_stack	a;
 	t_stack	b;
 	char **str_split;
+	int j = 0;
 	a.top = -1;
 	b.top = -1;
 	argc = argc - 1;
-	int j = 0;
-	
-	// if(argc == 1)
-	// {
-	// 	str_split = ft_split(argv[1], ' ');
-	// 	j = ft_strlen_split(str_split);
-	// 	a.arr = malloc(j * sizeof(int));
-	// 	b.arr = malloc(j * sizeof(int));
-	// 	j = j - 1;	
-	// 	while(j >= 0)
-	// 	{
-	// 		a.arr[++a.top] = atoi(str_split[j]);
-	// 		j--;
-	// 	}
-	// 	free_all2(str_split,ft_strlen_split(str_split));
-	// }
-	// else
-	//{
+
+	if(argc == 1)
+	{
+		str_split = ft_split(argv[1], ' ');
+		if(check_double(str_split,1) == -1)
+		{
+			write(2,"Error\n",6);
+			free_all2(str_split,ft_strlen_split(str_split));
+			return (1);
+		} 
+		if(check_stack(str_split) == -1)
+		{
+			free_all2(str_split,ft_strlen_split(str_split));
+			write(1, "Error\n",7);
+			return(1);
+		}
+		j = ft_strlen_split(str_split);
+		a.arr = malloc(j * sizeof(int));
+		if(!a.arr)
+		{
+			free_all2(str_split,j);
+			return(0);
+		}
+		b.arr = malloc(j * sizeof(int));
+		if(!b.arr)
+		{
+			free_all2(str_split,j);
+			return (0);
+		}
+		j = j - 1;	
+		while(j >= 0)
+		{
+			a.arr[++a.top] = ft_atol(str_split[j]);
+			if(ft_atol(str_split[j]) > INT_MAX || ft_atol(str_split[j]) < INT_MIN)
+			{
+				write(2,"Error\n",7);
+				free(a.arr);
+				free(b.arr);
+				free_all2(str_split, 0);
+				return(-1);
+			}
+			j--;
+		}
+		free_all2(str_split,ft_strlen_split(str_split));
+	}
+	else
+	{
+		if(check_double(argv, 0) == -1)
+		{
+			write(2,"Error\n",7);
+			return (1);
+		}
+		if(check_stack(argv + 1) == -1)
+		{
+			write(1, "Error\n",7);
+			return(1);
+		}
 		a.arr = malloc(argc * sizeof(int));
+		if(!a.arr)
+			return (1);
 		b.arr = malloc(argc * sizeof(int));
+		if(!b.arr)
+		{
+			free(a.arr);
+			return (1);
+		}
 		while (argc >= 1)
 		{
-			a.arr[++a.top] = atoi(argv[argc]);
+			a.arr[++a.top] = ft_atol(argv[argc]);
+			if(ft_atol(argv[argc]) > INT_MAX || ft_atol(argv[argc]) < INT_MIN)
+			{
+				free(a.arr);
+				free(b.arr);
+				return(-1);
+			}
 			argc--;
 		}
-	//}
+	}
+	if(sorted(a) == 1)
+	{
+		free(a.arr);
+		free(b.arr);
+		return (0);
+	}
+	if(a.top == 1)
+	{
+		sa(&a);
+		free(a.arr);
+		free(b.arr);
+		return (0);
+	}
 	push_in_b(&a, &b);
 	three_sort(&a);
 	turksort(&a, &b);
 	free(a.arr);
 	free(b.arr);
-	
 }
