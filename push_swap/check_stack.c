@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 11:22:08 by engiusep          #+#    #+#             */
-/*   Updated: 2025/01/16 17:10:36 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/01/16 18:58:40 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,16 @@ int check_double(char **str,int splt)
 	int j;
 	int temp;
 	j = 0;
-	
-	if(splt == 0)
-		i = 0;
-	else
-		i = 1;
+	i = 0;
 	while(str[i])
 	{
 		j = i + 1;
 		while(str[j])
 		{	
 			if(find_str(str[i],str[j]) == 1)
+			{
 				return (-1);
+			}
 			j++;
 		}
 		i++;

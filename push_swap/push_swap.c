@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 17:04:07 by engiusep          #+#    #+#             */
-/*   Updated: 2025/01/16 17:42:40 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/01/16 18:42:50 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ int ft_strlen_split(char **split)
 void    free_all2(char **split, int j)
 {
         int     i;
-
         i = 0;
         while (i <= j)
         {
@@ -106,17 +105,10 @@ int	main(int argc, char **argv)
 	if(argc == 1)
 	{
 		str_split = ft_split(argv[1], ' ');
-		if(check_double(str_split,1) == -1)
+		
+		if(check_stack_1(str_split, 1) == 1)
 		{
-			write(2,"Error\n",6);
-			free_all2(str_split,ft_strlen_split(str_split));
-			return (1);
-		} 
-		if(check_stack(str_split) == -1)
-		{
-			free_all2(str_split,ft_strlen_split(str_split));
-			write(1, "Error\n",7);
-			return(1);
+			exit(EXIT_FAILURE);
 		}
 		j = ft_strlen_split(str_split);
 		a.arr = malloc(j * sizeof(int));
@@ -129,7 +121,7 @@ int	main(int argc, char **argv)
 		if(!b.arr)
 		{
 			free_all2(str_split,j);
-			return (0);
+			return (1);
 		}
 		j = j - 1;	
 		while(j >= 0)
@@ -141,7 +133,7 @@ int	main(int argc, char **argv)
 				free(a.arr);
 				free(b.arr);
 				free_all2(str_split, 0);
-				return(-1);
+				return(1);
 			}
 			j--;
 		}
@@ -149,16 +141,8 @@ int	main(int argc, char **argv)
 	}
 	else
 	{
-		if(check_double(argv, 0) == -1)
-		{
-			write(2,"Error\n",7);
-			return (1);
-		}
-		if(check_stack(argv + 1) == -1)
-		{
-			write(1, "Error\n",7);
-			return(1);
-		}
+		if(check_stack_1(argv + 1, 0) == 1)
+			exit(0);
 		a.arr = malloc(argc * sizeof(int));
 		if(!a.arr)
 			return (1);

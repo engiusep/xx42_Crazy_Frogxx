@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:58:28 by engiusep          #+#    #+#             */
-/*   Updated: 2024/12/19 14:59:55 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/01/16 18:27:09 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	rrr(t_stack *a, t_stack *b)
 
 	i = 0;
 	temp = a->arr[0];
-	while (i <= a->top)
+	while (i < a->top)
 	{
 		a->arr[i] = a->arr[i + 1];
 		i++;
@@ -27,7 +27,7 @@ void	rrr(t_stack *a, t_stack *b)
 	a->arr[a->top] = temp;
 	temp = b->arr[0];
 	i = 0;
-	while (i <= b->top)
+	while (i < b->top)
 	{
 		b->arr[i] = b->arr[i + 1];
 		i++;
@@ -45,7 +45,7 @@ void	rrb(t_stack *b)
 	if (b->top < 0)
 		return ;
 	temp = b->arr[0];
-	while (i <= b->top)
+	while (i < b->top)
 	{
 		b->arr[i] = b->arr[i + 1];
 		i++;
@@ -58,10 +58,11 @@ void	rra(t_stack *a)
 {
 	int	i;
 	int	temp;
-
 	i = 0;
+	if(a->top <= 0)
+		return;
 	temp = a->arr[0];
-	while (i <= a->top)
+	while (i < a->top)
 	{
 		a->arr[i] = a->arr[i + 1];
 		i++;
@@ -69,3 +70,4 @@ void	rra(t_stack *a)
 	a->arr[a->top] = temp;
 	write(1, "rra\n", 4);
 }
+

@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 16:05:46 by engiusep          #+#    #+#             */
-/*   Updated: 2025/01/16 16:09:56 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/01/16 17:56:50 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,9 @@ int	check_stack(char **str);
 long int ft_atol(char *str);
 int sorted(t_stack stack);
 int check_double(char **str,int splt );
+int check_stack_1(char **splt,int i);
+int ft_strlen_split(char **split);
+void    free_all2(char **split, int j);
 
 
 #endif
