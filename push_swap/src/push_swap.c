@@ -6,11 +6,11 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 17:04:07 by engiusep          #+#    #+#             */
-/*   Updated: 2025/01/17 16:49:55 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/01/17 17:20:53 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 void	three_sort(t_stack *a)
 {
@@ -88,7 +88,6 @@ int	main(int argc, char **argv)
 {
 	t_stack	a;
 	t_stack	b;
-	char	**str_split;
 
 	a.top = -1;
 	b.top = -1;

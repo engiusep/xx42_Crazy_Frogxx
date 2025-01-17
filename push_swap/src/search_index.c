@@ -6,12 +6,11 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:52:26 by engiusep          #+#    #+#             */
-/*   Updated: 2025/01/17 16:47:11 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/01/17 17:18:43 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../42_Cursus_Crazy_Frog/libft/libft.h"
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 int	find_big(t_stack *b)
 {

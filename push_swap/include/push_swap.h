@@ -6,14 +6,14 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 16:05:46 by engiusep          #+#    #+#             */
-/*   Updated: 2025/01/17 16:46:26 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/01/17 17:20:31 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "../../42_Cursus_Crazy_Frog/libft/libft.h"
+# include "libft.h"
 # include <limits.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -61,7 +61,7 @@ void		rrb(t_stack *b);
 int			check_stack(char **str);
 long int	ft_atol(char *str);
 int			sorted(t_stack *stack, t_stack *b);
-int			check_double(char **str, int splt);
+int			check_double(char **str);
 int			check_stack_1(char **splt, int i);
 int			ft_strlen_split(char **split);
 void		free_all2(char **split, int j);

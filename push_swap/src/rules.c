@@ -6,11 +6,11 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:19:20 by engiusep          #+#    #+#             */
-/*   Updated: 2025/01/17 16:47:04 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/01/17 17:18:46 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 void	rb(t_stack *b)
 {

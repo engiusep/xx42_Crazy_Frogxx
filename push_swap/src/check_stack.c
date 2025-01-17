@@ -6,11 +6,11 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 11:22:08 by engiusep          #+#    #+#             */
-/*   Updated: 2025/01/17 16:51:05 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/01/17 17:20:07 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 long int	ft_atol(char *str)
 {
@@ -51,11 +51,10 @@ int	find_str(char *str, char *str2)
 	return (0);
 }
 
-int	check_double(char **str, int splt)
+int	check_double(char **str)
 {
 	int	i;
 	int	j;
-	int	temp;
 
 	j = 0;
 	i = 0;

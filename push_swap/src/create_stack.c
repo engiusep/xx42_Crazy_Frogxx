@@ -6,11 +6,11 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 11:40:29 by engiusep          #+#    #+#             */
-/*   Updated: 2025/01/17 16:52:09 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/01/17 17:19:05 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 void	put_in_stack_argv(char **argv, t_stack *a, int argc, t_stack *b)
 {

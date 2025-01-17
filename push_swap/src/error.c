@@ -6,11 +6,11 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:17:15 by engiusep          #+#    #+#             */
-/*   Updated: 2025/01/17 16:51:51 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/01/17 17:20:40 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 int	ft_strlen_split(char **split)
 {
@@ -62,7 +62,7 @@ int	check_empty_string(char **argv, int argc)
 
 int	check_stack_1(char **splt, int i)
 {
-	if (check_double(splt, i) == -1)
+	if (check_double(splt) == -1)
 	{
 		write(2, "Error\n", 7);
 		if (i == 1)
