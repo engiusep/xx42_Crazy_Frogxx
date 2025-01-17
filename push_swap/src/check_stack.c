@@ -6,13 +6,13 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 11:22:08 by engiusep          #+#    #+#             */
-/*   Updated: 2025/01/17 15:18:58 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/01/17 16:51:05 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-long int ft_atol(char *str)
+long int	ft_atol(char *str)
 {
 	long int	number;
 	long int	count;
@@ -36,33 +36,35 @@ long int ft_atol(char *str)
 		return (-number);
 	return (number);
 }
-int find_str(char *str, char *str2)
+
+int	find_str(char *str, char *str2)
 {
-	int i;
+	int	i;
+
 	i = 0;
-	
-		while(str[i] == str2[i] && str[i] && str2[i])
-		{
-			if(str[i + 1] == '\0' && str2[i + 1] == '\0')
-				return (1);
-			i++;
-		}
+	while (str[i] == str2[i] && str[i] && str2[i])
+	{
+		if (str[i + 1] == '\0' && str2[i + 1] == '\0')
+			return (1);
+		i++;
+	}
 	return (0);
 }
 
-int check_double(char **str,int splt)
+int	check_double(char **str, int splt)
 {
-	int i;
-	int j;
-	int temp;
+	int	i;
+	int	j;
+	int	temp;
+
 	j = 0;
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		j = i + 1;
-		while(str[j])
-		{	
-			if(find_str(str[i],str[j]) == 1)
+		while (str[j])
+		{
+			if (find_str(str[i], str[j]) == 1)
 			{
 				return (-1);
 			}
@@ -72,37 +74,40 @@ int check_double(char **str,int splt)
 	}
 	return (0);
 }
+
 int	check_stack(char **str)
 {
-	int i;
-	int j;
-	
+	int	i;
+	int	j;
+
 	i = 0;
 	j = 0;
-	while(str[i])
+	while (str[i])
 	{
 		j = 0;
-		while(str[i][j] != '\0')
+		while (str[i][j] != '\0')
 		{
-			if(ft_isdigit(str[i][j]) == 1)
+			if (ft_isdigit(str[i][j]) == 1)
 				j++;
-			else if(str[i][j] == '-' && ft_isdigit(str[i][j + 1]) && j == 0)
+			else if (str[i][j] == '-' && ft_isdigit(str[i][j + 1]) && j == 0)
 				j++;
 			else
-				return(-1);
+				return (-1);
 		}
 		i++;
 	}
-	return(0);
+	return (0);
 }
-int sorted(t_stack *a, t_stack *b)
+
+int	sorted(t_stack *a, t_stack *b)
 {
-	int i;
+	int	i;
+
 	i = 0;
-	while(i < a->top)
+	while (i < a->top)
 	{
-		if(a->arr[i] < a->arr[i + 1])
-			return(0);
+		if (a->arr[i] < a->arr[i + 1])
+			return (0);
 		i++;
 	}
 	free(a->arr);

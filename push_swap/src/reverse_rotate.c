@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:58:28 by engiusep          #+#    #+#             */
-/*   Updated: 2025/01/16 18:27:09 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/01/17 16:46:35 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,10 @@ void	rra(t_stack *a)
 {
 	int	i;
 	int	temp;
+
 	i = 0;
-	if(a->top <= 0)
-		return;
+	if (a->top <= 0)
+		return ;
 	temp = a->arr[0];
 	while (i < a->top)
 	{
@@ -70,4 +71,3 @@ void	rra(t_stack *a)
 	a->arr[a->top] = temp;
 	write(1, "rra\n", 4);
 }
-

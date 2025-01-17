@@ -6,19 +6,20 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:50:16 by engiusep          #+#    #+#             */
-/*   Updated: 2025/01/17 15:17:12 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/01/17 16:51:21 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void swap_a(t_stack *a,t_stack *b)
+void	swap_a(t_stack *a, t_stack *b)
 {
 	sa(a);
 	free(a->arr);
 	free(b->arr);
 	exit(1);
 }
+
 void	rrr_or_rr(t_stack *a, t_stack *b, int index_final, int index_big)
 {
 	int	element;
@@ -62,8 +63,8 @@ void	rrb_or_rb(t_stack *b, int element, int index_final)
 void	rra_or_ra_final(t_stack *a)
 {
 	int	min;
-	int value;
-	
+	int	value;
+
 	min = 0;
 	min = find_min(a);
 	value = a->arr[min];
