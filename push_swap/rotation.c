@@ -6,12 +6,19 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:50:16 by engiusep          #+#    #+#             */
-/*   Updated: 2025/01/09 16:12:32 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/01/17 15:17:12 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+void swap_a(t_stack *a,t_stack *b)
+{
+	sa(a);
+	free(a->arr);
+	free(b->arr);
+	exit(1);
+}
 void	rrr_or_rr(t_stack *a, t_stack *b, int index_final, int index_big)
 {
 	int	element;

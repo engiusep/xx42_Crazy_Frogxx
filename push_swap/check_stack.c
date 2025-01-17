@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 11:22:08 by engiusep          #+#    #+#             */
-/*   Updated: 2025/01/16 18:58:40 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/01/17 15:18:58 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,15 +95,17 @@ int	check_stack(char **str)
 	}
 	return(0);
 }
-int sorted(t_stack a)
+int sorted(t_stack *a, t_stack *b)
 {
 	int i;
 	i = 0;
-	while(i < a.top)
+	while(i < a->top)
 	{
-		if(a.arr[i] < a.arr[i + 1])
+		if(a->arr[i] < a->arr[i + 1])
 			return(0);
 		i++;
 	}
-	return (1);
+	free(a->arr);
+	free(b->arr);
+	exit(1);
 }

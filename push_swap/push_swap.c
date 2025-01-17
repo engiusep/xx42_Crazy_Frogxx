@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 17:04:07 by engiusep          #+#    #+#             */
-/*   Updated: 2025/01/16 18:42:50 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/01/17 16:00:12 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,89 +97,20 @@ int	main(int argc, char **argv)
 	t_stack	a;
 	t_stack	b;
 	char **str_split;
-	int j = 0;
 	a.top = -1;
 	b.top = -1;
 	argc = argc - 1;
 
+	check_empty_string(argv,argc + 1);
 	if(argc == 1)
-	{
-		str_split = ft_split(argv[1], ' ');
-		
-		if(check_stack_1(str_split, 1) == 1)
-		{
-			exit(EXIT_FAILURE);
-		}
-		j = ft_strlen_split(str_split);
-		a.arr = malloc(j * sizeof(int));
-		if(!a.arr)
-		{
-			free_all2(str_split,j);
-			return(0);
-		}
-		b.arr = malloc(j * sizeof(int));
-		if(!b.arr)
-		{
-			free_all2(str_split,j);
-			return (1);
-		}
-		j = j - 1;	
-		while(j >= 0)
-		{
-			a.arr[++a.top] = ft_atol(str_split[j]);
-			if(ft_atol(str_split[j]) > INT_MAX || ft_atol(str_split[j]) < INT_MIN)
-			{
-				write(2,"Error\n",7);
-				free(a.arr);
-				free(b.arr);
-				free_all2(str_split, 0);
-				return(1);
-			}
-			j--;
-		}
-		free_all2(str_split,ft_strlen_split(str_split));
-	}
+		create_stack_split(argv, &a, &b);
 	else
-	{
-		if(check_stack_1(argv + 1, 0) == 1)
-			exit(0);
-		a.arr = malloc(argc * sizeof(int));
-		if(!a.arr)
-			return (1);
-		b.arr = malloc(argc * sizeof(int));
-		if(!b.arr)
-		{
-			free(a.arr);
-			return (1);
-		}
-		while (argc >= 1)
-		{
-			a.arr[++a.top] = ft_atol(argv[argc]);
-			if(ft_atol(argv[argc]) > INT_MAX || ft_atol(argv[argc]) < INT_MIN)
-			{
-				free(a.arr);
-				free(b.arr);
-				return(-1);
-			}
-			argc--;
-		}
-	}
-	if(sorted(a) == 1)
-	{
-		free(a.arr);
-		free(b.arr);
-		return (0);
-	}
+		create_stack_argv(argv, &a, &b,argc);
+	sorted(&a,&b);
 	if(a.top == 1)
-	{
-		sa(&a);
-		free(a.arr);
-		free(b.arr);
-		return (0);
-	}
+		swap_a(&a,&b);
 	push_in_b(&a, &b);
 	three_sort(&a);
 	turksort(&a, &b);
-	free(a.arr);
-	free(b.arr);
+	free_stack(&a,&b);
 }

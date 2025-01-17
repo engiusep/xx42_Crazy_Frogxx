@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 16:05:46 by engiusep          #+#    #+#             */
-/*   Updated: 2025/01/16 17:56:50 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/01/17 15:47:23 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,16 @@ void	rrr(t_stack *a, t_stack *b);
 void	rrb(t_stack *b);
 int	check_stack(char **str);
 long int ft_atol(char *str);
-int sorted(t_stack stack);
+int sorted(t_stack *stack,t_stack *b);
 int check_double(char **str,int splt );
 int check_stack_1(char **splt,int i);
 int ft_strlen_split(char **split);
 void    free_all2(char **split, int j);
-
-
+int create_stack_split(char **argv, t_stack *a, t_stack *b);
+int	put_in_stack_argv(char **argv, t_stack *a, int argc, t_stack *b);
+int	create_stack_argv(char **argv, t_stack *a, t_stack *b, int argc);
+int check_empty_string(char **argv,int argc);
+void swap_a(t_stack *a,t_stack *b);
+int free_stack(t_stack *a,t_stack *b);
+int		free_error_malloc(t_stack *a,char **splt,int i);
 #endif
