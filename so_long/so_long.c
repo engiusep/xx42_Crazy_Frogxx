@@ -18,7 +18,7 @@ int destroy_all(t_data *data)
     mlx_destroy_display(data->mlx_ptr);
     return (0);
 }
-void    find_player_position(t_map *map, int *player_x,int *player_y)
+void    find_player_position(t_map *map, int *player_x, int *player_y)
 {
     int i;
     int j;
@@ -38,6 +38,7 @@ void    find_player_position(t_map *map, int *player_x,int *player_y)
         }
         i++;
     }
+   
 }
 
 int move_player(t_map *map,int new_x,int new_y,int old_x,int old_y)
@@ -66,6 +67,7 @@ int move_player(t_map *map,int new_x,int new_y,int old_x,int old_y)
     return (0);
 
 }
+
 int on_keypress(int keysym, t_data *data)
 {
     int player_x = -1;
@@ -75,6 +77,7 @@ int on_keypress(int keysym, t_data *data)
     int end_or_not;
     end_or_not = 0;
     find_player_position(data->map, &player_x, &player_y);
+    //printf("[%d][%d]",player_x,player_y);
     new_x = player_x;
     new_y = player_y;
 
@@ -87,13 +90,7 @@ int on_keypress(int keysym, t_data *data)
     else if(keysym == 115) //fleche bas
         new_y += 1;
     else if(keysym == 65307)
-    {
-        free_map(data->map,data->map->height);
-        mlx_destroy_window(data->mlx_ptr,data->window_ptr);
-        destroy_all(data);
-        free(data->mlx_ptr);
-        exit(0);
-    }
+        exit_prog(data);
     if(new_x >= 0 && new_x < data->map->width && new_y >= 0 && new_y < data->map->width)
     {
         end_or_not = move_player(data->map, new_x, new_y, player_x, player_y);
@@ -103,22 +100,9 @@ int on_keypress(int keysym, t_data *data)
         draw_map(data->map,data);
     }
     else
-    {
-        free_map(data->map,data->map->height);
-        mlx_destroy_window(data->mlx_ptr,data->window_ptr);
-        destroy_all(data);
-        free(data->mlx_ptr);
-        exit(0);
-    }
+        exit_prog(data);
+        
     printf("Presse une touche: %d\n",keysym);
-    return (0);
-}
-int on_keypress2(int keysym)
-{
-    if(keysym == 65307)
-    {
-        exit(0);
-    }
     return (0);
 }
 
@@ -158,21 +142,17 @@ void    malloc_grid(t_map *map, char *filename)
     map->grid[i] = NULL;
     close (fd);
 }
-int     close_window(t_data *data)
+int    close_window(t_data *data)
 {
-    free_map(data->map,data->map->height);
-    mlx_destroy_window(data->mlx_ptr,data->window_ptr);
-    destroy_all(data);
-    free(data->mlx_ptr);
-    exit(0);
+    exit_prog(data);
+    return (0);
 }
-
 int main(void)
 {
 
     t_data data;
     t_map map;
-    
+    int i = 0;
     data.map = &map;
     data.mlx_ptr = mlx_init();
     if(!data.mlx_ptr)
@@ -190,9 +170,15 @@ int main(void)
     malloc_grid(&map,"map/map.ber");
     read_map("map/map.ber",&map,&data);
     draw_map(&map, &data);
+    flood_fill(&map,3,3);
+    while(map.grid[i])
+    {
+        printf("%s\n",map.grid[i++]);
+    }
     mlx_hook(data.window_ptr, KeyPress, KeyPressMask, &on_keypress, &data);
     mlx_hook(data.window_ptr,17,0,&close_window,&data);
     mlx_loop(data.mlx_ptr);
+    
     return (0);
 }
 

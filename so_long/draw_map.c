@@ -89,7 +89,7 @@ int check_map(t_map *map)
     if(count.P > 1 || count.E > 1)
     {
         write(1, "ERROR MAP\n",11);
-        exit(0);
+        exit(1);
     }
     return 0;
 }
@@ -117,7 +117,7 @@ void read_map(const char *filename, t_map *map,t_data *data)
                 free_map(map,i);
                 free(line);
                 write(1,"ERROR MAP\n",11);
-                exit(0);
+                exit(1);
             }
         free(line);
         i++;
@@ -129,7 +129,7 @@ void read_map(const char *filename, t_map *map,t_data *data)
     {
        write(1,"ERROR\n",6);
        destroy_all(data);
-       exit(0);
+       exit(1);
     }
     close (fd);
 }

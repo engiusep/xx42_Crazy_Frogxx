@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:31:02 by engiusep          #+#    #+#             */
-/*   Updated: 2025/01/23 14:31:32 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:04:14 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,8 @@ int ft_strlen_nl(char *str);
 int destroy_all(t_data *data);
 int destroy_image(t_data *data);
 int creat_img(t_data *data);
+int	exit_prog(t_data *data);
+void    find_player_position(t_map *map, int *player_x,int *player_y);
+int	flood_fill(t_map *map,int x,int y);
 
 #endif
