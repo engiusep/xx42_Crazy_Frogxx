@@ -23,37 +23,47 @@ int check_collectible(t_map *map)
     }
     return (count.C);
 }
-
+int check_col(t_map *map)
+{
+    int i;
+    int j;
+    i = 0;
+    j = 0;
+    while(i < map->height - 1)
+    {
+        if(map->grid[i][0] != '1')
+            return (-1);
+        else if(map->grid[i][map->width - 1] != '1')
+            return (-1);
+        i++;
+    }
+    return (0);
+}
 int check_all_1(t_map *map)
 {
     int i;
     int j;
+    j = 0;
+    i = 0;
 
-    i = -1;
-    while (map->grid[++i])
+    while(map->grid[0][j])
     {
-        j = -1;
-        if (i == 0 || i == map->height - 1)
-        {
-            while (map->grid[i][++j])
-            {
-                if (map->grid[i][j] != '1')
-                    return (-1);
-            }
-        }
-        else
-        {
-            while (map->grid[i][++j])
-            {
-                if (j == 0 && map->grid[i][j] != '1')
-                    return (-1);
-                else if (map->grid[i][j + 1] == 0 && map->grid[i][j] != '1')
-                    return (-1);
-            }
-        }
-    } 
+        if(map->grid[0][j] != '1' && map->grid[0][j] != '\n')
+            return(-1);
+        j++;
+    }
+    j = 0;
+    while(map->grid[map->height - 1][j])
+    {
+        if(map->grid[map->height - 1][j] != '1')
+            return(-1);
+        j++;
+    }
+    if(check_col(map) == -1)
+        return(-1);
     return (0);
 }
+
 int check_map(t_map *map)
 {
     t_count count;
@@ -83,11 +93,10 @@ int check_map(t_map *map)
     }
     return 0;
 }
-void read_map(const char *filename, t_map *map)
+void read_map(const char *filename, t_map *map,t_data *data)
 {
     int fd;
     int i;
-    int j;
     char *line;
 
     i = 0;
@@ -102,27 +111,24 @@ void read_map(const char *filename, t_map *map)
         line = get_next_line(fd);
         if(!line)
             break;
-        j = 0;
-        while(line[j] != '\0' && line[j] != '\n')
-        {
-            map->grid[i] = ft_strdup(line);
-            j++;
-        }
-        map->grid[i][j] = '\0';
+        map->grid[i] = ft_strdup(line);
         if(ft_strlen_nl(line) != map->width)
             {
                 free_map(map,i);
-                write(1,"ERROR 1MAP\n",11);
+                free(line);
+                write(1,"ERROR MAP\n",11);
                 exit(0);
             }
         free(line);
-        i++; 
+        i++;
     }
+    map->grid[i] = NULL;
     map->height = i;
     check_map(map);
     if(check_all_1(map) == -1)
     {
-       write(1,"ERROR\n",7);
+       write(1,"ERROR\n",6);
+       destroy_all(data);
        exit(0);
     }
     close (fd);
@@ -138,6 +144,7 @@ void draw_map(t_map *map, t_data *data)
     count.P = 1;
     count.E = 1;
     i = 0;
+    destroy_image(data);
     while(i < map->height)
     {
         j = 0;

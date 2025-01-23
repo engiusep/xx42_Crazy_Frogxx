@@ -7,15 +7,34 @@
 #include <X11/keysym.h>
 #include "so_long.h"
 
+int creat_img(t_data)
+{
+    data.image_ptr_perso = mlx_xpm_file_to_image(data.mlx_ptr,"image/player.xpm", &map.width ,&map.height);
+    data.image_ptr_floor = mlx_xpm_file_to_image(data.mlx_ptr,"image/sol.xpm", &map.width,&map.height);
+    data.image_ptr_mur = mlx_xpm_file_to_image(data.mlx_ptr,"image/wall.xpm", &map.height, &map.width); 
+    data.image_ptr_exit = mlx_xpm_file_to_image(data.mlx_ptr,"image/zaap.xpm", &map.width, &map.height);
+    data.image_ptr_collectible = mlx_xpm_file_to_image(data.mlx_ptr,"image/collecte.xpm",&map.width,&map.height);
+    data.image_ptr_end = mlx_xpm_file_to_image(data.mlx_ptr,"image/end.xpm",&map.width,&map.height);
+}
+int destroy_image(t_data *data)
+{
+    mlx_destroy_image(data->mlx_ptr,data->image_ptr_mur);
+    mlx_destroy_image(data->mlx_ptr,data->image_ptr_exit);
+    mlx_destroy_image(data->mlx_ptr,data->image_ptr_collectible);
+    mlx_destroy_image(data->mlx_ptr,data->image_ptr_end);
+    mlx_destroy_image(data->mlx_ptr,data->image_ptr_perso);
+    mlx_destroy_image(data->mlx_ptr,data->image_ptr_floor);
+    return (0);
+}
 int destroy_all(t_data *data)
 {
     mlx_destroy_image(data->mlx_ptr,data->image_ptr_mur);
     mlx_destroy_image(data->mlx_ptr,data->image_ptr_exit);
     mlx_destroy_image(data->mlx_ptr,data->image_ptr_collectible);
     mlx_destroy_image(data->mlx_ptr,data->image_ptr_end);
+    mlx_destroy_image(data->mlx_ptr,data->image_ptr_perso);
+    mlx_destroy_image(data->mlx_ptr,data->image_ptr_floor);
     mlx_destroy_display(data->mlx_ptr);
-    mlx_destroy_window(data->mlx_ptr,data->window_ptr);
-    free(data->mlx_ptr);
     return (0);
 }
 void    find_player_position(t_map *map, int *player_x,int *player_y)
@@ -38,12 +57,6 @@ void    find_player_position(t_map *map, int *player_x,int *player_y)
         }
         i++;
     }
-}
-
-void    draw_last(t_data *data)
-{
-    mlx_clear_window(data->mlx_ptr,data->window_ptr);    
-    mlx_put_image_to_window(data->mlx_ptr,data->window_ptr,data->image_ptr_end,2000,1000);  
 }
 
 int move_player(t_map *map,int new_x,int new_y,int old_x,int old_y)
@@ -100,12 +113,17 @@ int on_keypress(int keysym, t_data *data)
     {
         end_or_not = move_player(data->map, new_x, new_y, player_x, player_y);
     }
-    //mlx_clear_window(data->mlx_ptr,data->window_ptr);
     if(end_or_not == 0)
+    {
+        destroy_image(data);
         draw_map(data->map,data);
+    }
     else
     {
-        //draw_last(data);
+        free_map(data->map,data->map->height);
+        destroy_all(data);
+        mlx_destroy_window(data->mlx_ptr,data->window_ptr);
+        free(data->mlx_ptr);
         exit(0);
     }
     printf("Presse une touche: %d\n",keysym);
@@ -171,28 +189,12 @@ int main(void)
     if(!data.window_ptr)
         return(free(data.mlx_ptr),1);
     mlx_hook(data.window_ptr, DestroyNotify, StructureNotifyMask, &destroy_all, &data);
-    data.image_ptr_perso = mlx_xpm_file_to_image(data.mlx_ptr,"image/player.xpm", &map.width ,&map.height);
-    data.image_ptr_floor = mlx_xpm_file_to_image(data.mlx_ptr,"image/sol.xpm", &map.width,&map.height);
-    data.image_ptr_mur = mlx_xpm_file_to_image(data.mlx_ptr,"image/wall.xpm", &map.height, &map.width); 
-    data.image_ptr_exit = mlx_xpm_file_to_image(data.mlx_ptr,"image/zaap.xpm", &map.width, &map.height);
-    data.image_ptr_collectible = mlx_xpm_file_to_image(data.mlx_ptr,"image/collecte.xpm",&map.width,&map.height);
-    data.image_ptr_end = mlx_xpm_file_to_image(data.mlx_ptr,"image/end.xpm",&map.width,&map.height);
+    create_img()
     malloc_grid(&map,"map/map.ber");
-    read_map("map/map.ber",&map);
+    read_map("map/map.ber",&map,&data);
     draw_map(&map, &data);
-    if(mlx_hook(data.window_ptr, KeyPress, KeyPressMask, &on_keypress, &data) == 1)
-    {
-        write(1,"c",1);
-        free_map(&map,0);
-        mlx_hook(data.window_ptr, KeyPress, KeyPressMask, &on_keypress2, &data);
-
-    }
-        
+    mlx_hook(data.window_ptr, KeyPress, KeyPressMask, &on_keypress, &data);
     mlx_loop(data.mlx_ptr);
-    free(data.mlx_ptr);
-    free(data.window_ptr);
-   mlx_destroy_image(data.mlx_ptr,data.image_ptr_perso);
-   destroy_all(&data);
     return (0);
 }
 
