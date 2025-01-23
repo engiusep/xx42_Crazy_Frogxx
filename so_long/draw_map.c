@@ -144,7 +144,6 @@ void draw_map(t_map *map, t_data *data)
     count.P = 1;
     count.E = 1;
     i = 0;
-    destroy_image(data);
     while(i < map->height)
     {
         j = 0;

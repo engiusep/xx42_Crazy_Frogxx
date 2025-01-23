@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:31:02 by engiusep          #+#    #+#             */
-/*   Updated: 2025/01/23 14:19:50 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/01/23 14:31:32 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,6 @@ void    free_map(t_map *map,int i);
 int ft_strlen_nl(char *str);
 int destroy_all(t_data *data);
 int destroy_image(t_data *data);
+int creat_img(t_data *data);
 
 #endif
