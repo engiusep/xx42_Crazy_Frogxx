@@ -40,12 +40,6 @@ void    find_player_position(t_map *map, int *player_x,int *player_y)
     }
 }
 
-void    draw_last(t_data *data)
-{
-    mlx_clear_window(data->mlx_ptr,data->window_ptr);    
-    mlx_put_image_to_window(data->mlx_ptr,data->window_ptr,data->image_ptr_end,2000,1000);  
-}
-
 int move_player(t_map *map,int new_x,int new_y,int old_x,int old_y)
 {
     int  i;
@@ -94,7 +88,11 @@ int on_keypress(int keysym, t_data *data)
         new_y += 1;
     else if(keysym == 65307)
     {
-        return (1);
+        free_map(data->map,data->map->height);
+        mlx_destroy_window(data->mlx_ptr,data->window_ptr);
+        destroy_all(data);
+        free(data->mlx_ptr);
+        exit(0);
     }
     if(new_x >= 0 && new_x < data->map->width && new_y >= 0 && new_y < data->map->width)
     {
@@ -106,7 +104,6 @@ int on_keypress(int keysym, t_data *data)
     }
     else
     {
-        
         free_map(data->map,data->map->height);
         mlx_destroy_window(data->mlx_ptr,data->window_ptr);
         destroy_all(data);
@@ -161,6 +158,14 @@ void    malloc_grid(t_map *map, char *filename)
     map->grid[i] = NULL;
     close (fd);
 }
+int     close_window(t_data *data)
+{
+    free_map(data->map,data->map->height);
+    mlx_destroy_window(data->mlx_ptr,data->window_ptr);
+    destroy_all(data);
+    free(data->mlx_ptr);
+    exit(0);
+}
 
 int main(void)
 {
@@ -172,7 +177,7 @@ int main(void)
     data.mlx_ptr = mlx_init();
     if(!data.mlx_ptr)
         return (1);
-    data.window_ptr = mlx_new_window(data.mlx_ptr, 8000, 4000 ,"Salut");
+    data.window_ptr = mlx_new_window(data.mlx_ptr, 1600, 1000 ,"Salut");
     if(!data.window_ptr)
         return(free(data.mlx_ptr),1);
     mlx_hook(data.window_ptr, DestroyNotify, StructureNotifyMask, &destroy_all, &data);
@@ -186,6 +191,7 @@ int main(void)
     read_map("map/map.ber",&map,&data);
     draw_map(&map, &data);
     mlx_hook(data.window_ptr, KeyPress, KeyPressMask, &on_keypress, &data);
+    mlx_hook(data.window_ptr,17,0,&close_window,&data);
     mlx_loop(data.mlx_ptr);
     return (0);
 }
