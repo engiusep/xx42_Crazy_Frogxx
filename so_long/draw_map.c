@@ -34,7 +34,7 @@ void read_map(const char *filename, t_map *map,t_data *data)
     }
     map->grid[i] = NULL;
     map->height = i;
-    check_map(map);
+    check_map(map,data);
     if(check_all_1(map) == -1)
     {
        write(1,"ERROR\n",6);

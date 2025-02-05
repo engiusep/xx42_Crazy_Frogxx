@@ -18,6 +18,7 @@ int destroy_all(t_data *data)
     mlx_destroy_display(data->mlx_ptr);
     return (0);
 }
+
 void    find_player_position(t_map *map, int *player_x, int *player_y)
 {
     int i;
@@ -146,16 +147,11 @@ int main(void)
 
     t_data data;
     t_map map;
-    int x;
-    int y;
-    x = -1;
-    y = -1;
-    //int i = 0;
     data.map = &map;
     data.mlx_ptr = mlx_init();
     if(!data.mlx_ptr)
         return (1);
-    data.window_ptr = mlx_new_window(data.mlx_ptr, 1600, 1000 ,"Salut");
+    data.window_ptr = mlx_new_window(data.mlx_ptr, 2000, 1000 ,"so_long");
     if(!data.window_ptr)
         return(free(data.mlx_ptr),1);
     mlx_hook(data.window_ptr, DestroyNotify, StructureNotifyMask, &destroy_all, &data);
@@ -171,7 +167,6 @@ int main(void)
     mlx_hook(data.window_ptr, KeyPress, KeyPressMask, &on_keypress, &data);
     mlx_hook(data.window_ptr,17,0,&close_window,&data);
     mlx_loop(data.mlx_ptr);
-    
     return (0);
 }
 

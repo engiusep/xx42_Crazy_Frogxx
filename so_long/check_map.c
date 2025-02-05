@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 12:15:27 by engiusep          #+#    #+#             */
-/*   Updated: 2025/02/05 12:52:57 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/02/05 17:07:34 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int check_collectible(t_map *map)
         }
         i++;
     }
+	printf("collectible = %d\n",count.C);
     return (count.C);
 }
 int check_col(t_map *map)
@@ -74,7 +75,7 @@ int check_all_1(t_map *map)
     return (0);
 }
 
-int check_map(t_map *map)
+int check_map(t_map *map,t_data *data)
 {
     t_count count;
     int i;
@@ -100,11 +101,12 @@ int check_map(t_map *map)
         }
         i++;
     }
-    if(count.P > 1 || count.E > 1)
+	check_collectible(map);
+    if(count.P > 1 || count.E > 1 || count.C < 1)
     {
         write(1, "ERROR MAP\n",11);
         exit(1);
     }
-	check_flood(map);
+	check_flood(map,data);
     return 0;
 }
