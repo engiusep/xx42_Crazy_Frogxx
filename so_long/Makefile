@@ -7,6 +7,7 @@ RM = rm -f
 SRCS =  so_long.c \
 			draw_map.c \
 			free.c \
+			check_map.c \
 			exit_prog.c \
 			flood_fill.c \
 			get_next_line/get_next_line.c \

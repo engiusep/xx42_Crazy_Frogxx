@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:31:02 by engiusep          #+#    #+#             */
-/*   Updated: 2025/01/23 16:04:14 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/02/05 12:26:51 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,10 @@ int creat_img(t_data *data);
 int	exit_prog(t_data *data);
 void    find_player_position(t_map *map, int *player_x,int *player_y);
 int	flood_fill(t_map *map,int x,int y);
+int check_map(t_map *map);
+int check_all_1(t_map *map);
+int check_col(t_map *map);
+int check_collectible(t_map *map);
+int check_flood(t_map *map);
 
 #endif
