@@ -59,7 +59,7 @@ int move_player(t_map *map,int new_x,int new_y,int old_x,int old_y)
         i++;
         return (0);
     }
-    else if(map->grid[new_y][new_x] == 'E' && check_collectible(map) == i)
+    else if(map->grid[new_y][new_x] == 'E' && check_collectible(map) == -1)
     {
         map->grid[old_y][old_x] = '0';
         map->grid[new_y][new_x] = 'P';
@@ -137,11 +137,7 @@ void    malloc_grid(t_map *map, char *filename)
     map->grid[i] = NULL;
     close (fd);
 }
-int    close_window(t_data *data)
-{
-    exit_prog(data);
-    return (0);
-}
+
 int main(void)
 {
 

@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 15:18:34 by engiusep          #+#    #+#             */
-/*   Updated: 2025/02/05 17:02:20 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/02/06 11:58:56 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int check_collectible_flood(t_map *map,char **grid,t_data *data)
             	j++;
 			else
 			{
-				write(2,"ERRORR MAP\n",13);
+				write(2,"ERRORR MAP\n",12);
 				free_cpy(grid,map->height);
 				exit_prog(data);
 				exit(0);
@@ -101,8 +101,6 @@ int check_flood(t_map *map,t_data *data)
 	find_player_position(map,&x,&y);
 	cpy_grid = cpy(map);
 	flood_fill(map, cpy_grid, y, x);
-	//while(cpy_grid[i])
-	//	printf("%s\n",cpy_grid[i++]);
 	check_collectible_flood(map,cpy_grid,data);
 	free_cpy(cpy_grid,map->height);
 	return (0);

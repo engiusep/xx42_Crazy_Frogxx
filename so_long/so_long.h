@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:31:02 by engiusep          #+#    #+#             */
-/*   Updated: 2025/02/05 14:36:26 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/02/06 11:55:14 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	flood_fill(t_map *map,char **grid ,int x,int y);
 int check_map(t_map *map,t_data *data);
 int check_all_1(t_map *map);
 int check_col(t_map *map);
-int check_collectible(t_map *map);
 int check_flood(t_map *map,t_data *data);
 void	free_cpy(char **cpy,int i);
+int    close_window(t_data *data);
 #endif
