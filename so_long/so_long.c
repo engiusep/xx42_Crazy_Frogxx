@@ -42,61 +42,60 @@ void	find_player_position(t_map *map, int *player_x, int *player_y)
 	}
 }
 
-int	move_player(t_map *map, int new_x, int new_y, int old_x, int old_y)
+int	move_player(t_map *map,t_move *move)
 {
 	int	i;
 
 	i = 0;
-	if (map->grid[new_y][new_x] == '0')
+	if (map->grid[move->new_y][move->new_x] == '0')
 	{
-		map->grid[old_y][old_x] = '0';
-		map->grid[new_y][new_x] = 'P';
+		map->grid[move->player_y][move->player_x] = '0';
+		map->grid[move->new_y][move->new_x] = 'P';
 		return (0);
 	}
-	else if (map->grid[new_y][new_x] == 'C')
+	else if (map->grid[move->new_y][move->new_x] == 'C')
 	{
-		map->grid[old_y][old_x] = '0';
-		map->grid[new_y][new_x] = 'P';
+		map->grid[move->player_y][move->player_x] = '0';
+		map->grid[move->new_y][move->new_x] = 'P';
 		i++;
 		return (0);
 	}
-	else if (map->grid[new_y][new_x] == 'E' && check_collectible(map) == -1)
+	else if (map->grid[move->player_y][move->new_x] == 'E' && check_collectible(map) == -1)
 	{
-		map->grid[old_y][old_x] = '0';
-		map->grid[new_y][new_x] = 'P';
+		map->grid[move->player_y][move->player_x] = '0';
+		map->grid[move->new_y][move->new_x] = 'P';
 		return (1);
 	}
 	return (0);
 }
-
-int	on_keypress(int keysym, t_data *data)
+void	moving_player(t_move *move, int keysym,t_data *data)
 {
-	int	player_x;
-	int	player_y;
-	int	new_x;
-	int	new_y;
-	int	end_or_not;
-
-	player_x = -1;
-	player_y = -1;
-	end_or_not = 0;
-	find_player_position(data->map, &player_x, &player_y);
-	new_x = player_x;
-	new_y = player_y;
 	if (keysym == 97) // fleche de gauche
-		new_x -= 1;
+		move->new_x -= 1;
 	else if (keysym == 119) // fleche haut
-		new_y -= 1;
+		move->new_y -= 1;
 	else if (keysym == 100) // fleche droite
-		new_x += 1;
+		move->new_x += 1;
 	else if (keysym == 115) // fleche bas
-		new_y += 1;
+		move->new_y += 1;
 	else if (keysym == 65307)
 		exit_prog(data);
-	if (new_x >= 0 && new_x < data->map->width && new_y >= 0
-		&& new_y < data->map->width)
-		end_or_not = move_player(data->map, new_x, new_y, player_x, player_y);
-	if (end_or_not == 0)
+}
+int	on_keypress(int keysym, t_data *data)
+{
+	t_move move;
+
+	move.player_x = -1;
+	move.player_y = -1;
+	move.end_or_not = 0;
+	find_player_position(data->map, &move.player_x, &move.player_y);
+	move.new_x = move.player_x;
+	move.new_y = move.player_y;
+	moving_player(&move, keysym, data);
+	if (move.new_x >= 0 && move.new_x < data->map->width && move.new_y >= 0
+		&& move.new_y < data->map->width)
+		move.end_or_not = move_player(data->map,&move);
+	if (move.end_or_not == 0)
 		draw_map(data->map, data);
 	else
 		exit_prog(data);
@@ -142,6 +141,7 @@ int	malloc_grid(t_map *map, char *filename)
 	close(fd);
 	return (0);
 }
+
 void	file_image(t_data *data, t_map *map)
 {
 	data->image_ptr_perso = mlx_xpm_file_to_image(data->mlx_ptr,
@@ -175,6 +175,25 @@ int	check_argv(char *str)
 		exit(0);
 	}
 }
+
+int create_map(t_data *data,t_map *map,char *argv_1)
+{
+	if (malloc_grid(map, argv_1) == -1)
+	{
+		mlx_destroy_window(data->mlx_ptr, data->window_ptr);
+		destroy_all(data);
+		free(data->mlx_ptr);
+		return (1);
+	}
+	if(read_map(argv_1, map, data) == -1)
+	{
+		mlx_destroy_window(data->mlx_ptr, data->window_ptr);
+		destroy_all(data);
+		free(data->mlx_ptr);
+		return (1);
+	}
+	return (0);
+}
 int	main(int argc, char **argv)
 {
 	t_data	data;
@@ -193,20 +212,8 @@ int	main(int argc, char **argv)
 	mlx_hook(data.window_ptr, DestroyNotify, StructureNotifyMask, &destroy_all,
 		&data);
 	file_image(&data, &map);
-	if (malloc_grid(&map, argv[1]) == -1)
-	{
-		mlx_destroy_window(data.mlx_ptr, data.window_ptr);
-		destroy_all(&data);
-		free(data.mlx_ptr);
-		return (1);
-	}
-	if(read_map(argv[1], &map, &data) == -1)
-	{
-		mlx_destroy_window(data.mlx_ptr, data.window_ptr);
-		destroy_all(&data);
-		free(data.mlx_ptr);
-		return (1);
-	}
+	if(create_map(&data,&map,argv[1]) == 1)
+		exit(1);
 	draw_map(&map, &data);
 	mlx_hook(data.window_ptr, KeyPress, KeyPressMask, &on_keypress, &data);
 	mlx_hook(data.window_ptr, 17, 0, &close_window, &data);

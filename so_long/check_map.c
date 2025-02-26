@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 12:15:27 by engiusep          #+#    #+#             */
-/*   Updated: 2025/02/26 13:40:26 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/02/26 15:38:53 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,34 +76,39 @@ int check_all_1(t_map *map)
     return (0);
 }
 
+t_check init_variable(void)
+{
+    t_check check;
+    
+    check.x = -1;
+	check.y = -1;
+    check.i = 0;
+    check.j = 0;
+    check.count.P = 0;
+    check.count.E = 0;
+    return(check);
+}
+
 int check_map(t_map *map,t_data *data)
 {
-    t_count count;
-    int i;
-    int j;
-	int x;
-	int y;
-	x = -1;
-	y = -1;
-    i = 0;
-    j = 0;
-    count.P = 0;
-    count.E = 0;
-    while(i < map->height)
+    t_check check;
+    
+    check = init_variable();
+    while(check.i < map->height)
     {
-        j = 0;
-        while(j < map->width)
+       check.j = 0;
+        while(check.j < map->width)
         {
-            if(map->grid[i][j] == 'P')
-                count.P++;
-            if(map->grid[i][j] == 'E')
-                count.E++;
-            j++;
+            if(map->grid[check.i][check.j] == 'P')
+                check.count.P++;
+            if(map->grid[check.i][check.j] == 'E')
+                check.count.E++;
+            check.j++;
         }
-        i++;
+        check.i++;
     }
-    count.C = check_collectible(map);
-    if(count.P > 1 || count.E > 1 || count.C == -1)
+    check.count.C = check_collectible(map);
+    if(check.count.P > 1 || check.count.E > 1 || check.count.C == -1)
     {
         write(1, "ERROR MAP\n",11);
         exit_prog(data);

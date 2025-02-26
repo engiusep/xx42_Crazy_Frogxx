@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:31:02 by engiusep          #+#    #+#             */
-/*   Updated: 2025/02/26 12:24:02 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/02/26 15:35:25 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,25 @@ typedef struct s_data
     int image_y;
     t_map *map;
 }t_data;
+
+typedef struct s_move
+{
+    int	player_x;
+	int	player_y;
+	int	new_x;
+	int	new_y;
+	int	end_or_not;
+}t_move;
+
+typedef struct s_check
+{
+    int i;
+    int j;
+	int x;
+	int y;
+    t_count count;
+}t_check;
+
 
 void draw_map(t_map *map, t_data *data);
 int read_map(const char *filename,t_map *map,t_data *data);

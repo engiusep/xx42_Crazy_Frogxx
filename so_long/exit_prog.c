@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 15:02:59 by engiusep          #+#    #+#             */
-/*   Updated: 2025/02/18 13:42:46 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/02/26 15:14:16 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	exit_prog(t_data *data)
     free(data->mlx_ptr);
     exit(0);
 }
+
 int    close_window(t_data *data)
 {
     exit_prog(data);
