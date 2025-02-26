@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:31:02 by engiusep          #+#    #+#             */
-/*   Updated: 2025/02/06 11:55:14 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/02/26 12:24:02 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef struct s_data
 }t_data;
 
 void draw_map(t_map *map, t_data *data);
-void read_map(const char *filename,t_map *map,t_data *data);
+int read_map(const char *filename,t_map *map,t_data *data);
 int check_collectible(t_map *map);
 void    free_map(t_map *map,int i);
 int ft_strlen_nl(char *str);

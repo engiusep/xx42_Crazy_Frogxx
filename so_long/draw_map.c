@@ -3,7 +3,7 @@
 #include <string.h>
 
 
-void read_map(const char *filename, t_map *map,t_data *data)
+int read_map(const char *filename, t_map *map,t_data *data)
 {
     int fd;
     int i;
@@ -21,14 +21,14 @@ void read_map(const char *filename, t_map *map,t_data *data)
         line = get_next_line(fd);
         if(!line)
             break;
-        map->grid[i] = ft_strdup(line);
         if(ft_strlen_nl(line) != map->width)
-            {
-                free_map(map,i);
-                free(line);
-                write(1,"ERROR MAP\n",11);
-                exit(1);
-            }
+        {
+            free_map(map,i);
+            free(line);
+            write(1,"ERROR MAp\n",11);
+            return -1;
+        }
+        map->grid[i] = ft_strdup(line);
         free(line);
         i++;
     }
@@ -39,9 +39,10 @@ void read_map(const char *filename, t_map *map,t_data *data)
     {
        write(1,"ERROR\n",6);
        destroy_all(data);
-       exit(1);
+       return -1;
     }
     close (fd);
+    return 0;
 }
 
 void draw_map(t_map *map, t_data *data)

@@ -200,7 +200,13 @@ int	main(int argc, char **argv)
 		free(data.mlx_ptr);
 		return (1);
 	}
-	read_map(argv[1], &map, &data);
+	if(read_map(argv[1], &map, &data) == -1)
+	{
+		mlx_destroy_window(data.mlx_ptr, data.window_ptr);
+		destroy_all(&data);
+		free(data.mlx_ptr);
+		return (1);
+	}
 	draw_map(&map, &data);
 	mlx_hook(data.window_ptr, KeyPress, KeyPressMask, &on_keypress, &data);
 	mlx_hook(data.window_ptr, 17, 0, &close_window, &data);
