@@ -6,11 +6,11 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:00:55 by engiusep          #+#    #+#             */
-/*   Updated: 2025/02/26 16:00:56 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:11:10 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 int	read_lines(t_map **map, int fd)
 {
@@ -72,8 +72,8 @@ void	draw_map(t_map *map, t_data *data)
 	int		y;
 	t_count	count;
 
-	count.P = 1;
-	count.E = 1;
+	count.p = 1;
+	count.e = 1;
 	i = 0;
 	while (i < map->height)
 	{

@@ -6,11 +6,11 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:57:01 by engiusep          #+#    #+#             */
-/*   Updated: 2025/02/26 16:05:06 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:11:23 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 int	ft_strlen_nl(char *str)
 {

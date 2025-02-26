@@ -6,11 +6,11 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:45:54 by engiusep          #+#    #+#             */
-/*   Updated: 2025/02/26 16:03:25 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:54:49 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	find_player_position(t_map *map, int *player_x, int *player_y)
 {
@@ -65,6 +65,10 @@ int	move_player(t_map *map, t_move *move)
 
 void	moving_player(t_move *move, int keysym, t_data *data)
 {
+	static int i;
+
+	if (keysym == 97 || keysym == 119 || keysym == 100 || keysym == 115)
+		i++;
 	if (keysym == 97)
 		move->new_x -= 1;
 	else if (keysym == 119)
@@ -75,12 +79,13 @@ void	moving_player(t_move *move, int keysym, t_data *data)
 		move->new_y += 1;
 	else if (keysym == 65307)
 		exit_prog(data);
+	ft_printf("%d\n",i);
 }
 
 int	on_keypress(int keysym, t_data *data)
 {
 	t_move	move;
-
+	
 	move.player_x = -1;
 	move.player_y = -1;
 	move.end_or_not = 0;
@@ -95,6 +100,5 @@ int	on_keypress(int keysym, t_data *data)
 		draw_map(data->map, data);
 	else
 		exit_prog(data);
-	printf("Presse une touche: %d\n", keysym);
 	return (0);
 }

@@ -6,11 +6,11 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:55:16 by engiusep          #+#    #+#             */
-/*   Updated: 2025/02/26 16:00:36 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:11:08 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 char	*cpy_string(t_map *map, char *str)
 {

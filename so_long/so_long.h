@@ -6,14 +6,16 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:31:02 by engiusep          #+#    #+#             */
-/*   Updated: 2025/02/26 15:56:18 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:54:31 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
+
 # include "../get_next_line/get_next_line.h"
 # include "libft/libft.h"
+# include "printf/ft_printf.h"
 # include "minilibx-linux/mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
@@ -22,6 +24,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 100
 # endif
@@ -35,9 +38,9 @@ typedef struct s_map
 
 typedef struct s_count
 {
-	int		P;
-	int		E;
-	int		C;
+	int		p;
+	int		e;
+	int		c;
 }			t_count;
 
 typedef struct s_data
@@ -98,7 +101,7 @@ int			on_keypress(int keysym, t_data *data);
 int			destroy_all(t_data *data);
 void		put_image(char c, t_data *data, int x, int y);
 void		file_image(t_data *data, t_map *map);
-char	*cpy_string(t_map *map, char *str);
-char	**cpy(t_map *map);
+char		*cpy_string(t_map *map, char *str);
+char		**cpy(t_map *map);
 
 #endif

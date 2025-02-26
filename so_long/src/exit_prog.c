@@ -6,11 +6,11 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 15:02:59 by engiusep          #+#    #+#             */
-/*   Updated: 2025/02/26 16:01:19 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:11:12 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 int	destroy_all(t_data *data)
 {

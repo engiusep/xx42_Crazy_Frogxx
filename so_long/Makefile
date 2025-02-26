@@ -4,25 +4,27 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra
 RM = rm -f
 
-SRCS =  so_long.c \
-			draw_map.c \
-			check_map.c \
-			exit_prog.c \
-			flood_fill.c \
-			moving.c \
-			image.c \
-			copy_grid.c \
+SRCS =  src/so_long.c \
+			src/draw_map.c \
+			src/check_map.c \
+			src/exit_prog.c \
+			src/flood_fill.c \
+			src/moving.c \
+			src/image.c \
+			src/copy_grid.c \
 			get_next_line/get_next_line.c \
 			get_next_line/get_next_line_utils.c \
 			libft/ft_split.c \
 			libft/ft_strdup.c \
-			libft/ft_strlen.c
+			libft/ft_strlen.c \
+			printf/ft_printf.c \
+			printf/ft_printf_utils.c \
+			
 
 HEADER = so_long.h
 
 OBJS = $(SRCS:.c=.o)
 MLX= minilibx-linux/libmlx.a
-
 all: $(NAME)
 
 $(NAME): $(OBJS) $(MLX)

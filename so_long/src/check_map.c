@@ -6,11 +6,11 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 12:15:27 by engiusep          #+#    #+#             */
-/*   Updated: 2025/02/26 15:59:05 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:11:02 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 int	check_collectible(t_map *map)
 {
@@ -88,8 +88,8 @@ t_check	init_variable(void)
 	check.y = -1;
 	check.i = 0;
 	check.j = 0;
-	check.count.P = 0;
-	check.count.E = 0;
+	check.count.p = 0;
+	check.count.e = 0;
 	return (check);
 }
 
@@ -104,15 +104,15 @@ int	check_map(t_map *map, t_data *data)
 		while (check.j < map->width)
 		{
 			if (map->grid[check.i][check.j] == 'P')
-				check.count.P++;
+				check.count.p++;
 			if (map->grid[check.i][check.j] == 'E')
-				check.count.E++;
+				check.count.e++;
 			check.j++;
 		}
 		check.i++;
 	}
-	check.count.C = check_collectible(map);
-	if (check.count.P > 1 || check.count.E > 1 || check.count.C == -1)
+	check.count.c = check_collectible(map);
+	if (check.count.p > 1 || check.count.e > 1 || check.count.c == -1)
 	{
 		write(1, "ERROR MAP\n", 11);
 		exit_prog(data);

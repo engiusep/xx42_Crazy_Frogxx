@@ -6,11 +6,11 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:52:10 by engiusep          #+#    #+#             */
-/*   Updated: 2025/02/26 16:02:01 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:11:16 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	file_image(t_data *data, t_map *map)
 {

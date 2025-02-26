@@ -6,11 +6,11 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 15:18:34 by engiusep          #+#    #+#             */
-/*   Updated: 2025/02/26 16:01:45 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:11:14 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 int	flood_fill(t_map *map, char **grid, int y, int x)
 {
