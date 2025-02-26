@@ -6,10 +6,12 @@ RM = rm -f
 
 SRCS =  so_long.c \
 			draw_map.c \
-			free.c \
 			check_map.c \
 			exit_prog.c \
 			flood_fill.c \
+			moving.c \
+			image.c \
+			copy_grid.c \
 			get_next_line/get_next_line.c \
 			get_next_line/get_next_line_utils.c \
 			libft/ft_split.c \

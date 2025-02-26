@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 15:18:34 by engiusep          #+#    #+#             */
-/*   Updated: 2025/02/26 13:50:12 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:01:45 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,44 +27,7 @@ int	flood_fill(t_map *map, char **grid, int y, int x)
 	return (0);
 }
 
-char	*cpy_string(t_map *map, char *str)
-{
-	int		i;
-	char	*cpy;
-
-	i = 0;
-	(void)map;
-	cpy = malloc(ft_strlen(str) + 1);
-	if (!cpy)
-		return (NULL);
-	while (str[i])
-	{
-		cpy[i] = str[i];
-		i++;
-	}
-	cpy[i] = '\0';
-	return (cpy);
-}
-char	**cpy(t_map *map)
-{
-	int		i;
-	int		j;
-	char	**cpy;
-
-	i = 0;
-	j = 0;
-	cpy = malloc((map->height + 1) * sizeof(char *));
-	if (!cpy)
-		return (NULL);
-	while (i < map->height)
-	{
-		cpy[i] = cpy_string(map, map->grid[i]);
-		i++;
-	}
-	cpy[i] = NULL;
-	return (cpy);
-}
-int	check_collectible_flood(t_map *map, char **grid, t_data *data,char **grid2)
+int	check_collectible_flood(t_map *map, char **grid, t_data *data, char **grid2)
 {
 	int	i;
 	int	j;
@@ -92,18 +55,21 @@ int	check_collectible_flood(t_map *map, char **grid, t_data *data,char **grid2)
 	}
 	return (0);
 }
-int	check_collectible_flood_2(t_map *map, char **grid, t_data *data,char **cpy_grid2)
+
+int	check_collectible_flood_2(t_map *map, char **grid, t_data *data,
+		char **cpy_grid2)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
 	while (i < map->height)
 	{
 		j = 0;
 		while (j < map->width)
 		{
-			if (grid[i][j] == 'F' || grid[i][j] == '1' || grid[i][j] == 'E' || grid[i][j] == '0')
+			if (grid[i][j] == 'F' || grid[i][j] == '1' || grid[i][j] == 'E'
+				|| grid[i][j] == '0')
 				j++;
 			else
 			{
@@ -118,18 +84,20 @@ int	check_collectible_flood_2(t_map *map, char **grid, t_data *data,char **cpy_g
 	}
 	return (0);
 }
-void	check_grid(t_map *map,char **grid,t_data *data,char **cpy_grid2)
+
+void	check_grid(t_map *map, char **grid, t_data *data, char **cpy_grid2)
 {
-		int	i;
+	int	i;
 	int	j;
-	
+
 	i = 0;
 	while (i < map->height)
 	{
 		j = 0;
 		while (j < map->width)
 		{
-			if (grid[i][j] == '1' || grid[i][j] == 'E' || grid[i][j] == '0' || grid[i][j] == 'P' || grid[i][j] == 'C')
+			if (grid[i][j] == '1' || grid[i][j] == 'E' || grid[i][j] == '0'
+				|| grid[i][j] == 'P' || grid[i][j] == 'C')
 				j++;
 			else
 			{
@@ -143,6 +111,7 @@ void	check_grid(t_map *map,char **grid,t_data *data,char **cpy_grid2)
 		i++;
 	}
 }
+
 int	check_flood(t_map *map, t_data *data)
 {
 	int		x;
@@ -157,11 +126,11 @@ int	check_flood(t_map *map, t_data *data)
 	find_player_position(map, &x, &y);
 	cpy_grid = cpy(map);
 	cpy_grid2 = cpy(map);
-	check_grid(map,cpy_grid,data,cpy_grid2);
+	check_grid(map, cpy_grid, data, cpy_grid2);
 	flood_fill(map, cpy_grid2, y, x);
-	check_collectible_flood_2(map, cpy_grid2, data,cpy_grid);
+	check_collectible_flood_2(map, cpy_grid2, data, cpy_grid);
 	flood_fill(map, cpy_grid, y, x);
-	check_collectible_flood(map, cpy_grid, data,cpy_grid2);
+	check_collectible_flood(map, cpy_grid, data, cpy_grid2);
 	free_cpy(cpy_grid, map->height);
 	free_cpy(cpy_grid2, map->height);
 	return (0);

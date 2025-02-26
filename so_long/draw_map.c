@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/26 16:00:55 by engiusep          #+#    #+#             */
+/*   Updated: 2025/02/26 16:00:56 by engiusep         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
-#include <stdio.h>
-#include <string.h>
 
 int	read_lines(t_map **map, int fd)
 {
@@ -41,7 +51,7 @@ int	read_map(const char *filename, t_map *map, t_data *data)
 		perror("Error open fd\n");
 		exit(1);
 	}
-	if(read_lines(&map, fd) == -1)
+	if (read_lines(&map, fd) == -1)
 		return (-1);
 	check_map(map, data);
 	if (check_all_1(map) == -1)
@@ -53,24 +63,7 @@ int	read_map(const char *filename, t_map *map, t_data *data)
 	close(fd);
 	return (0);
 }
-void	put_image(char c, t_data *data, int x, int y)
-{
-	if (c == 'P')
-		mlx_put_image_to_window(data->mlx_ptr, data->window_ptr,
-			data->image_ptr_perso, x, y);
-	else if (c == '0')
-		mlx_put_image_to_window(data->mlx_ptr, data->window_ptr,
-			data->image_ptr_floor, x, y);
-	else if (c == '1')
-		mlx_put_image_to_window(data->mlx_ptr, data->window_ptr,
-			data->image_ptr_mur, x, y);
-	else if (c == 'E')
-		mlx_put_image_to_window(data->mlx_ptr, data->window_ptr,
-			data->image_ptr_exit, x, y);
-	else if (c == 'C')
-		mlx_put_image_to_window(data->mlx_ptr, data->window_ptr,
-			data->image_ptr_collectible, x, y);
-}
+
 void	draw_map(t_map *map, t_data *data)
 {
 	int		i;
