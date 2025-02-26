@@ -37,9 +37,9 @@ int read_map(const char *filename, t_map *map,t_data *data)
     check_map(map,data);
     if(check_all_1(map) == -1)
     {
-       write(1,"ERROR\n",6);
-       destroy_all(data);
-       return -1;
+       write(1,"ERR0R\n",6);
+       exit_prog(data);
+       exit(1);
     }
     close (fd);
     return 0;
