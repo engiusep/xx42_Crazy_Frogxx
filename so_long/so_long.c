@@ -187,7 +187,7 @@ int	main(int argc, char **argv)
 	data.mlx_ptr = mlx_init();
 	if (!data.mlx_ptr)
 		return (1);
-	data.window_ptr = mlx_new_window(data.mlx_ptr, 3000, 1000, "so_long");
+	data.window_ptr = mlx_new_window(data.mlx_ptr, 3000, 2000, "so_long");
 	if (!data.window_ptr)
 		return (free(data.mlx_ptr), 1);
 	mlx_hook(data.window_ptr, DestroyNotify, StructureNotifyMask, &destroy_all,

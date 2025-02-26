@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 12:15:27 by engiusep          #+#    #+#             */
-/*   Updated: 2025/02/26 12:20:30 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/02/26 13:40:26 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,8 @@ int check_map(t_map *map,t_data *data)
     count.C = check_collectible(map);
     if(count.P > 1 || count.E > 1 || count.C == -1)
     {
-        write(1, "ERROR MAP\n",12);
+        write(1, "ERROR MAP\n",11);
+        exit_prog(data);
         exit(1);
     }
 	check_flood(map,data);
