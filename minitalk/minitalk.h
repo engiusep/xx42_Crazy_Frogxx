@@ -13,13 +13,16 @@
 #ifndef MINITALK_H
 # define MINITALK_H
 
-# include <stdio.h>
-# include <stdlib.h>
 # include <unistd.h>
+# include <stdlib.h>
 # include <signal.h>
+# include <stdio.h>
+# include <limits.h>
+# include <stdbool.h>
 
-void take_signal(int sig);
+#define WAIT 0
+#define READY 1
 
-void send_char(int pid,char c);
-
+void    Signal(int signo, void *handler, bool use_siginfo);
+void Kill(pid_t pid,int signo);
 #endif

@@ -1,33 +1,58 @@
 #include "minitalk.h"
 
-void    send_char(int pid,char c)
+volatile sig_atomic_t wait_not_wait = WAIT;
+
+void    message_received(int signo)
+{
+    (void)signo;
+    write(1,"message received\n",18);
+    exit(EXIT_SUCCESS);
+}
+void    wait_process(int signo)
+{
+    (void)signo;
+    wait_not_wait = READY;
+}
+void    send_char(char c, pid_t pid)
 {
     int bit;
+    
     bit = 0;
 
     while(bit < 8)
     {
-        if((c >> bit) & 1)
-            kill(pid,SIGUSR1);
+        if(c & (0x80 >> bit))
+            Kill(pid,SIGUSR1);
         else
-            kill(pid,SIGUSR2);
-        usleep(100);
+            Kill(pid,SIGUSR2);
         bit++;
+    
+        while(WAIT == wait_not_wait)
+            usleep(100);
+        wait_not_wait = WAIT;
     }
 }
 
 int main(int argc,char **argv)
 {
-    int i;
-    i = 0;
     pid_t pid;
+    char *message;
+    int i;
+
+    i = 0;
+
     if(argc != 3)
     {
-        printf("Usage %s <PID> <Message> \n",argv[0]);
-            return (1);
+        write(2,"./client <PID_SERVER> <message>\n",33);
+        exit(EXIT_FAILURE);
     }
     pid = atoi(argv[1]);
-    while(argv[2][i])
-        send_char(pid,argv[2][i++]);
+    message = argv[2];
 
+    Signal(SIGUSR1, wait_process, false);
+    Signal(SIGUSR2, message_received, false);
+    while(message[i])
+        send_char(message[i++],pid);
+    send_char('\0',pid);
+    return (EXIT_SUCCESS);
 }

@@ -1,31 +1,40 @@
 #include "minitalk.h"
 
-void    take_signal(int sig)
+void    handler(int signo, siginfo_t *info)
 {
-    static int bit = 0;
-    static char c = 0;
+    static char c;
+    static int bit;
+    static pid_t pid_process;
 
-    if(sig == SIGUSR1)
-        c|= (1 << bit); //transforme le bit en 1 
+    if(info->si_pid)
+        pid_process = info->si_pid;
+    if(SIGUSR1 == signo)
+        c |= (0x80 >> bit);
+    else if(SIGUSR2 == signo)
+        c &= ~(0x80 >> bit);
     bit++;
     if(bit == 8)
     {
-        write(1,&c,1);
         bit = 0;
+        if(c == '\0')
+        {
+            write(1, "\n",1);
+            Kill(pid_process, SIGUSR2);
+            c = 0;
+            return ;
+        }
+        write(1, &c, 1);
         c = 0;
     }
-    
+    kill(pid_process,SIGUSR1);
 }
-int    main(void)
-{
-    pid_t pid;
 
-    pid = getpid();
-    if(pid < 0)
-        return (0);
-    printf("pid server = %d\n",pid);
-    signal(SIGUSR1,take_signal);
-    signal(SIGUSR2,take_signal);
+int  main(void)
+{
+    printf("PID server = %d\n",getpid());
+    Signal(SIGUSR1,  handler, true);
+    Signal(SIGUSR2, handler, true);
     while(1)
         pause();
+    return EXIT_SUCCESS;
 }
