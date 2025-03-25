@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 13:59:01 by engiusep          #+#    #+#             */
-/*   Updated: 2025/03/25 16:20:08 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/03/25 16:33:18 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	wait_thread(t_philo *philos_list, t_info info)
 	while(i < info.nb_philo)
 	{
 		pthread_join(philos_list[i].thread,NULL);
+		//printf("%d",philos_list[i].id);
 		i++;
 	}
 }
