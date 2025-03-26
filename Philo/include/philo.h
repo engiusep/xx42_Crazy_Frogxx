@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 12:55:37 by engiusep          #+#    #+#             */
-/*   Updated: 2025/03/25 16:28:32 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:50:59 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,14 @@ typedef struct s_info
 	long start_time;
 	int meal_to_reach;
 	int nb_philo;
+	t_philo *philos_list;
 	
 }t_info;
 
 // create
 void create_forks(t_info *info, t_mutex *mutex);
 void create_mutex_utils(t_info info, t_mutex *mutex);
-void create_philo(t_philo *philos, t_info info, t_mutex mutex);
+t_philo *create_philo(t_philo *philos, t_info info, t_mutex mutex);
 
 // destroy
 void destroy_forks(t_mutex *mutex, int nb);

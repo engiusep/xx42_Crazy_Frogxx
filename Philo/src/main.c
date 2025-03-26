@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 13:14:25 by engiusep          #+#    #+#             */
-/*   Updated: 2025/03/25 16:22:05 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:52:35 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,13 @@ int main (int argc, char **argv)
 	t_info info;
 	t_mutex mutex;
 	
-	t_philo philos_list;
+	t_philo *philos_list;
+
+	philos_list = NULL;
+	//pthread_t monitor;
 	//check argument
 	
 	check_arg(&info, argc, argv);
-	
 	// init mutex forks
 	create_forks(&info, &mutex);
 	
@@ -58,16 +60,15 @@ int main (int argc, char **argv)
 
 	//creat monitor
 	
+	
 	// init philo
-	create_philo(&philos_list, info, mutex);
+	philos_list = create_philo(philos_list, info, mutex);
 	// init info 
 
 	//creat philo
 
 	// wait thread
-	while(1)
-		usleep(1);
-	//wait_thread(&philos_list,info);
+	wait_thread(philos_list,info);
 	//destroy thread mutex
 	
 }

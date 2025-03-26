@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 13:59:01 by engiusep          #+#    #+#             */
-/*   Updated: 2025/03/25 16:33:18 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:50:35 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	*philo_routine(void *arg)
 	
 	philo = (t_philo *)arg;
 	
-
+	if(philo->id % 2 == 0)
+		usleep(1);
 	while(1)
 	{
 		routine_eat(philo);
@@ -42,10 +43,10 @@ void	init_data_philo(t_info info, t_mutex mutex, t_philo *philo,int index)
 }
 
 
-void	create_philo(t_philo *philos_list, t_info info, t_mutex mutex)
+t_philo	*create_philo(t_philo *philos_list, t_info info, t_mutex mutex)
 {
 	int i;
-	
+
 	i = 0;
 	philos_list = malloc(sizeof(t_philo) * info.nb_philo);
 	if(!philos_list)
@@ -57,22 +58,23 @@ void	create_philo(t_philo *philos_list, t_info info, t_mutex mutex)
 	info.start_time = get_time_ms();
 	while(i < info.nb_philo)
 	{
-		
 		init_data_philo(info, mutex, &philos_list[i], i);
-		pthread_create(&philos_list[i].thread, NULL, philo_routine, (void *)&philos_list[i]);
+		pthread_create(&philos_list[i].thread, NULL, &philo_routine, (void *)&philos_list[i]);
 		i++;
 	}
+	return (philos_list);
 }
 
 void	wait_thread(t_philo *philos_list, t_info info)
 {
 	
 	int i;
+	
 	i = 0;
+	
 	while(i < info.nb_philo)
 	{
 		pthread_join(philos_list[i].thread,NULL);
-		//printf("%d",philos_list[i].id);
 		i++;
 	}
 }

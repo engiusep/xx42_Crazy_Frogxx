@@ -6,11 +6,13 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 14:34:32 by engiusep          #+#    #+#             */
-/*   Updated: 2025/03/25 14:34:58 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:52:08 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+
 
 
 //pointeur sur time
