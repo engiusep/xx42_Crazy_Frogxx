@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 13:14:25 by engiusep          #+#    #+#             */
-/*   Updated: 2025/03/26 15:52:35 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/03/31 13:18:14 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,8 @@ int check_arg(t_info *info ,int argc, char **argv)
 
 	//faire atol warning et negatif value  !!!!! 
 	//faire atol warning et negatif value  !!!!! 
-	//faire atol warning et negatif value  !!!!! 
-	//faire atol warning et negatif value  !!!!! 
-	//faire atol warning et negatif value  !!!!! 
-	//faire atol warning et negatif value  !!!!! 
 	info->nb_philo = atoi(argv[1]);
+	info->is_dead = 0;
 	info->time_die = atoi(argv[2]);
 	info->time_eat = atoi(argv[3]);
 	info->time_sleep = atoi(argv[4]);
@@ -46,29 +43,29 @@ int main (int argc, char **argv)
 	t_info info;
 	t_mutex mutex;
 	
-	t_philo *philos_list;
-
-	philos_list = NULL;
-	//pthread_t monitor;
 	//check argument
-	
 	check_arg(&info, argc, argv);
 	// init mutex forks
 	create_forks(&info, &mutex);
 	
 	create_mutex_utils(info, &mutex);
-
+	info.philos_list = malloc(sizeof(t_philo) * info.nb_philo);
+	if(!info.philos_list)
+	{
+		destroy_forks(&mutex, info.nb_philo);
+		destroy_mutex_utils(&mutex);
+		exit(EXIT_FAILURE);
+	}
 	//creat monitor
-	
-	
+	//create_monitor(info);
 	// init philo
-	philos_list = create_philo(philos_list, info, mutex);
+	create_philo(info, mutex);
 	// init info 
 
 	//creat philo
 
 	// wait thread
-	wait_thread(philos_list,info);
+	wait_thread(info);
 	//destroy thread mutex
 	
 }

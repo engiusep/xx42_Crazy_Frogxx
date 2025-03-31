@@ -6,21 +6,22 @@
 #    By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/25 15:47:59 by engiusep          #+#    #+#              #
-#    Updated: 2025/03/25 15:50:16 by engiusep         ###   ########.fr        #
+#    Updated: 2025/03/31 14:49:46 by engiusep         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -MMD -MP
+CFLAGS = -Wall -Werror -Wextra -ggdb3 -MMD -MP
 SRCS = src/main.c \
 			src/forks.c\
 			src/monitor.c \
 			src/mutex_utils.c \
 			src/philo.c \
 			src/routine.c \
-			src/utils.c
+			src/utils.c \
+			src/monitor_utils.c
 
 MAKEDIR = make
 OBJDIR = make/objs
