@@ -6,7 +6,7 @@ void    expand_token_array(t_token_tab *tab)
     int i;
     i = 0;
     new_size = tab->size * 2;
-    t_token *new_token = malloc(sizeof(t_token) * SIZE);
+    t_token *new_token = malloc(sizeof(t_token) * new_size);
 
     while(i < tab->index)
     {
@@ -30,7 +30,7 @@ t_token_tab *create_token_tab()
 
 void    add_token_tab(t_token_tab *tab,char *value,t_token_type type)
 {
-    if(tab->index < tab->size)
+    if(tab->index >= tab->size)
         expand_token_array(tab);
     tab->tokens[tab->index].value = value;
     tab->tokens[tab->index].type = type;
@@ -64,14 +64,14 @@ t_token_tab *lexer(char *str)
         else
         {
             char *word = read_word(str, &i);
-            i++;
+            add_token_tab(tokens_tab,word,WORD);
         }
     }
     return (tokens_tab);
 }
 int main(int argc,char **argv, char **env)
 {
-    t_token_tab *tokens = lexer(argv[0]);
+    t_token_tab *tokens = lexer("echo salut | grep ok");
 
     for(int i = 0; i < tokens->index;i++)
     {
