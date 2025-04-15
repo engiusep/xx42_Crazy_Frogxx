@@ -1,0 +1,2 @@
+TOKEN[1]: salut (type0)
+TOKEN[5]: %s (type0)
