@@ -42,7 +42,7 @@ char *read_word(char *str,int *i)
     int start;
     start = *i;
 
-    while(str[*i] != ' ' && str[*i] != '|')
+    while(str[*i] && str[*i] != ' ' && str[*i] != '|')
         (*i)++;
     return strndup(&str[start], *i - start);
 }
