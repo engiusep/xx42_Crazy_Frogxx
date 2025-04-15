@@ -6,11 +6,11 @@ void    expand_token_array(t_token_tab *tab)
     int i;
     i = 0;
     new_size = tab->size * 2;
-    t_token_tab *new_token = malloc(sizeof(t_token) * SIZE);
+    t_token *new_token = malloc(sizeof(t_token) * SIZE);
 
     while(i < tab->index)
     {
-        tab[i] = new_token[i];
+        new_token[i] = tab->tokens[i];
         i++;
     }
     free(tab->tokens);
@@ -37,12 +37,21 @@ void    add_token_tab(t_token_tab *tab,char *value,t_token_type type)
     tab->index++;
 }
 
+char *read_word(char *str,int *i)
+{
+    int start;
+    start = *i;
+
+    while(str[*i] != ' ')
+        (*i)++;
+    return strndup(&str[start], *i - start);
+}
 t_token_tab *lexer(char *str)
 {
     t_token_tab *tokens_tab = create_token_tab();
     int i;
     i = 0;
-
+    
     while(str[i])
     {
         if(str[i] == ' ')
@@ -52,7 +61,13 @@ t_token_tab *lexer(char *str)
             add_token_tab(tokens_tab,ft_strdup("|"),PIPE);
             i++;
         }
+        else
+        {
+            char *word = read_word(str, &i);
+            i++;
+        }
     }
+    return (tokens_tab);
 }
 int main(int argc,char **argv, char **env)
 {
