@@ -65,7 +65,7 @@ int main(int argc, char **argv)
    init_data(&data,argc,argv);
    if(init_philo(&data,&philos) == -1)
         return (-1);
-
+    data.start_time = get_time_ms();
     while(i < data.nb_philo)
     {
         pthread_create(&philos[i].thread,NULL,&routine_philo, &philos[i]);

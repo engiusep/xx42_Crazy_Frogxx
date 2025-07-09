@@ -2,9 +2,10 @@
 
 #include <sys/time.h>
 
-long	get_time_ms(void)
+long get_time_ms(void)
 {
-	struct timeval	tv;
+	struct timeval tv;
 	gettimeofday(&tv, NULL);
-	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+	return ((long)(tv.tv_sec) * 1000L + (long)(tv.tv_usec) / 1000L);
 }
+
