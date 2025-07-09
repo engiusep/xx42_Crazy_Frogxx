@@ -59,14 +59,17 @@ int main(int argc, char **argv)
 {
     t_data data;
     t_philo *philos;
+    int i;
 
+    i = 0;
    init_data(&data,argc,argv);
    if(init_philo(&data,&philos) == -1)
         return (-1);
 
     while(i < data.nb_philo)
     {
-        pthread_create(&philos[i].thread,NULL,routine, &philos[i])
+        pthread_create(&philos[i].thread,NULL,&routine_philo, &philos[i]);
+        i++;
     }
     free(philos);
     free(data.forks);

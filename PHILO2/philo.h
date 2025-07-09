@@ -56,4 +56,6 @@ typedef struct s_data
 
 int ft_atoi(const char *str);
 long	get_time_ms(void);
+void *routine_philo(void *arg);
+
 #endif

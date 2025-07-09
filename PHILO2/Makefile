@@ -15,7 +15,9 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra -ggdb3 -MMD -MP
 
 SRCS = philo.c \
-       libft/ft_atoi.c
+       libft/ft_atoi.c \
+	   routine.c \
+	   utils.c
 
 MAKEDIR = make
 OBJDIR = make/objs
