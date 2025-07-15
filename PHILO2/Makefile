@@ -6,18 +6,20 @@
 #    By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/25 15:47:59 by engiusep          #+#    #+#              #
-#    Updated: 2025/03/31 14:49:46 by engiusep         ###   ########.fr        #
+#    Updated: 2025/07/15 13:08:47 by engiusep         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-NAME = philo
 
+
+NAME = philo
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -ggdb3 -MMD -MP
 
 SRCS = philo.c \
        libft/ft_atoi.c \
 	   routine.c \
-	   utils.c
+	   utils.c \
+	   routine_monitor.c \
 
 MAKEDIR = make
 OBJDIR = make/objs
@@ -49,8 +51,7 @@ $(NAME): $(OBJS)
 $(OBJDIR)/%.o: %.c
 	@echo "$(MESSAGE_COLOR_YELLOW)Compiling $<... 🛠️$(MESSAGE_RESET)"
 	@mkdir -p $(dir $@) $(dir $(DEPDIR)/$*)
-	@$(CC) $(CFLAGS) -Iinclude -c $< -o $@
-	@mv -f $(basename $@).d $(DEPDIR)/$(notdir $(basename $@)).d
+	@$(CC) $(CFLAGS) -Iinclude -MMD -MP -MF $(DEPDIR)/$*.d -c $< -o $@
 	@$(eval COMPILED := 1)
 	@echo "$(MESSAGE_COLOR_GREEN)Compilation of $< done! ✅$(MESSAGE_RESET)"
 
