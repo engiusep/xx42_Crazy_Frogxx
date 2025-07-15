@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 12:08:47 by engiusep          #+#    #+#             */
-/*   Updated: 2025/07/15 15:26:52 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/07/15 15:48:04 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void *routine_philo(void *arg)
             printf("%ld philo[%d] as taken a fork\n",get_time_ms(),philo->id);
             pthread_mutex_unlock(&philo->data->print_mutex);
         }
-        philo->last_meal_time = get_time_ms();
         pthread_mutex_lock(&philo->data->print_mutex);
         printf("%ld philo[%d] is eating\n",get_time_ms(),philo->id);
+        philo->last_meal_time = get_time_ms();
         pthread_mutex_unlock(&philo->data->print_mutex);
         usleep(philo->data->time_to_eat * 1000);
         pthread_mutex_unlock(philo->right_fork);
