@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 12:08:47 by engiusep          #+#    #+#             */
-/*   Updated: 2025/07/16 12:52:14 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/07/16 12:52:52 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	*routine_philo(void *arg)
 		pthread_mutex_unlock(philo->left_fork);
 		print_mutex(philo, "is sleeping");
 		usleep(philo->data->time_to_sleep * 1000);
-       
 	}
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 12:45:06 by engiusep          #+#    #+#             */
-/*   Updated: 2025/07/16 12:46:05 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/07/16 12:56:01 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,20 @@ void	*routine_monitor(void *arg)
 		usleep(1000);
 		i = 0;
 		current_time = get_time_ms();
-		pthread_mutex_lock(&data->print_mutex);
+		pthread_mutex_lock(&data->var_mutex_meal);
 		if (data->someone_died)
 		{
 			pthread_mutex_unlock(&data->print_mutex);
 			return (NULL);
 		}
-		pthread_mutex_unlock(&data->print_mutex);
+		pthread_mutex_unlock(&data->var_mutex_meal);
 		while (i < data->nb_philo)
 		{
 			current_time = get_time_ms();
-			pthread_mutex_lock(&data->print_mutex);
+			pthread_mutex_lock(&data->var_mutex_meal);
 			if (data->someone_died)
 			{
-				pthread_mutex_unlock(&data->print_mutex);
+				pthread_mutex_unlock(&data->var_mutex_meal);
 				return (NULL);
 			}
 			if ((current_time
@@ -46,7 +46,7 @@ void	*routine_monitor(void *arg)
 				data->someone_died = 1;
 				printf("%ld %d died\n", current_time - data->start_time,
 					data->philos[i].id);
-				pthread_mutex_unlock(&data->print_mutex);
+				pthread_mutex_unlock(&data->var_mutex_meal);
 				return (NULL);
 			}
 			pthread_mutex_unlock(&data->print_mutex);
