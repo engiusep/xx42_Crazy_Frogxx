@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 13:10:02 by engiusep          #+#    #+#             */
-/*   Updated: 2025/07/16 12:45:43 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/07/16 15:07:08 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,9 @@ int	init_data(t_data *data, int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	data->nb_philo = ft_atoi(argv[1]);
-	data->someone_died = 0;
+	data->done = 0;
+	data->someone_die = 0;
+	data->all_is_done = 0;
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);

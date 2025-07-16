@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 12:55:37 by engiusep          #+#    #+#             */
-/*   Updated: 2025/07/16 12:48:50 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/07/16 15:06:58 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef struct s_philo
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 	struct s_data	*data;
-
 }					t_philo;
 
 typedef struct s_data
@@ -44,12 +43,15 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				nb_reach_meal;
-	size_t			start_time;
+    int             someone_die;
+    int             done;
+    int             all_is_done;
 
+	size_t			start_time;
+    
 	pthread_t		thread_monitor;
 	pthread_mutex_t	print_mutex;
 	pthread_mutex_t	var_mutex_meal;
-	int				someone_died;
 	pthread_mutex_t	*forks;
 	t_philo			*philos;
 }					t_data;
@@ -58,7 +60,8 @@ int					ft_atoi(const char *str);
 long				get_time_ms(void);
 void				*routine_philo(void *arg);
 void				*routine_monitor(void *arg);
-void				print_mutex(t_philo *philo, char *str);
+int				print_mutex(t_philo *philo, char *str);
 void	take_fork(t_philo *philo);
+void    check_done(t_data *data, int i);
 
 #endif
