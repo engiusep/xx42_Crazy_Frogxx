@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 12:08:47 by engiusep          #+#    #+#             */
-/*   Updated: 2025/07/16 15:23:51 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/07/16 15:59:28 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,13 @@
 
 int	print_mutex(t_philo *philo, char *str)
 {
+    pthread_mutex_lock(&philo->data->var_mutex);
 	if(philo->data->someone_die == 1)
+    {
+        pthread_mutex_unlock(&philo->data->var_mutex);
         return (1);
+    }
+    pthread_mutex_unlock(&philo->data->var_mutex);
     pthread_mutex_lock(&philo->data->print_mutex);
 	printf("%ld %d %s\n", get_time_ms() - philo->data->start_time, philo->id,
     str);

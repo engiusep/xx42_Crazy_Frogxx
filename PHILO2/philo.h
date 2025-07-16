@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 12:55:37 by engiusep          #+#    #+#             */
-/*   Updated: 2025/07/16 15:06:58 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/07/16 15:58:13 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_data
     
 	pthread_t		thread_monitor;
 	pthread_mutex_t	print_mutex;
-	pthread_mutex_t	var_mutex_meal;
+	pthread_mutex_t	var_mutex;
 	pthread_mutex_t	*forks;
 	t_philo			*philos;
 }					t_data;

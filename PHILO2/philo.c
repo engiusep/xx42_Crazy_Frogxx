@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 13:10:02 by engiusep          #+#    #+#             */
-/*   Updated: 2025/07/16 15:19:54 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/07/16 15:58:57 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	main(int argc, char **argv)
 	if (init_philo(&data, &philos) == -1)
 		return (-1);
 	pthread_mutex_init(&data.print_mutex, NULL);
-	pthread_mutex_init(&data.var_mutex_meal, NULL);
+	pthread_mutex_init(&data.var_mutex, NULL);
 	data.start_time = get_time_ms();
 	while (i < data.nb_philo)
 	{
