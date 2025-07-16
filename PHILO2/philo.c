@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 13:10:02 by engiusep          #+#    #+#             */
-/*   Updated: 2025/07/15 15:28:39 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/07/16 11:09:31 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	check_data(t_data *data)
 	}
 	return (0);
 }
+
 int	init_data(t_data *data, int argc, char **argv)
 {
 	if (argc != 5 && argc != 6)
@@ -74,7 +75,6 @@ int	main(int argc, char **argv)
 {
 	t_data data;
 	t_philo *philos;
-
 	int i;
 
 	i = 0;
@@ -82,13 +82,13 @@ int	main(int argc, char **argv)
 	if (init_philo(&data, &philos) == -1)
 		return (-1);
 	pthread_mutex_init(&data.print_mutex, NULL);
+	pthread_mutex_init(&data.var_mutex, NULL);
 	data.start_time = get_time_ms();
 	while (i < data.nb_philo)
 	{
 		pthread_create(&philos[i].thread, NULL, &routine_philo, &philos[i]);
 		i++;
 	}
-
 	pthread_create(&data.thread_monitor, NULL, &routine_monitor, &data);
 	i = 0;
 	while (i < data.nb_philo)

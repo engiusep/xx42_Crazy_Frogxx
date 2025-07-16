@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 12:45:06 by engiusep          #+#    #+#             */
-/*   Updated: 2025/07/15 15:26:21 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/07/16 10:55:18 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void *routine_monitor(void *arg)
                 pthread_mutex_unlock(&data->print_mutex);
                 return (NULL);
 			}
-            if ((current_time - data->philos[i].last_meal_time) > data->time_to_die)
+            if ((current_time - data->philos[i].last_meal_time) >= data->time_to_die)
             {
                 data->someone_died = 1;
                 printf("%ld %d died\n", current_time - data->start_time, data->philos[i].id);

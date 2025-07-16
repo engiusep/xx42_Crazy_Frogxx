@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 12:55:37 by engiusep          #+#    #+#             */
-/*   Updated: 2025/07/15 14:30:45 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/07/16 11:08:27 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_data
 
     pthread_t thread_monitor;
     pthread_mutex_t print_mutex;
+    pthread_mutex_t var_mutex;
     int someone_died;
     pthread_mutex_t *forks;
     t_philo *philos;
@@ -58,6 +59,8 @@ int ft_atoi(const char *str);
 long	get_time_ms(void);
 void *routine_philo(void *arg);
 void	*routine_monitor(void *arg);
+void printex_impair(t_philo *philo);
+void printex_pair(t_philo *philo);
 // void	print_mutex(t_philo *philo, int choice);
 
 #endif
