@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 12:45:06 by engiusep          #+#    #+#             */
-/*   Updated: 2025/07/16 15:10:40 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/07/16 15:23:59 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	*routine_monitor(void *arg)
 	data = (t_data *)arg;
 	while (1)
 	{
-		usleep(1000);
 		i = 0;
 		current_time = get_time_ms();
 		pthread_mutex_lock(&data->print_mutex);
@@ -63,7 +62,7 @@ void	*routine_monitor(void *arg)
 					- data->philos[i].last_meal_time) >= data->time_to_die)
 			{
 				data->someone_die = 1;
-				printf("%ld %d die\n", current_time - data->start_time,
+				printf("%ld %d died\n", current_time - data->start_time,
 					data->philos[i].id);
 				pthread_mutex_unlock(&data->print_mutex);
 				return (NULL);

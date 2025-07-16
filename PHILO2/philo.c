@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 13:10:02 by engiusep          #+#    #+#             */
-/*   Updated: 2025/07/16 15:07:08 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/07/16 15:19:54 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	check_data(t_data *data)
 	if (data->nb_philo < 0 || data->time_to_die < 0 || data->time_to_eat < 0
 		|| data->time_to_sleep < 0)
 	{
-		printf("Error: put a positive number\n");
+		printf("Error: put a positive number or too long number\n");
 		exit(EXIT_FAILURE);
 	}
 	return (0);
