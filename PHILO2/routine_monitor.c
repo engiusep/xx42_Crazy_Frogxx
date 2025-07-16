@@ -6,67 +6,70 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 12:45:06 by engiusep          #+#    #+#             */
-/*   Updated: 2025/07/16 10:55:18 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/07/16 12:46:05 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void *routine_monitor(void *arg)
+void	*routine_monitor(void *arg)
 {
-    t_data *data = (t_data *)arg;
-    int i;
-    long current_time;
-    
-    while (1)
-    {
-        usleep(1000);
-        i = 0;
+	t_data	*data;
+	int		i;
+	long	current_time;
+
+	data = (t_data *)arg;
+	while (1)
+	{
+		usleep(1000);
+		i = 0;
 		current_time = get_time_ms();
-        pthread_mutex_lock(&data->print_mutex);
-        if (data->someone_died)
-        {
-            pthread_mutex_unlock(&data->print_mutex);
-            return (NULL);
-        }
-        pthread_mutex_unlock(&data->print_mutex);
-        while (i < data->nb_philo)
-        {
-            current_time = get_time_ms();
-            pthread_mutex_lock(&data->print_mutex);
-            if (data->someone_died)
-            {
-                pthread_mutex_unlock(&data->print_mutex);
-                return (NULL);
+		pthread_mutex_lock(&data->print_mutex);
+		if (data->someone_died)
+		{
+			pthread_mutex_unlock(&data->print_mutex);
+			return (NULL);
+		}
+		pthread_mutex_unlock(&data->print_mutex);
+		while (i < data->nb_philo)
+		{
+			current_time = get_time_ms();
+			pthread_mutex_lock(&data->print_mutex);
+			if (data->someone_died)
+			{
+				pthread_mutex_unlock(&data->print_mutex);
+				return (NULL);
 			}
-            if ((current_time - data->philos[i].last_meal_time) >= data->time_to_die)
-            {
-                data->someone_died = 1;
-                printf("%ld %d died\n", current_time - data->start_time, data->philos[i].id);
-                pthread_mutex_unlock(&data->print_mutex);
-                return (NULL);
-            }
-            pthread_mutex_unlock(&data->print_mutex);
-            i++;
-        }
-    }
-    return (NULL);
+			if ((current_time
+					- data->philos[i].last_meal_time) >= data->time_to_die)
+			{
+				data->someone_died = 1;
+				printf("%ld %d died\n", current_time - data->start_time,
+					data->philos[i].id);
+				pthread_mutex_unlock(&data->print_mutex);
+				return (NULL);
+			}
+			pthread_mutex_unlock(&data->print_mutex);
+			i++;
+		}
+	}
+	return (NULL);
 }
-	// 	if (monitor->data->nb_reach_meal != -1)
-	// 	{
-	// 		int philosophers_done = 0;
-	// 		i = 0;
-	// 		while (i < monitor->data->nb_philo)
-	// 		{
-	// 			if (monitor->data->philos[i].meals_count >= monitor->data->nb_reach_meal)
-	// 				philosophers_done++;
-	// 			i++;
-	// 		}
-	// 		if (philosophers_done == monitor->data->nb_philo)
-	// 		{
-	// 			monitor->data->someone_died = 1;
-	// 			return (NULL);
-	// 		}
-	// 	}
-	// }
-	// return (NULL);
+// 	if (monitor->data->nb_reach_meal != -1)
+// 	{
+// 		int philosophers_done = 0;
+// 		i = 0;
+// 		while (i < monitor->data->nb_philo)
+// 		{
+// 			if (monitor->data->philos[i].meals_count >= monitor->data->nb_reach_meal)
+// 				philosophers_done++;
+// 			i++;
+// 		}
+// 		if (philosophers_done == monitor->data->nb_philo)
+// 		{
+// 			monitor->data->someone_died = 1;
+// 			return (NULL);
+// 		}
+// 	}
+// }
+// return (NULL);

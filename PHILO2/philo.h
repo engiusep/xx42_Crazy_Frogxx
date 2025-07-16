@@ -6,61 +6,59 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 12:55:37 by engiusep          #+#    #+#             */
-/*   Updated: 2025/07/16 11:08:27 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/07/16 12:48:50 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
-#define PHILO_H
+# define PHILO_H
 
-#include <pthread.h>
-#include <sys/time.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <stdint.h>
-#include <stdbool.h>
-#include <limits.h>
+# include <limits.h>
+# include <pthread.h>
+# include <stdbool.h>
+# include <stdint.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <sys/time.h>
+# include <unistd.h>
 
-#define TIME get_time_ms() - philo->start_time
+# define TIME get_time_ms() - philo->start_time
 
 typedef struct s_philo
 {
-    int id;
-    int meals_count;
-    long last_meal_time;
-    pthread_t thread;
+	int				id;
+	int				meals_count;
+	long			last_meal_time;
+	pthread_t		thread;
 
-    pthread_mutex_t *left_fork;
-    pthread_mutex_t *right_fork;
-    struct s_data *data;
-    
-}   t_philo;
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
+	struct s_data	*data;
+
+}					t_philo;
 
 typedef struct s_data
 {
-    int nb_philo;
-    int time_to_die;
-    int time_to_eat;
-    int time_to_sleep;
-    int nb_reach_meal;
-    size_t start_time;
+	int				nb_philo;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				nb_reach_meal;
+	size_t			start_time;
 
-    pthread_t thread_monitor;
-    pthread_mutex_t print_mutex;
-    pthread_mutex_t var_mutex;
-    int someone_died;
-    pthread_mutex_t *forks;
-    t_philo *philos;
-}   t_data;
+	pthread_t		thread_monitor;
+	pthread_mutex_t	print_mutex;
+	pthread_mutex_t	var_mutex_meal;
+	int				someone_died;
+	pthread_mutex_t	*forks;
+	t_philo			*philos;
+}					t_data;
 
-
-int ft_atoi(const char *str);
-long	get_time_ms(void);
-void *routine_philo(void *arg);
-void	*routine_monitor(void *arg);
-void printex_impair(t_philo *philo);
-void printex_pair(t_philo *philo);
-// void	print_mutex(t_philo *philo, int choice);
+int					ft_atoi(const char *str);
+long				get_time_ms(void);
+void				*routine_philo(void *arg);
+void				*routine_monitor(void *arg);
+void				print_mutex(t_philo *philo, char *str);
+void	take_fork(t_philo *philo);
 
 #endif
