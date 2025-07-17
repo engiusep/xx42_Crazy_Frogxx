@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 12:55:37 by engiusep          #+#    #+#             */
-/*   Updated: 2025/07/16 15:58:13 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/07/17 10:01:43 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,16 @@ typedef struct s_philo
 {
 	int				id;
 	int				meals_count;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
 	long			last_meal_time;
 	pthread_t		thread;
 
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
+	int				left;
+	int				right;
 	struct s_data	*data;
 }					t_philo;
 
@@ -43,12 +48,12 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				nb_reach_meal;
-    int             someone_die;
-    int             done;
-    int             all_is_done;
+	int				someone_die;
+	int				done;
+	int				all_is_done;
 
 	size_t			start_time;
-    
+
 	pthread_t		thread_monitor;
 	pthread_mutex_t	print_mutex;
 	pthread_mutex_t	var_mutex;
@@ -60,8 +65,8 @@ int					ft_atoi(const char *str);
 long				get_time_ms(void);
 void				*routine_philo(void *arg);
 void				*routine_monitor(void *arg);
-int				print_mutex(t_philo *philo, char *str);
-void	take_fork(t_philo *philo);
-void    check_done(t_data *data, int i);
-
+int					print_mutex(t_philo *philo, char *str);
+int				take_fork(t_philo *philo);
+void				check_done(t_data *data, int i);
+void				unlocked(t_philo *philo);
 #endif

@@ -6,13 +6,13 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 13:10:02 by engiusep          #+#    #+#             */
-/*   Updated: 2025/07/16 15:58:57 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/07/17 09:40:33 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	init_philo(t_data *data, t_philo **philos)
+int	init_philo(t_data *data, t_philo **philos,char **argv)
 {
 	int	i;
 
@@ -34,6 +34,11 @@ int	init_philo(t_data *data, t_philo **philos)
 		(*philos)[i].left_fork = &data->forks[i];
 		(*philos)[i].right_fork = &data->forks[(i + 1) % data->nb_philo];
 		(*philos)[i].data = data;
+		(*philos)[i].left = 0;
+		(*philos)[i].right = 0;
+		// (*philos)[i].time_to_die = ft_atoi(argv[2]);
+		// (*philos)[i].time_to_eat = ft_atoi(argv[3]);
+		(*philos)[i].time_to_sleep = ft_atoi(argv[4]);
 		i++;
 	}
 	return (0);
@@ -81,7 +86,7 @@ int	main(int argc, char **argv)
 
 	i = 0;
 	init_data(&data, argc, argv);
-	if (init_philo(&data, &philos) == -1)
+	if (init_philo(&data, &philos, argv) == -1)
 		return (-1);
 	pthread_mutex_init(&data.print_mutex, NULL);
 	pthread_mutex_init(&data.var_mutex, NULL);
