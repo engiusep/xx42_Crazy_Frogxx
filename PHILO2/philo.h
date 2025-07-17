@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 12:55:37 by engiusep          #+#    #+#             */
-/*   Updated: 2025/07/17 10:01:43 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/07/17 14:35:57 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 # include <stdlib.h>
 # include <sys/time.h>
 # include <unistd.h>
-
-# define TIME get_time_ms() - philo->start_time
 
 typedef struct s_philo
 {
@@ -66,7 +64,7 @@ long				get_time_ms(void);
 void				*routine_philo(void *arg);
 void				*routine_monitor(void *arg);
 int					print_mutex(t_philo *philo, char *str);
-int				take_fork(t_philo *philo);
+int					take_fork(t_philo *philo);
 void				check_done(t_data *data, int i);
 void				unlocked(t_philo *philo);
 #endif

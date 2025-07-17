@@ -6,13 +6,13 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 13:10:02 by engiusep          #+#    #+#             */
-/*   Updated: 2025/07/17 09:40:33 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/07/17 14:35:22 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	init_philo(t_data *data, t_philo **philos,char **argv)
+int	init_philo(t_data *data, t_philo **philos, char **argv)
 {
 	int	i;
 
@@ -36,10 +36,7 @@ int	init_philo(t_data *data, t_philo **philos,char **argv)
 		(*philos)[i].data = data;
 		(*philos)[i].left = 0;
 		(*philos)[i].right = 0;
-		// (*philos)[i].time_to_die = ft_atoi(argv[2]);
-		// (*philos)[i].time_to_eat = ft_atoi(argv[3]);
-		(*philos)[i].time_to_sleep = ft_atoi(argv[4]);
-		i++;
+		(*philos)[i++].time_to_sleep = ft_atoi(argv[4]);
 	}
 	return (0);
 }
@@ -50,9 +47,19 @@ int	check_data(t_data *data)
 		|| data->time_to_sleep < 0)
 	{
 		printf("Error: put a positive number or too long number\n");
-		exit(EXIT_FAILURE);
+		return (-1);
 	}
 	return (0);
+}
+
+void	init_data_1(t_data *data, char **argv)
+{
+	data->done = 0;
+	data->someone_die = 0;
+	data->all_is_done = 0;
+	data->time_to_die = ft_atoi(argv[2]);
+	data->time_to_eat = ft_atoi(argv[3]);
+	data->time_to_sleep = ft_atoi(argv[4]);
 }
 
 int	init_data(t_data *data, int argc, char **argv)
@@ -60,21 +67,24 @@ int	init_data(t_data *data, int argc, char **argv)
 	if (argc != 5 && argc != 6)
 	{
 		printf("wrong input\n");
-		exit(EXIT_FAILURE);
+		return (-1);
 	}
 	data->nb_philo = ft_atoi(argv[1]);
-	data->done = 0;
-	data->someone_die = 0;
-	data->all_is_done = 0;
-	data->time_to_die = ft_atoi(argv[2]);
-	data->time_to_eat = ft_atoi(argv[3]);
-	data->time_to_sleep = ft_atoi(argv[4]);
+	if (data->nb_philo == 0)
+	{
+		printf("Put minimun 1 philo\n");
+		return (-1);
+	}
+	init_data_1(data, argv);
 	if (argc == 6)
 		data->nb_reach_meal = ft_atoi(argv[5]);
 	else
 		data->nb_reach_meal = -1;
 	data->start_time = 0;
-	check_data(data);
+	if (check_data(data) == -1)
+		return (-1);
+	pthread_mutex_init(&data->print_mutex, NULL);
+	pthread_mutex_init(&data->var_mutex, NULL);
 	return (0);
 }
 
@@ -85,11 +95,10 @@ int	main(int argc, char **argv)
 	int		i;
 
 	i = 0;
-	init_data(&data, argc, argv);
+	if (init_data(&data, argc, argv) == -1)
+		return (1);
 	if (init_philo(&data, &philos, argv) == -1)
-		return (-1);
-	pthread_mutex_init(&data.print_mutex, NULL);
-	pthread_mutex_init(&data.var_mutex, NULL);
+		return (1);
 	data.start_time = get_time_ms();
 	while (i < data.nb_philo)
 	{
