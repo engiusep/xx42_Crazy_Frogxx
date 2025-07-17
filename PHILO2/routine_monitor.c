@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 12:45:06 by engiusep          #+#    #+#             */
-/*   Updated: 2025/07/17 11:01:37 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/07/17 11:42:15 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	*routine_monitor(void *arg)
 				printf("%ld %d died\n", current_time - data->start_time,
 					data->philos[i].id);
 				pthread_mutex_unlock(&data->print_mutex);
+				
 				return (NULL);
 			}
 			pthread_mutex_unlock(&data->var_mutex);
