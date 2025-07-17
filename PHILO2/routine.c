@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 12:08:47 by engiusep          #+#    #+#             */
-/*   Updated: 2025/07/17 10:58:36 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/07/17 11:23:29 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	*routine_philo(void *arg)
 	philo = (t_philo *)arg;
 	if (philo->id % 2 == 0)
 		usleep(1000);
-	while (philo->data->someone_die == 0)
+	while (1)
 	{
 		if(print_mutex(philo, "is thinking") == 1)
 		{
