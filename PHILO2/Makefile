@@ -6,7 +6,7 @@
 #    By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/25 15:47:59 by engiusep          #+#    #+#              #
-#    Updated: 2025/07/15 13:08:47 by engiusep         ###   ########.fr        #
+#    Updated: 2025/07/17 15:26:48 by engiusep         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,10 +16,10 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra -ggdb3 -MMD -MP
 
 SRCS = philo.c \
-       libft/ft_atoi.c \
 	   routine.c \
 	   utils.c \
 	   routine_monitor.c \
+	   destroy_mutex.c
 
 MAKEDIR = make
 OBJDIR = make/objs

@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 12:08:47 by engiusep          #+#    #+#             */
-/*   Updated: 2025/07/17 14:41:38 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/07/17 14:42:42 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	mutex_meal(t_philo *philo)
 	philo->meals_count++;
 	pthread_mutex_unlock(&philo->data->var_mutex);
 }
+
 void	*routine_philo(void *arg)
 {
 	t_philo	*philo;

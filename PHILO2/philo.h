@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 12:55:37 by engiusep          #+#    #+#             */
-/*   Updated: 2025/07/17 14:35:57 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/07/17 15:32:12 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ typedef struct s_philo
 	int				time_to_eat;
 	int				time_to_sleep;
 	long			last_meal_time;
-	pthread_t		thread;
 
+	pthread_t		thread;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 	int				left;
@@ -67,4 +67,5 @@ int					print_mutex(t_philo *philo, char *str);
 int					take_fork(t_philo *philo);
 void				check_done(t_data *data, int i);
 void				unlocked(t_philo *philo);
+void				destroy_mutex(t_data *data);
 #endif

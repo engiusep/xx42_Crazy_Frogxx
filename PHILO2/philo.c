@@ -6,7 +6,7 @@
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 13:10:02 by engiusep          #+#    #+#             */
-/*   Updated: 2025/07/17 14:35:22 by engiusep         ###   ########.fr       */
+/*   Updated: 2025/07/17 15:32:07 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	init_philo(t_data *data, t_philo **philos, char **argv)
 	data->philos = *philos;
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->nb_philo);
 	if (!data->forks)
-		return (-1);
+		return (free(philos), -1);
 	i = 0;
 	while (i < data->nb_philo)
 	{
@@ -113,6 +113,6 @@ int	main(int argc, char **argv)
 		i++;
 	}
 	pthread_join(data.thread_monitor, NULL);
-	free(philos);
-	free(data.forks);
+	destroy_mutex(&data);
+	return (free(data.forks), free(philos), 0);
 }
