@@ -1,35 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   megaphone.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: engiusep <engiusep@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/19 13:07:01 by engiusep          #+#    #+#             */
-/*   Updated: 2024/11/25 17:08:43 by engiusep         ###   ########.fr       */
+/*   Created: 2025/09/09 11:00:55 by engiusep          #+#    #+#             */
+/*   Updated: 2025/09/09 13:06:17 by engiusep         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_GET_NEXT_LINE_H
-# define FT_GET_NEXT_LINE_H
+#include <iostream>
 
-# include <fcntl.h>
-# include <stdarg.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
 
-typedef struct s_list
+int	main(int argc,char **argv)
 {
-	int		i;
-	int		j;
+	int i;
+	int j;
 
-	char	*line;
-	ssize_t	nb_bytes;
-}			t_gnl;
+	i = 1;
+	j = 0;
+	
+	std::string str;
+	
+	if(argc == 1)
+	{
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
+		return (0);
+	}
 
-char		*get_next_line(int fd);
-char		*ft_parse(char *line);
-int			ft_strlen(char *str);
-#endif
+	while(i < argc)
+	{
+		j = 0;
+		while(argv[i][j])
+			str += std::toupper(argv[i][j++]);
+		if(i < argc - 1)
+			str += " ";
+		i++;
+	} 
+	std::cout << str << std::endl;
+	return (0);
+}
