@@ -10,11 +10,6 @@ Contact::~Contact(void)
 	return;
 }
 
-std::string Contact::get_fisrt_name()
-{
-	return(this->_fisrt_name);
-}
-
 void Contact::set_fisrt_name()
 {
 	std::string str;
@@ -49,5 +44,26 @@ void Contact::set_darkest_secret()
 	std::cout << "set darkest secret" << std::endl;
 	std::getline(std::cin,str);
 	_darkest_secret = str;
+}
+
+std::string	Contact::get_fisrt_name()
+{
+	return (this->_fisrt_name);
+}
+std::string	Contact::get_last_name()
+{
+	return (this->_last_name);
+}
+std::string	Contact::get_nickname()
+{
+	return (this->_nickname);
+}
+std::string	Contact::get_phone_number()
+{
+	return (this->_phone_number);
+}
+std::string	Contact::get_darkest_secret()
+{
+	return (this->_darkest_secret);
 }
 

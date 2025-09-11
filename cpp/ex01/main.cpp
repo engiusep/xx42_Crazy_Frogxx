@@ -9,7 +9,7 @@ int	main(int argc,char **argv)
 {
 	int i;
 	i = 0;
-	PhoneBook repertoire;
+	PhoneBook phonebook;
 	std::string buffer;
 
 	while(1)
@@ -18,13 +18,13 @@ int	main(int argc,char **argv)
 
 		if(buffer == "ADD")
 		{
-			repertoire.set_contact();
+			phonebook.set_contact();
 		}
 		if(buffer == "EXIT")
 			exit(1);
 		if(buffer == "SEARCH")
 		{
-
+			phonebook.search();
 		}
 
 	}

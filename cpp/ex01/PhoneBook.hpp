@@ -14,6 +14,8 @@ class PhoneBook
 		~PhoneBook(void);
 		void	set_contact();
 		void	get_contact();
+		std::string createPhonebook(std::string str);
+		void	search();
 };
 
 #endif
