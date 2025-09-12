@@ -34,9 +34,33 @@ void Contact::set_nickname()
 void Contact::set_phone_number()
 {
 	std::string str;
+	
 	std::cout << "set phone number" << std::endl;
-	std::getline(std::cin,str);
-	_phone_number = str;
+	int i;
+	while(1)
+	{
+		i = 0;
+		bool valid = true;
+		std::getline(std::cin,str);
+		while(str[i])
+		{
+			if(!isdigit(str[i]))
+			{
+				valid = false;
+				break;
+			}
+			i++;
+		}
+		if(valid && !str.empty() && str.length() == 10)
+		{
+			_phone_number = str;
+			break;
+		}
+		else
+		{
+			std::cout << "Invalid number put only digit and 10 digit is mandatory" << std::endl;
+		}
+	}
 }
 void Contact::set_darkest_secret()
 {

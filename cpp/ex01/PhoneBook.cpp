@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits>
 #include <iomanip>
 #include "PhoneBook.hpp"
 
@@ -40,25 +41,53 @@ void PhoneBook::set_contact()
 	}
 	
 }
-void	PhoneBook::search()
+void PhoneBook::search()
 {
 	int i;
-
+	
 	i = 0;
-	while(i < _nb_contact)
-	{
-		std::cout << _tab[i].get_fisrt_name() << '|';
-		std::cout << _tab[i].get_last_name() << '|';
-		std::cout << _tab[i].get_nickname()  << '|';
-		std::cout << _tab[i].get_phone_number()  << '|';
-		std::cout << _tab[i].get_darkest_secret() << '|';
-		std::cout << std::endl;
-		i++;
-	}
+    if (_nb_contact == 0)
+    {
+        std::cout << "No contact registered" << std::endl;
+        return;
+    }
+    std::cout << formatCell("index") << "|"
+              << formatCell("first name") << "|"
+              << formatCell("last name")  << "|"
+              << formatCell("nickname")   << std::endl;
 
+    while(i < _nb_contact)
+    {
+        std::cout << formatCell(std::to_string(i)) << "|"
+                  << formatCell(_tab[i].get_fisrt_name()) << "|"
+                  << formatCell(_tab[i].get_last_name())  << "|"
+                  << formatCell(_tab[i].get_nickname())   << std::endl;
+		i++;
+    }
+
+    int index;
+    while (1)
+    {
+        std::cout << "Entrez l'index du contact à afficher : ";
+        if (!(std::cin >> index) || index < 0 || index >= _nb_contact)
+        {
+            std::cout << "Index invalide" << std::endl;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
+        else
+            break;
+    }
+    std::cout << "First name: "      << _tab[index].get_fisrt_name()    << std::endl;
+    std::cout << "Last name: "       << _tab[index].get_last_name()     << std::endl;
+    std::cout << "Nickname: "        << _tab[index].get_nickname()      << std::endl;
+    std::cout << "Phone: "           << _tab[index].get_phone_number()  << std::endl;
+    std::cout << "Darkest secret: "  << _tab[index].get_darkest_secret()<< std::endl;
 }
 
-std::string PhoneBook::createPhonebook(std::string str) {
+
+
+std::string PhoneBook::formatCell(std::string str) {
     if (str.length() > 10)
         return str.substr(0, 9) + ".";
     else
