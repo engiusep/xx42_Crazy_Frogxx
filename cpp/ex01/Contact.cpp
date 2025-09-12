@@ -14,22 +14,63 @@ void Contact::set_fisrt_name()
 {
 	std::string str;
 	std::cout << "set fisrt name" << std::endl;
-	std::getline(std::cin,str);
-	_fisrt_name = str;
+	while(1)
+	{
+		bool valid = true;
+		std::getline(std::cin,str);
+		if(str.empty())
+		{
+			valid = false;
+			std::cout << "empty string Put string valid for u fisrt name : " << std::endl;
+		}
+		if(valid)
+		{
+			_fisrt_name = str;
+			return;
+		}
+	}
+	
 }
 void Contact::set_last_name()
 {
 	std::string str;
 	std::cout << "set last name" << std::endl;
-	std::getline(std::cin,str);
-	_last_name = str;
+
+	while(1)
+	{
+		bool valid = true;
+		std::getline(std::cin,str);
+		if(str.empty())
+		{
+			valid = false;
+			std::cout << "empty string Put string valid for u last name : " << std::endl;
+		}
+		if(valid)
+		{
+			_last_name = str;
+			return;
+		}
+	}
 }
 void Contact::set_nickname()
 {
 	std::string str;
 	std::cout << "set nickname" << std::endl;
-	std::getline(std::cin,str);
-	_nickname = str;
+	while(1)
+	{
+		bool valid = true;
+		std::getline(std::cin,str);
+		if(str.empty())
+		{
+			valid = false;
+			std::cout << "empty string Put string valid for u nickname : " << std::endl;
+		}
+		if(valid)
+		{
+			_nickname = str;
+			return;
+		}
+	}
 }
 void Contact::set_phone_number()
 {
@@ -66,8 +107,21 @@ void Contact::set_darkest_secret()
 {
 	std::string str;
 	std::cout << "set darkest secret" << std::endl;
-	std::getline(std::cin,str);
-	_darkest_secret = str;
+	while(1)
+	{
+		bool valid = true;
+		std::getline(std::cin,str);
+		if(str.empty())
+		{
+			valid = false;
+			std::cout << "empty string Put string valid for u darkest secret : " << std::endl;
+		}
+		if(valid)
+		{
+			_darkest_secret = str;
+			return;
+		}
+	}
 }
 
 std::string	Contact::get_fisrt_name()
