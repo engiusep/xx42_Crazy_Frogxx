@@ -31,3 +31,5 @@ void   Harl::complain(std::string level)
             (this->*fonction[i])();
     }
 }
+
+
