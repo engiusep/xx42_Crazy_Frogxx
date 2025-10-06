@@ -35,5 +35,6 @@ void Fixed::setRawBits(int const raw)
 
 int Fixed::getRawBits(void) const
 {
+    std::cout << "get raw bit call" << std::endl;
     return _value;
 }
