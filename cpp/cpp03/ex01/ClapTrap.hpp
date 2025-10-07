@@ -6,7 +6,7 @@
 
 class ClapTrap
 {
-    private:
+    protected:
         std::string _name;
         int _HitPoint;
         int _EnergiePoints;
@@ -23,5 +23,18 @@ class ClapTrap
         std::string   getName(void) const;
 
 };
+
+class ScavTrap : public ClapTrap
+{
+    public:
+        ScavTrap();
+        ScavTrap(std::string name);
+        ScavTrap &operator=(const ScavTrap &rhs);
+        ScavTrap(const ScavTrap &cpy);
+        ~ScavTrap();
+        void    guardGate();
+
+};
+
 
 #endif

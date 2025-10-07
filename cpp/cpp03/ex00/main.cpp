@@ -23,6 +23,4 @@ int main()
     trap.attack(a.getName());
     trap.attack(a.getName());
     trap.attack(a.getName());
-
-
 }

@@ -4,12 +4,12 @@
 
 ClapTrap::ClapTrap()
 {
-    std::cout << "constructor call" << std::endl;
+    std::cout << "constructor call CLAP" << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string name) : _name(name), _HitPoint(10) ,_EnergiePoints (10) , _AttackDamage(0)
+ClapTrap::ClapTrap(std::string name) : _name(name), _HitPoint(100) ,_EnergiePoints (50) , _AttackDamage(20)
 {
-    std::cout << "constructor name call" << std::endl;
+    std::cout << "constructor name call CLAP " << _name <<std::endl;
 }
 ClapTrap::ClapTrap(const ClapTrap &cpy)
 {
