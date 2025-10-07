@@ -131,10 +131,10 @@ float Fixed::toFloat(void) const
 }
 
 
-std::ostream & operator<<(std::ostream & o, Fixed const & rhs)
+std::ostream & operator<<(std::ostream & other, Fixed const & rhs)
 {
-    o << rhs.toFloat();
-    return o;
+    other << rhs.toFloat();
+    return other;
 }
 
 Fixed const& Fixed::min(Fixed const & f1, Fixed const & f2) 
