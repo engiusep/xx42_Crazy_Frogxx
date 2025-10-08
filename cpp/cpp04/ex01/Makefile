@@ -1,4 +1,4 @@
-NAME = Polymorphism
+NAME = brain
 
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
@@ -8,7 +8,7 @@ INC_DIR = include/
 SRCS = 	Animal.cpp \
 		main.cpp \
 		Cat.cpp \
-		Dog.cpp \
+		Brain.cpp \
 
 OBJS = $(SRCS:%.cpp=$(OBJ_DIR)%.o)
 
