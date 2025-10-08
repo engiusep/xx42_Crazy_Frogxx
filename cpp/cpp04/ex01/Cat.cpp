@@ -40,3 +40,9 @@ std::string Cat::getIdea(int index)
    return  _brain->getIdea(index);
   
 }
+
+void Cat::print()
+{
+    for(int i = 0;i < 100;i++)
+        std::cout << _brain->getIdea(i) << std::endl;
+}

@@ -17,6 +17,7 @@ class Animal
         std::string getType() const;
         virtual void    setIdea(int index,std::string idea) = 0;
         virtual std::string getIdea(int index) = 0;
+        virtual void print() = 0;
         virtual ~Animal();
     
 };
@@ -32,6 +33,7 @@ class Cat : public Animal
         void    makeSound(void) const;
         std::string getIdea(int index);
         void setIdea(int index,std::string idea);
+        void  print();
         ~Cat();
 
         
