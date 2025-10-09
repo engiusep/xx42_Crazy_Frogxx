@@ -32,10 +32,18 @@ Dog::~Dog()
 }
 void    Dog::setIdea(int index,std::string idea)
 {
-    _ideas[index] = idea;
+    _brain->setIdea(index,idea);
 }
 
+void Dog::print()
+{
+    for (int i = 0; i < 100; i++)
+    {
+        std::cout << _brain->getIdea(i) << std::endl;
+    }
+    
+}
 std::string Dog::getIdea(int index)
 {
-   return _ideas[index];
+   return _brain->getIdea(index);
 }

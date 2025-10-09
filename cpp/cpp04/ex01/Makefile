@@ -9,6 +9,7 @@ SRCS = 	Animal.cpp \
 		main.cpp \
 		Cat.cpp \
 		Brain.cpp \
+		Dog.cpp \
 
 OBJS = $(SRCS:%.cpp=$(OBJ_DIR)%.o)
 

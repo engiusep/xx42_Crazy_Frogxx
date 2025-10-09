@@ -39,19 +39,20 @@ class Cat : public Animal
         
 };
 
-// class Dog : public Animal
-// {
-//     private:
-//         Brain *_brain;
-//     public:
-//         Dog();
-//         Dog(const Dog &cpy);
-//         Dog &operator=(const Dog &rhs);
-//         void    makeSound(void) const;
-//         std::string getIdea(int index);
-//         void setIdea(int index,std::string idea);
-//         ~Dog();
-// };
+class Dog : public Animal
+{
+    private:
+        Brain *_brain;
+    public:
+        Dog();
+        Dog(const Dog &cpy);
+        Dog &operator=(const Dog &rhs);
+        void    makeSound(void) const;
+        std::string getIdea(int index);
+        void setIdea(int index,std::string idea);
+        void  print();
+        ~Dog();
+};
 
 
 
