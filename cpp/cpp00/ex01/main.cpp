@@ -5,7 +5,7 @@
 
 
 
-int	main(int argc,char **argv)
+int	main()
 {
 	int i;
 	i = 0;
@@ -21,7 +21,7 @@ int	main(int argc,char **argv)
 			phonebook.set_contact();
 		}
 		if(buffer == "EXIT")
-			exit(1);
+			return (0);
 		if(buffer == "SEARCH")
 		{
 			phonebook.search();

@@ -1,8 +1,16 @@
 #include <iostream>
 #include <limits>
+#include <string>
 #include <iomanip>
 #include "PhoneBook.hpp"
+#include <cstdio> 
+#include <string>
 
+std::string to_string(int value) {
+    char buffer[20]; 
+    sprintf(buffer, "%d", value);
+    return std::string(buffer);
+}
 PhoneBook::PhoneBook(void)
 {
 	_nb_contact = 0;
@@ -58,8 +66,8 @@ void PhoneBook::search()
 
     while(i < _nb_contact)
     {
-        std::cout << formatCell(std::to_string(i)) << "|"
-                  << formatCell(_tab[i].get_fisrt_name()) << "|"
+        std::cout  << formatCell(to_string(i)) << " "
+                << formatCell(_tab[i].get_fisrt_name()) << "|"
                   << formatCell(_tab[i].get_last_name())  << "|"
                   << formatCell(_tab[i].get_nickname())   << std::endl;
 		i++;
