@@ -62,14 +62,14 @@ void PhoneBook::search()
     std::cout << formatCell("index") << "|"
               << formatCell("first name") << "|"
               << formatCell("last name")  << "|"
-              << formatCell("nickname")   << std::endl;
+              << formatCell("nickname")  << "|" << std::endl;
 
     while(i < _nb_contact)
     {
-        std::cout  << formatCell(to_string(i)) << " "
+        std::cout  << formatCell(to_string(i)) << "|"
                 << formatCell(_tab[i].get_fisrt_name()) << "|"
                   << formatCell(_tab[i].get_last_name())  << "|"
-                  << formatCell(_tab[i].get_nickname())   << std::endl;
+                  << formatCell(_tab[i].get_nickname())  << "|" << std::endl;
 		i++;
     }
 
