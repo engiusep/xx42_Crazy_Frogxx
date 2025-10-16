@@ -34,8 +34,6 @@ int	main(int argc,char **argv)
 		j = 0;
 		while(argv[i][j])
 			str += std::toupper(argv[i][j++]);
-		if(i < argc - 1)
-			str += " ";
 		i++;
 	} 
 	std::cout << str << std::endl;

@@ -14,8 +14,8 @@ int	main()
 
 	while(1)
 	{
+		std::cout << "Usage SEARCH, ADD, EXIT : ";
 		std::getline(std::cin,buffer);
-
 		if(buffer == "ADD")
 		{
 			phonebook.set_contact();

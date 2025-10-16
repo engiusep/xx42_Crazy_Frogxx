@@ -13,15 +13,15 @@ std::string to_string(int value) {
 }
 PhoneBook::PhoneBook(void)
 {
+    std::cout << "Welcome" << std::endl;
 	_nb_contact = 0;
 	_oldest_contact = 0;
-	std::cout << "constructor" << std::endl;
 	return;
 }
 
 PhoneBook::~PhoneBook(void)
 {
-	std::cout << "destructor" << std::endl;
+    std::cout << "See you" << std::endl;
 	return;
 }
 
@@ -91,6 +91,7 @@ void PhoneBook::search()
     std::cout << "Nickname: "        << _tab[index].get_nickname()      << std::endl;
     std::cout << "Phone: "           << _tab[index].get_phone_number()  << std::endl;
     std::cout << "Darkest secret: "  << _tab[index].get_darkest_secret()<< std::endl;
+    std::cout << "Search mode close" << std::endl;
 }
 
 
