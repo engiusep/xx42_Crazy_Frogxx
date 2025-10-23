@@ -17,7 +17,8 @@ void Contact::set_fisrt_name()
 	while(1)
 	{
 		bool valid = true;
-		std::getline(std::cin,str);
+		if(!std::getline(std::cin,str))
+			exit(0);
 		if(str.empty())
 		{
 			valid = false;
@@ -39,7 +40,8 @@ void Contact::set_last_name()
 	while(1)
 	{
 		bool valid = true;
-		std::getline(std::cin,str);
+		if(!std::getline(std::cin,str))
+			exit(1);
 		if(str.empty())
 		{
 			valid = false;
@@ -59,7 +61,8 @@ void Contact::set_nickname()
 	while(1)
 	{
 		bool valid = true;
-		std::getline(std::cin,str);
+		if(!std::getline(std::cin,str))
+			exit(1);
 		if(str.empty())
 		{
 			valid = false;
@@ -82,7 +85,8 @@ void Contact::set_phone_number()
 	{
 		i = 0;
 		bool valid = true;
-		std::getline(std::cin,str);
+		if(!std::getline(std::cin,str))
+			exit(1);
 		while(str[i])
 		{
 			if(!isdigit(str[i]))
@@ -110,7 +114,8 @@ void Contact::set_darkest_secret()
 	while(1)
 	{
 		bool valid = true;
-		std::getline(std::cin,str);
+		if(!std::getline(std::cin,str))
+			exit(1);
 		if(str.empty())
 		{
 			valid = false;

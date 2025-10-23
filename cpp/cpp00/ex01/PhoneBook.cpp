@@ -59,17 +59,17 @@ void PhoneBook::search()
         std::cout << "No contact registered" << std::endl;
         return;
     }
-    std::cout << formatCell("index") << "|"
-              << formatCell("first name") << "|"
-              << formatCell("last name")  << "|"
-              << formatCell("nickname")  << "|" << std::endl;
+    std::cout << std::setw(10) << "index" << "|"
+              << std::setw(10) << "first name" << "|"
+              << std::setw(10) << "last name" << "|"
+              << std::setw(10) << "nickname"  << "|" << std::endl;
 
     while(i < _nb_contact)
-    {
-        std::cout  << formatCell(to_string(i)) << "|"
-                << formatCell(_tab[i].get_fisrt_name()) << "|"
-                  << formatCell(_tab[i].get_last_name())  << "|"
-                  << formatCell(_tab[i].get_nickname())  << "|" << std::endl;
+    { 
+        std::cout  << std::setw(10) << formatCell(to_string(i)) << "|"
+                << std::setw(10) << formatCell(_tab[i].get_fisrt_name()) << "|"
+                  <<std::setw(10) << formatCell(_tab[i].get_last_name())  << "|"
+                  << std::setw(10) << formatCell(_tab[i].get_nickname())  << "|" << std::endl;
 		i++;
     }
 
@@ -79,12 +79,16 @@ void PhoneBook::search()
         std::cout << "Entrez l'index du contact à afficher : ";
         if (!(std::cin >> index) || index < 0 || index >= _nb_contact)
         {
+            if(std::cin.eof())
+                exit(0);
             std::cout << "Index invalide" << std::endl;
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
-        else
+        else{
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             break;
+        }
     }
     std::cout << "First name: "      << _tab[index].get_fisrt_name()    << std::endl;
     std::cout << "Last name: "       << _tab[index].get_last_name()     << std::endl;
@@ -94,15 +98,12 @@ void PhoneBook::search()
     std::cout << "Search mode close" << std::endl;
 }
 
-
-
 std::string PhoneBook::formatCell(std::string str) {
     if (str.length() > 10)
         return str.substr(0, 9) + ".";
     else
         return std::string(10 - str.length(), ' ') + str;
 }
-
 void PhoneBook::get_contact(void)
 {
 	std::cout << _tab[_nb_contact].get_fisrt_name() << std::endl;

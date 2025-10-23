@@ -7,28 +7,27 @@
 
 int	main()
 {
-	int i;
-	i = 0;
 	PhoneBook phonebook;
 	std::string buffer;
 
 	while(1)
 	{
 		std::cout << "Usage SEARCH, ADD, EXIT : ";
-		std::getline(std::cin,buffer);
+		if(!std::getline(std::cin,buffer))
+		{
+			break;
+		}
 		if(buffer == "ADD")
 		{
 			phonebook.set_contact();
 		}
 		if(buffer == "EXIT")
-			return (0);
+			exit(EXIT_FAILURE);
 		if(buffer == "SEARCH")
 		{
 			phonebook.search();
 		}
-
+		  std::cin.clear();
 	}
-
-	std::cout << buffer << std::endl;
 	return (0);
 }
