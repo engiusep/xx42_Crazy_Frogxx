@@ -32,13 +32,20 @@ int picoshell(char **cmds[])
                 dup2(in_fd,STDIN_FILENO);
                 close(in_fd);
             }
-            execvp(cmds[0][i],cmds[i]);
+            if(fd[1] != -1)
+            {
+                dup2(fd[1],STDOUT_FILENO);
+                close(fd[1]);
+                close(fd[0]);
+            }
+            execvp(cmds[i][0],cmds[i]);
         }
         else
         {
             if(in_fd != 0)
                 close(in_fd);
-            if()
+            if(fd[1] != -1)
+                close(fd[1]);
             in_fd = fd[0];
         }
         i++;
