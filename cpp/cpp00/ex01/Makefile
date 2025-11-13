@@ -1,7 +1,7 @@
 NAME = PhoneBook
 
 CC = c++
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 OBJ_DIR = obj/
 INC_DIR = include/
 
