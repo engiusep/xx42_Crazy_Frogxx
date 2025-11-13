@@ -32,4 +32,4 @@ WORKDIR /var/www/html
 EXPOSE 9000
 
 # Lancer PHP-FPM
-CMD ["php-fpm8.3", "-F"
+CMD ["php-fpm8.3", "-F"]
