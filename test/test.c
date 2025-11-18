@@ -54,8 +54,8 @@ int picoshell(char **cmds[])
 
 
 int main() {
-    char *cmd1[] = {"ls", "-l", NULL};
-    char *cmd2[] = {"grep", "test", NULL};
+    char *cmd1[] = {"cat", NULL, NULL};
+    char *cmd2[] = {"ls", NULL, NULL};
     char **cmds[] = {cmd1, cmd2, NULL};
 
     int ret = picoshell(cmds);
