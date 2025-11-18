@@ -1,0 +1,13 @@
+
+services:
+  nginx:
+    build: requirements/nginx/.
+    container_name: nginx
+    # ports:
+    #   - "80:80"
+  
+  wordpress:
+    build: requirements/wordpress/.
+    container_name: wordpress
+    ports:
+      - "80:80"

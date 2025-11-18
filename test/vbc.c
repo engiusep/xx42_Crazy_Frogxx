@@ -64,23 +64,82 @@ int eval_tree(node *t) // given
     return 0;
 }
 
+node *parse_expr(char **s);
+
+node *parse_factor(char **s)
+{
+    if(isdigit(**s))
+    {
+        node n = {VAL,**s - '0',NULL,NULL};
+        (*s)++;
+        return new_node(n);
+    }
+    if(accept(s,'('))
+    {
+        node *sub = parse_expr(s);
+        if(!sub || !expect(s,')'))
+        {
+            destroy_tree(sub);
+            return NULL;
+        }
+        return sub;
+    }
+    return NULL;
+}
+node *parse_term(char **s)
+{
+    node *left = parse_factor(s);
+    if(!left)
+        return NULL;
+    while(accept(s,'*'))
+    {
+        node *right = parse_factor(s);
+        if(!right)
+        {
+            destroy_tree(left);
+            return NULL;
+        }
+        node n = {MULTI,0,left,right};
+        left = new_node(n);
+        if(!left)
+        {
+            destroy_tree(right);
+            return NULL;
+        }
+    }
+    return left;
+}
+
 node *parse_expr(char **s)
 {
     node *left = parse_term(s);
-
-    while(accept(s, '+'))
+    if(!left)
+        return NULL;
+    while(accept(s,'+'))
     {
-        node *right = parse_term()
-    }
-}
+        node *right = parse_term(s);
+        if(!right)
+        {
+            destroy_tree(left);
+            return NULL;
+        }
+        node n = {ADD,0,left,right};
+        left = new_node(n);
+        if(!left)
+        {
+            destroy_tree(right);
+            return NULL;
+        }
 
+    }
+    return left;
+}
 node *parse(char *s)
 {
     node *tree = parse_expr(&s);
-
     if(!tree || *s)
     {
-        unexpected(*s ? *s : 0);
+        unexpected(*s ? *s :0);
         destroy_tree(tree);
         return NULL;
     }

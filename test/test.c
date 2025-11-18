@@ -1,7 +1,9 @@
-#include <stdlib.h>
-#include <stdio.h>
 #include <sys/wait.h>
+#include <stdint.h>
+#include <stdlib.h>
 #include <unistd.h>
+#include <stdio.h>
+
 
 
 int picoshell(char **cmds[])
@@ -25,25 +27,28 @@ int picoshell(char **cmds[])
         {
             if(in_fd != 0)
             {
-                dup2(in_fd,STDIN_FILENO);
+                dup2(in_fd,0);
                 close(in_fd);
             }
             if(fd[1] != -1)
             {
-                dup2(fd[1],STDOUT_FILENO);
+                dup2(fd[1],1);
                 close(fd[1]);
+                close(fd[0]);
             }
             execvp(cmds[i][0],cmds[i]);
             exit(1);
         }
-        if(in_fd != -1)
+        if(in_fd!= 0)
             close(in_fd);
         if(fd[1] != -1)
             close(fd[1]);
         in_fd = fd[0];
         i++;
     }
-    return (1);
+    for(int j = 0;j < i; j++)
+        wait(NULL);
+   return 0;
 }
 
 
