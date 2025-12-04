@@ -8,7 +8,7 @@ ScavTrap::ScavTrap() : ClapTrap()
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
-    std::cout << "Scav constructor call" << std::endl;
+    std::cout << "ScavTrap constructor call" << std::endl;
 }
 
 ScavTrap::~ScavTrap()

@@ -4,16 +4,19 @@
 ScavTrap::ScavTrap() : ClapTrap()
 {
     std::cout << "ScavTrap noname" << std::endl;
+    std::cout << std::endl;
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
     std::cout << "Scav constructor call " << _name <<std::endl;
+    std::cout << std::endl;
 }
 
 ScavTrap::~ScavTrap()
 {
     std::cout << "destructor ScavTrap " << _name << std::endl;
+    std::cout << std::endl;
 }
 
 ScavTrap::ScavTrap(const ScavTrap &cpy)

@@ -4,19 +4,19 @@
 
 ClapTrap::ClapTrap()
 {
-    std::cout << "constructor call CLAP" << std::endl;
+    std::cout << "constructor call ClapTrap" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name) : _name(name), _HitPoint(100) ,_EnergiePoints (50) , _AttackDamage(20)
 {
-    std::cout << "constructor name call CLAP " << _name <<std::endl;
+    std::cout << "constructor name call ClapTrap " << _name <<std::endl;
 }
 ClapTrap::ClapTrap(const ClapTrap &cpy)
 {
     std::cout << "Constructor copy call" << std::endl;
     if(this != &cpy)
     {
-        this->_AttackDamage = cpy._AttackDamage; // ou geteur;
+        this->_AttackDamage = cpy._AttackDamage;
         this->_EnergiePoints = cpy._EnergiePoints;
         this->_HitPoint = cpy._HitPoint;
     }
@@ -30,7 +30,7 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &other)
 }
 ClapTrap::~ClapTrap()
 {
-    std::cout << "destructor call" << std::endl;
+    std::cout << "destructor ClapTrap call " << std::endl;
 }
 
 void ClapTrap::attack(const std::string& target)
@@ -39,8 +39,11 @@ void ClapTrap::attack(const std::string& target)
     {
         std::cout << "no energie tete noeil" << std::endl;
     }
-    std::cout << _name << " attacks " << target << " causing " << _AttackDamage << " points of damage!" << std::endl;
-    _EnergiePoints--;
+    else
+    {
+        std::cout << _name << " attacks " << target << " causing " << _AttackDamage << " points of damage!" << std::endl;
+        _EnergiePoints--;
+    }
 }
 
 void ClapTrap::takeDamage(unsigned int amount)

@@ -2,10 +2,12 @@
 
 int main()
 {
-    ScavTrap b("Hugo");
-    ScavTrap trap("Trap");
-    trap.guardGate();
-    b.attack("raymond");
-    b.guardGate();
+    ScavTrap Hugo("Hugo");
+    ScavTrap Paul("Paul");
+    ClapTrap Liam("Liam");
+    Paul.guardGate();
+    Hugo.attack(Paul.getName());
+    Hugo.guardGate();
+    Liam.attack(Hugo.getName());
     return 0;
 }

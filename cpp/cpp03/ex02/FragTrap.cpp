@@ -4,11 +4,13 @@
 FragTrap::FragTrap()
 {
     std::cout << "constructor FragTrap no name" << std::endl;
+    std::cout << std::endl;
 }
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
     std::cout << "constructor FragTrap whit name" << std::endl;
+    std::cout << std::endl;
 }
 
 FragTrap &FragTrap::operator=(const FragTrap &rhs)
@@ -37,4 +39,5 @@ void FragTrap::highFivesGuys()
 FragTrap::~FragTrap()
 {
     std::cout << "Destrucor FragTrap call " << _name << std::endl;
+    std::cout << std::endl;
 }

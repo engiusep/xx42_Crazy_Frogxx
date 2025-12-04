@@ -1,7 +1,5 @@
 #include "ClapTrap.hpp"
 
-
-
 ClapTrap::ClapTrap()
 {
     std::cout << "constructor call" << std::endl;
@@ -16,7 +14,7 @@ ClapTrap::ClapTrap(const ClapTrap &cpy)
     std::cout << "Constructor copy call" << std::endl;
     if(this != &cpy)
     {
-        this->_AttackDamage = cpy._AttackDamage; // ou geteur;
+        this->_AttackDamage = cpy._AttackDamage; 
         this->_EnergiePoints = cpy._EnergiePoints;
         this->_HitPoint = cpy._HitPoint;
     }
@@ -37,10 +35,13 @@ void ClapTrap::attack(const std::string& target)
 {
     if(_EnergiePoints <= 0)
     {
-        std::cout << "no energie tete noeil" << std::endl;
+        std::cout << "try too attack but no energie" << std::endl;
     }
-    std::cout << _name << " attacks " << target << " causing " << _AttackDamage << " points of damage!" << std::endl;
-    _EnergiePoints--;
+    else
+    {
+        std::cout << _name << " attacks " << target << " causing " << _AttackDamage << " points of damage!" << std::endl;
+        _EnergiePoints--;
+    }
 }
 
 void ClapTrap::takeDamage(unsigned int amount)

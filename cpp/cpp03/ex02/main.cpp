@@ -2,12 +2,21 @@
 
 int main()
 {
-    FragTrap five("Jim");
-    ScavTrap b("Hugo");
-    ScavTrap trap("Trap");
-    five.highFivesGuys();
-    trap.guardGate();
-    b.attack("raymond");
-    b.guardGate();
+    FragTrap   JimFrag("Jim");
+    ScavTrap HugoScav("Hugo");
+    ScavTrap PaulScav("Paul");
+    ClapTrap RemyClap("Remy");
+
+    RemyClap.attack(JimFrag.getName());
+    JimFrag.takeDamage(RemyClap.getAttack());
+    std::cout << std::endl;
+    JimFrag.highFivesGuys();
+    std::cout << std::endl;
+    PaulScav.guardGate();
+    std::cout << std::endl;
+    HugoScav.attack(JimFrag.getName());
+    JimFrag.beRepaired(10);
+    std::cout << std::endl;
+    HugoScav.guardGate();
     return 0;
 }

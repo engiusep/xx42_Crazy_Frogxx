@@ -1,11 +1,10 @@
-NAME = fixed
-
+NAME = Bureaucrate
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 OBJ_DIR = obj/
 INC_DIR = include/
 
-SRCS = 	fixed.cpp \
+SRCS = 	Bureaucrat.cpp\
 		main.cpp \
 
 OBJS = $(SRCS:%.cpp=$(OBJ_DIR)%.o)
