@@ -60,10 +60,6 @@ void ClapTrap::takeDamage(unsigned int amount)
     {
         std::cout << _name << "die" << std::endl;
     }
-    else if(_HitPoint <= 0)
-    {
-        std::cout << _name << "is die" << std::endl;
-    }
     else
         std::cout << _name << "after attack have = " << _HitPoint << "HP" << std::endl;
 }
@@ -73,6 +69,10 @@ void    ClapTrap::beRepaired(unsigned int amount)
     if(_EnergiePoints <= 0)
     {
         std::cout << "No energie for repair" << std::endl;
+    }
+    else if(_HitPoint <= 0)
+    {
+        std::cout << _name << "is die" << std::endl;
     }
     else
     {
