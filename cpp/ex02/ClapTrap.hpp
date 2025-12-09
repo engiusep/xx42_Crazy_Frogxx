@@ -25,27 +25,6 @@ class ClapTrap
 
 };
 
-class ScavTrap : public ClapTrap
-{
-    public:
-        ScavTrap();
-        ScavTrap(std::string name);
-        ScavTrap &operator=(const ScavTrap &rhs);
-        ScavTrap(const ScavTrap &cpy);
-        ~ScavTrap();
-        void    guardGate();
 
-};
-
-class FragTrap : public ClapTrap
-{
-    public:
-        FragTrap();
-        FragTrap(std::string name);
-        FragTrap &operator=(const FragTrap &rhs);
-        FragTrap(const FragTrap &cpy);
-        void highFivesGuys(void);
-        ~FragTrap();
-};
 
 #endif

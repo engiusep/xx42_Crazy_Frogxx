@@ -42,6 +42,10 @@ void ClapTrap::attack(const std::string& target)
     {
         std::cout << "no energie" << std::endl;
     }
+    else if(_HitPoint <= 0)
+    {
+        std::cout << _name << "is die" << std::endl;
+    }
     else
     {
         std::cout << _name << " attacks " << target << " causing " << _AttackDamage << " points of damage!" << std::endl;
@@ -55,6 +59,10 @@ void ClapTrap::takeDamage(unsigned int amount)
     if(_HitPoint <= 0)
     {
         std::cout << _name << "die" << std::endl;
+    }
+    else if(_HitPoint <= 0)
+    {
+        std::cout << _name << "is die" << std::endl;
     }
     else
         std::cout << _name << "after attack have = " << _HitPoint << "HP" << std::endl;

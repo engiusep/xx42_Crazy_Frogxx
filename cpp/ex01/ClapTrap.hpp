@@ -24,17 +24,7 @@ class ClapTrap
 
 };
 
-class ScavTrap : public ClapTrap
-{
-    public:
-        ScavTrap();
-        ScavTrap(std::string name);
-        ScavTrap &operator=(const ScavTrap &rhs);
-        ScavTrap(const ScavTrap &cpy);
-        ~ScavTrap();
-        void    guardGate();
 
-};
 
 
 #endif
