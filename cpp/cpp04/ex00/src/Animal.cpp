@@ -1,19 +1,21 @@
-#include "Animal.hpp"
+#include "../include/Animal.hpp"
 
 
 Animal::Animal()
 {
     std::cout << "all Animal construcor" << std::endl;
 }
-Animal::Animal(const Animal &cpy)
-{
-    if(this != &cpy)
-        this->_type = cpy._type;
-}
+Animal::Animal(std::string type) : _type(type) {}
+
 std::string Animal::getType() const
 {
     return this->_type;
+} 
+Animal::Animal(const Animal &cpy)
+{
+    this->_type = cpy._type;
 }
+
 Animal &Animal::operator=(const Animal &rhs)
 {
     if(this != &rhs)

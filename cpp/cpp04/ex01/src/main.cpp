@@ -16,7 +16,10 @@ int main()
 
     for(int i = 0; i < 10;i++)
         animal[i]->makeSound();
-        
+    Dog basic;
+    {
+        Dog tmp = basic;
+    }
     for(int i = 0; i < 10; i++)
         delete animal[i];
 }
