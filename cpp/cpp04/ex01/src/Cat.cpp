@@ -2,25 +2,29 @@
 
 
 
-Cat::Cat()
+Cat::Cat() : Animal()
 {
-    _brain = new Brain();
     _type = "Cat";
+    _brain = new Brain();
     std::cout << "Cat constructor" << std::endl;
 }
 
-Cat::Cat(const Cat &cpy)
+Cat::Cat(Cat const & src) : Animal(src), _brain(new Brain(*src._brain)) 
 {
-    if(this != &cpy)
-        this->_type = cpy._type;
+    std::cout << "Dog copy constructor called" << std::endl;
 }
 
-Cat &Cat::operator=(const Cat &rhs)
-{
-    Animal::operator=(rhs);
+Cat& Cat::operator=(Cat const & rhs) {
+    std::cout << "Copy assignment operator called" << std::endl;
+    if (this != &rhs)
+    {
+        Animal::operator=(rhs);
+        Brain* newBrain = new Brain(*rhs._brain);
+        delete _brain;
+        _brain = newBrain;
+    }
     return *this;
 }
-
 void Cat::makeSound(void) const
 {
     std::cout << "Miaou" << std::endl;

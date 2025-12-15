@@ -52,9 +52,6 @@ void Bureaucrat::DecrementGrade()
         throw Bureaucrat::GradeTooLowException();
     _grade++;
 }
-
-
-
 std::string const Bureaucrat::getName() const
 {
     return _name;

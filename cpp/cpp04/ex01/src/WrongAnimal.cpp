@@ -6,7 +6,10 @@ WrongAnimal::WrongAnimal()
 {
     std::cout << "wrong animal construcor" << std::endl;
 }
-WrongAnimal::~WrongAnimal() {};
+WrongAnimal::~WrongAnimal() 
+{
+    std::cout << "wrong animal destrucotr" << std::endl;
+}
 
 WrongAnimal &WrongAnimal::operator=(const WrongAnimal &rhs)
 {

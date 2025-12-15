@@ -1,26 +1,17 @@
 #include "Brain.hpp"
 
-
-
 Brain::Brain()
 {
-    for (int i = 0; i < 100; i++)
-    {
-        _ideas[i] = "empty idea";
-    }
+    std::cout << "Brain constructor" << std::endl;
 }
-
 Brain::~Brain()
 {
-
+    std::cout << "Brain destructor" << std::endl;
 }
+
 Brain::Brain(const Brain &cpy)
 {
-    for (int i = 0; i < 100; i++)
-    {
-        if(this != &cpy)
-            _ideas[i] = cpy._ideas[i];
-    }
+    *this = cpy;
     
 }
 Brain &Brain::operator=(const Brain &rhs)
@@ -32,6 +23,7 @@ Brain &Brain::operator=(const Brain &rhs)
     }
     return *this;
 }
+
 
 
 

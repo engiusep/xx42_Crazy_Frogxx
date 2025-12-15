@@ -18,9 +18,9 @@ int main()
     std::cout << std::endl;
     try
     {
-        Bureaucrat Nass("Nassim",150);
-        std::cout << Nass << std::endl;
-        Nass.DecrementGrade();
+        Bureaucrat Liam("Liam",150);
+        std::cout << Liam << std::endl;
+        Liam.DecrementGrade();
     }
     catch(const std::exception& e)
     {

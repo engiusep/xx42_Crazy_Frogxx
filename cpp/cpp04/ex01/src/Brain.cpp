@@ -6,16 +6,12 @@ Brain::Brain()
 }
 Brain::~Brain()
 {
-    std::cout << "Brain deconstructor" << std::endl;
+    std::cout << "Brain destructor" << std::endl;
 }
 
 Brain::Brain(const Brain &cpy)
 {
-    for (int i = 0; i < 100; i++)
-    {
-        if(this != &cpy)
-            _ideas[i] = cpy._ideas[i];
-    }
+    *this = cpy;
     
 }
 Brain &Brain::operator=(const Brain &rhs)

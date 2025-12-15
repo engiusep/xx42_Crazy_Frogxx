@@ -10,7 +10,6 @@ Animal::Animal(const Animal &cpy)
     this->_type = cpy._type;
 }
 
-
 Animal &Animal::operator=(const Animal &rhs)
 {
     if(this != &rhs)
