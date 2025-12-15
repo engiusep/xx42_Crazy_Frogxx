@@ -6,7 +6,8 @@ CFLAGS = -Wall -Werror -Wextra -std=c++98 -MMD -MP
 SRCS = src/Bureaucrat.cpp \
 		src/AForm.cpp \
 		src/main.cpp \
-		src/ShrubberyCreationForm.cpp
+		src/ShrubberyCreationForm.cpp \
+		src/RobotomyRequestForm.cpp 
 
 MAKEDIR = make
 OBJDIR = make/objs
@@ -17,7 +18,8 @@ DEPS = $(SRCS:src/%.cpp=$(DEPDIR)/%.d)
 
 HEADER = include/AForm.hpp \
 			include/Bureaucrat.hpp \
-			include/ShrubberyCreationForm.hpp
+			include/ShrubberyCreationForm.hpp \
+			include/RobotomyRequestForm.hpp 
 
 COMPILED = 0
 MESSAGE_COLOR_GREEN = \033[1;32m

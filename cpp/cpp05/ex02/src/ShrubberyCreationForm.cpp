@@ -10,11 +10,7 @@ const char*  ShrubberyCreationForm::CannotSign::what() const throw()
 {
     return ("Cannot Sign !");
 }
-ShrubberyCreationForm::ShrubberyCreationForm(std::string const &target,int gradeTosign,int gradeToExecute) : AForm("ShrubberyCreationForm", gradeTosign, gradeToExecute), _target(target)     
-{
-
-}
-
+ShrubberyCreationForm::ShrubberyCreationForm(std::string const &target,int gradeTosign,int gradeToExecute) : AForm("ShrubberyCreationForm", gradeTosign, gradeToExecute), _target(target) {};
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
@@ -43,15 +39,22 @@ void ShrubberyCreationForm::executeAction() const
         return;
     }
 
-
-    
-    std::cout << getGradeToExecute() << std::endl;
-    
-
     std::ofstream file((_target + "_shrubbery").c_str());
     if (!file) return;
 
     file <<
+    "        ccee88oo\n"
+    "     C8O8O8Q8PoOb o8oo\n"
+    "   dOB69QO8PdUOpugoO9bD\n"
+    "  CgggbU8OU qOp qOdoUOdcb\n"
+    "     6OuU  /p u gcoUodpP\n"
+    "       \\\\//  /douUP\n"
+    "         \\\\////\n"
+    "          |||\n"
+    "          |||\n"
+    "          |||\n"
+    "          |||\n"
+    "    .....//||||\\....\n"
     "        ccee88oo\n"
     "     C8O8O8Q8PoOb o8oo\n"
     "   dOB69QO8PdUOpugoO9bD\n"
