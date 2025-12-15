@@ -9,7 +9,6 @@ const char*  RobotomyRequestForm::CannotSign::what() const throw()
     return ("Cannot Sign !");
 }
 
-
 RobotomyRequestForm::RobotomyRequestForm(std::string const &target,int gradeTosign,int gradeToExecute) : AForm(target,gradeTosign,gradeToExecute) {};
 
 RobotomyRequestForm::~RobotomyRequestForm() {};
