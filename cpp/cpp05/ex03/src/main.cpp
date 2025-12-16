@@ -5,49 +5,51 @@
 #include "../include/RobotomyRequestForm.hpp"
 #include "../include/PresidentialPardonForm.hpp"
 
-void testForm(AForm &form, Bureaucrat &bureaucrat)
-{
-    std::cout << "-----------------------------" << std::endl;
-    std::cout << "Form: " << form.getName() << std::endl;
-    std::cout << "Bureaucrat: " << bureaucrat.getName()
-              << " (grade " << bureaucrat.getGrade() << ")" << std::endl;
-
-    try
-    {
-        std::cout << "Signing..." << std::endl;
-        bureaucrat.signForm(form);
-
-        std::cout << "Executing..." << std::endl;
-        bureaucrat.executeForm(form);
-    }
-    catch (std::exception &e)
-    {
-        std::cerr << "Exception: " << e.what() << std::endl;
-    }
-}
+#include <iostream>
+#include "Bureaucrat.hpp"
+#include "Intern.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int main()
 {
-    Bureaucrat low("Bob", 150);
+    Intern someRandomIntern;
+    Bureaucrat high("Alice", 1);  
+    Bureaucrat low("Bob", 150);   
+    AForm* form;
+    
+    form = someRandomIntern.makeForm("shrubbery creation", "home");
+    if (form) 
+    {
+        low.signForm(*form);  
+        high.signForm(*form); 
+        low.executeForm(*form);  
+        high.executeForm(*form); 
+        delete form;
+    }
 
-    Bureaucrat high("Alice", 1);
+    std::cout << std::endl;
+    form = someRandomIntern.makeForm("robotomy request", "Bender");
+    if (form) 
+    {
+        high.signForm(*form);
+        high.executeForm(*form);
+        delete form;
+    }
 
-    ShrubberyCreationForm shrub("home");
-    RobotomyRequestForm robot("Bender");
-    PresidentialPardonForm pardon("Paul");
+    std::cout << std::endl;
+    form = someRandomIntern.makeForm("presidential pardon", "Ford Prefect");
+    if (form) 
+    {
+        high.signForm(*form);
+        high.executeForm(*form);
+        delete form;
+    }
 
-    std::cout << "\n=== TEST AVEC GRADE TROP BAS ===" << std::endl;
-    testForm(shrub, low);
-    testForm(robot, low);
-    testForm(pardon, low);
-
-    std::cout << "\n=== TEST AVEC GRADE SUFFISANT ===" << std::endl;
-    testForm(shrub, high);
-    testForm(robot, high);
-    testForm(pardon, high);
-
-    std::cout << "\n=== FIN DES TESTS ===" << std::endl;
+    std::cout << std::endl;
+    form = someRandomIntern.makeForm("unknown form", "Target");
+    if (form)
+        delete form;
     return 0;
 }
-
-
