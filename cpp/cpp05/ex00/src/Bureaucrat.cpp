@@ -1,7 +1,4 @@
-#include "Bureaucrat.hpp"
-
-
-
+#include "../include/Bureaucrat.hpp"
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {

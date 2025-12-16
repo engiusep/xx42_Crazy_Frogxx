@@ -5,6 +5,7 @@
 #define BUREAUCRAT_HPP
 
 #include "Form.hpp"
+
 class Form;
 class Bureaucrat
 {
@@ -19,19 +20,13 @@ class Bureaucrat
         class GradeTooHighException : public std::exception
         {
             public:
-                virtual const char* what() const throw() 
-                {
-                    return "Grade too High !";
-                }
+                virtual const char* what() const throw();
         };
 
         class GradeTooLowException : public std::exception 
         {
             public:
-                virtual const char* what() const throw() 
-                {
-                    return "Grade too low !";
-                }
+                virtual const char* what() const throw();
         };
         void IncrementGrade();
         void DecrementGrade();
