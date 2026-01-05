@@ -12,7 +12,7 @@ int main()
     identify(p);
     std::cout << "Identify using reference: ";
 
-    identify(p);
+    identify(*p);
 
     delete p;
     return 0;

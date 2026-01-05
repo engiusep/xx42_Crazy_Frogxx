@@ -1,14 +1,9 @@
-NAME = AForm
+NAME = Template
 
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98 -MMD -MP
 
-SRCS = src/Bureaucrat.cpp \
-		src/AForm.cpp \
-		src/main.cpp \
-		src/ShrubberyCreationForm.cpp \
-		src/RobotomyRequestForm.cpp \
-		src/PresidentialPardonForm.cpp
+SRCS = src/main.cpp\
 
 MAKEDIR = make
 OBJDIR = make/objs
@@ -17,11 +12,7 @@ DEPDIR = make/deps
 OBJS = $(SRCS:src/%.cpp=$(OBJDIR)/%.o)
 DEPS = $(SRCS:src/%.cpp=$(DEPDIR)/%.d)
 
-HEADER = include/AForm.hpp \
-			include/Bureaucrat.hpp \
-			include/ShrubberyCreationForm.hpp \
-			include/RobotomyRequestForm.hpp \
-			include/PresidentialPardonForm.hpp
+HEADER = include/whatever.hpp
 
 COMPILED = 0
 MESSAGE_COLOR_GREEN = \033[1;32m
