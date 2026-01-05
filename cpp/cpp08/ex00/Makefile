@@ -1,4 +1,4 @@
-NAME = Template
+NAME = Container
 
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98 -MMD -MP
@@ -12,7 +12,7 @@ DEPDIR = make/deps
 OBJS = $(SRCS:src/%.cpp=$(OBJDIR)/%.o)
 DEPS = $(SRCS:src/%.cpp=$(DEPDIR)/%.d)
 
-HEADER = include/whatever.hpp
+HEADER = include/easyfind.hpp
 
 COMPILED = 0
 MESSAGE_COLOR_GREEN = \033[1;32m
