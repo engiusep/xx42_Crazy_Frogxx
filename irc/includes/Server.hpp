@@ -5,7 +5,7 @@
 #include <poll.h>
 
 class Client;
-class Topic;
+//class Topic;
 
 class Server
 {
@@ -13,14 +13,13 @@ class Server
         int _server_fd;
         std::vector<pollfd> _fds;
         std::vector<Client> _clients;
-        std::vector<Topic> _topics;
-        std::string _password;
+        //std::vector<Topic> _topics;
         int _port;
+        std::string _password;
     public:
         Server(int port,std::string password);
         ~Server();
         void init();
-        int check_entry();
         void add_poll_and_client(int client_fd);
         void listening();
         void disconnect_client(int client_fd);

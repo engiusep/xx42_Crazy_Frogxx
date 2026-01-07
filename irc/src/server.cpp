@@ -68,7 +68,7 @@ void Server::add_poll_and_client(int client_fd)
 
     _fds.push_back(p);
 
-    _client.push_back(Client(client_fd));
+    _clients.push_back(Client(client_fd));
 
 }
 

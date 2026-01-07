@@ -2,7 +2,7 @@
 
 
 
-Client::Client(int fd) : _fd(fd), _buffer("") , _name("") 
+Client::Client(int fd) : _fd(fd)
 {
     std::cout << _fd << std::endl;
 }
