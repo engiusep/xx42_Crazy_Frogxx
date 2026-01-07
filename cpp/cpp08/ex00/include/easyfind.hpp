@@ -1,3 +1,4 @@
+
 #ifndef EASYFIND_HPP
 #define EASYFIND_HPP
 
@@ -12,4 +13,5 @@ typename container::const_iterator easyfind(const container &c, int value)
         throw std::exception();
     return it;
 }
+
 #endif
