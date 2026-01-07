@@ -16,7 +16,7 @@ Server::~Server() {}
 
 void Server::init()
 {
-    // 1️⃣ Crée le socket
+    // Crée le socket
     _server_fd = socket(AF_INET, SOCK_STREAM, 0);
     if (_server_fd < 0)
     {
@@ -24,14 +24,13 @@ void Server::init()
         exit(1);
     }
 
-    // 2️⃣ Prépare l'adresse
+    // Prépare l'adresse
     struct sockaddr_in addr;
     memset(&addr, 0, sizeof(addr));
     addr.sin_family = AF_INET;             // IPv4
     addr.sin_addr.s_addr = htonl(INADDR_ANY); // toutes les interfaces
     addr.sin_port = htons(_port);           // port IRC classique
 
-    // 3️⃣ bind
     if (bind(_server_fd, (struct sockaddr *)&addr, sizeof(addr)) < 0)
     {
         //perror("bind");
@@ -39,17 +38,13 @@ void Server::init()
         exit(1);
     }
 
-    // 4️⃣ listen
     if (listen(_server_fd, SOMAXCONN) < 0)
     {
         //perror("listen");
         close(_server_fd);
         exit(1);
     }
-
     std::cout << "Server initialized and listening on port 6667..." << std::endl;
-
-    // 5️⃣ boucle principale
     listening();
 }
 
