@@ -14,22 +14,28 @@ Server::Server(int port,std::string  password) : _port(port) ,_password(password
 
 Server::~Server() {}
 
+Client *Server::get_client_by_fd(int fd)
+{
+    for(int i = 0;i < _clients.size();i++)
+    {
+        if(_clients[i].getFd() == fd)
+            return &_clients[i];
+    }
+    return NULL;
+}
 void Server::init()
 {
-    // Crée le socket
     _server_fd = socket(AF_INET, SOCK_STREAM, 0);
     if (_server_fd < 0)
     {
         //perror("socket");
         exit(1);
     }
-
-    // Prépare l'adresse
     struct sockaddr_in addr;
     memset(&addr, 0, sizeof(addr));
-    addr.sin_family = AF_INET;             // IPv4
-    addr.sin_addr.s_addr = htonl(INADDR_ANY); // toutes les interfaces
-    addr.sin_port = htons(_port);           // port IRC classique
+    addr.sin_family = AF_INET;             
+    addr.sin_addr.s_addr = htonl(INADDR_ANY); 
+    addr.sin_port = htons(_port);
 
     if (bind(_server_fd, (struct sockaddr *)&addr, sizeof(addr)) < 0)
     {
@@ -45,6 +51,12 @@ void Server::init()
         exit(1);
     }
     std::cout << "Server initialized and listening on port 6667..." << std::endl;
+    pollfd p;
+    p.fd = _server_fd;
+    p.events = POLLIN;
+    p.revents = 0;
+
+    _fds.push_back(p);
     listening();
 }
 
@@ -87,21 +99,24 @@ void Server::listening()
                     int client_fd = accept(_server_fd, NULL, NULL);
                     add_poll_and_client(client_fd);
                 }
-                // else
-                // {
-                //     int bytes = recv(_fds[i].fd, _buffer, 512, 0);
-                //     if (bytes <= 0)
-                //     {
-                //         disconnect_client(i);
-                //         i--;
-                //         // continue; si on rajotue du code ou pas 
-                //     }
-                //     else
-                //     {
-                //         _buffer[bytes] = '\0';
-                //         handle_irc_command(_fds[i].fd, _buffer);
-                //     }
-                // }
+                else
+                {
+                    char tmp_buffer[512];
+
+                    int bytes = recv(_fds[i].fd,tmp_buffer, 511, 0);
+                    Client *client = get_client_by_fd(_fds[i].fd);
+                    if (bytes <= 0)
+                    {
+                        disconnect_client(i);
+                        i--;
+                        // continue; si on rajotue du code ou pas 
+                    }
+                    // else
+                    // {
+                    //     _buffer[bytes] = '\0';
+                    //     send(_fds[i].fd, _buffer,bytes, 0);
+                    // }
+                }
             }
         }
     }

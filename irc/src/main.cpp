@@ -39,7 +39,7 @@ int checker_entry(std::string port, std::string password)
 
 int main(int argc,char **argv)
 {
-     if (argc != 3)
+    if (argc != 3)
     {
         std::cout << "Usage: ./ircserver <port> <password>" << std::endl;
         return 1;

@@ -35,10 +35,12 @@ int RPN::applyOp(int a, int b, char op)
 void RPN::processExpression(const std::string &expr) 
 {
     try {
-        for (size_t i = 0; i < expr.length(); i++) {
+        for (size_t i = 0; i < expr.length(); i++) 
+        {
             if (isspace(expr[i])) continue;
 
-            if (isdigit(expr[i])) {
+            if (isdigit(expr[i])) 
+            {
                 _stack.push(expr[i] - '0');
             } 
             else if (isOperator(expr[i])) 
@@ -51,7 +53,8 @@ void RPN::processExpression(const std::string &expr)
                 
                 _stack.push(applyOp(a, b, expr[i]));
             } 
-            else {
+            else 
+            {
                 throw std::runtime_error("Error");
             }
         }

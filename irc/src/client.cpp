@@ -10,3 +10,13 @@ Client::Client(int fd) : _fd(fd)
 Client::~Client()
 {
 }
+
+int Client::getFd() const
+{
+    return _fd;
+}
+
+void Client::appendToBuffer(const char *data,size_t len)
+{
+    _buffer.append(data, len);
+}

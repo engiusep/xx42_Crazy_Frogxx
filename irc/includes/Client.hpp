@@ -9,9 +9,12 @@ class Client
         std::vector<std::string> _msg;
         std::string _nickname;
         std::string _username;
+        std::string _buffer;
         
     public:
         Client(int fd);
+        int getFd() const;
+        void appendToBuffer(const char* data, size_t len);
         ~Client();
 };
 
