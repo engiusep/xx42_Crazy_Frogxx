@@ -1,0 +1,7 @@
+[00:35:09.373] Server  ERROR   ⨯ Error: Cannot find module 'next/dist/client/components/builtin/global-not-found'
+Require stack:
+- /home/engiusep/Documents/xx42_Crazy_Frogxx/transcandance/frontend/node_modules/next/dist/server/dev/on-demand-entry-handler.js
+- /home/engiusep/Documents/xx42_Crazy_Frogxx/transcandance/frontend/node_modules/next/dist/server/dev/hot-reloader-turbopack.js
+- /home/engiusep/Documents/xx42_Crazy_Frogxx/transcandance/frontend/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /home/engiusep/Documents/xx42_Crazy_Frogxx/transcandance/frontend/node_modules/next/dist/server/lib/router-server.js
+- /home/engiusep/Documents/xx42_Crazy_Frogxx/transcandance/frontend/node_modules/next/dist/server/lib/start-server.js
